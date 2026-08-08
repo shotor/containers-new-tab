@@ -178,12 +178,25 @@ jobs:
           name: dist
           path: dist
 
+      # Reviewers need readable sources (Vite bundles/minifies the XPI). See
+      # https://extensionworkshop.com/documentation/publish/source-code-submission/
+      - name: Pack source for AMO reviewers
+        run: |
+          mkdir -p web-ext-artifacts
+          git archive --format=zip --output=web-ext-artifacts/source.zip HEAD
+
       # Signs and uploads to addons.mozilla.org. First-time submission must be
       # created via the AMO web UI (listing metadata); afterwards this publishes
       # new versions. Requires secrets AMO_API_KEY + AMO_API_SECRET (AMO JWT
       # issuer/secret from https://addons.mozilla.org/developers/addon/api/key/).
       - name: Publish to Firefox (AMO)
-        run: npx web-ext sign --source-dir dist --artifacts-dir web-ext-artifacts --channel listed
+        run: >
+          npx web-ext sign
+          --source-dir dist
+          --artifacts-dir web-ext-artifacts
+          --channel listed
+          --upload-source-code web-ext-artifacts/source.zip
+          --approval-timeout 0
         env:
           WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
