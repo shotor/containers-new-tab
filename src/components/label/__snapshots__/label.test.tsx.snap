@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Label > matches snapshot 1`] = `
+<div>
+  <label
+    class="root extra"
+    for="detail-name"
+  >
+    Name
+  </label>
+</div>
+`;

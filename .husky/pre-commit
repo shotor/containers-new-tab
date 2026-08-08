@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+REMOTE=ff-containers-tab.devsy
+DIR=/workspaces/ff-containers-tab
+
+if command -v npm >/dev/null 2>&1; then
+  npm run lint
+else
+  ssh "$REMOTE" "cd $DIR && npm run lint"
+fi

@@ -1,0 +1,11 @@
+.devcontainer/volumes/**
+!.devcontainer/volumes/**/
+!.devcontainer/volumes/**/.gitkeep
+
+node_modules/
+dist/
+.cache/
+.web-ext-profile/
+web-ext-artifacts/
+*.log
+.DS_Store

@@ -1,0 +1,73 @@
+.swatchRow,
+.iconRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.swatch,
+.iconPick {
+  position: relative;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  background: var(--swatch, #888);
+  padding: 0;
+  box-shadow: var(--neu-raised-sm);
+  transition: box-shadow var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.swatch::before,
+.iconPick::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--neu-pressed-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.swatch:hover,
+.swatch:focus-visible,
+.iconPick:hover,
+.iconPick:focus-visible,
+.swatch[aria-checked='true'],
+.iconPick[aria-checked='true'] {
+  outline: none;
+  box-shadow: var(--neu-raised-sm-fade);
+}
+
+.swatch:hover::before,
+.swatch:focus-visible::before,
+.iconPick:hover::before,
+.iconPick:focus-visible::before,
+.swatch[aria-checked='true']::before,
+.iconPick[aria-checked='true']::before {
+  opacity: 1;
+}
+
+.iconRow {
+  gap: 0.7rem;
+}
+
+.iconPick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--bg0);
+}
+
+.iconGlyph {
+  position: relative;
+  z-index: 1;
+  width: 1.35rem;
+  height: 1.35rem;
+  background-color: var(--pick-color, var(--accent));
+}

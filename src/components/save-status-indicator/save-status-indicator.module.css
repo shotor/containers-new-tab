@@ -1,0 +1,49 @@
+.root {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--title-color, var(--ink));
+  transform: translateY(2px);
+}
+
+.saved {
+  animation: statusFade 1.4s ease forwards;
+}
+
+.spinner {
+  box-sizing: border-box;
+  display: block;
+  width: 0.95rem;
+  height: 0.95rem;
+  border: 2px solid
+    color-mix(in srgb, var(--title-color, var(--ink)) 28%, transparent);
+  border-top-color: var(--title-color, var(--ink));
+  border-radius: 50%;
+  animation: statusSpin 0.7s linear infinite;
+}
+
+.check {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+@keyframes statusSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes statusFade {
+  0% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

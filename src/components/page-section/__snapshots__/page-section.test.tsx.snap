@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PageSection > matches snapshot 1`] = `
+<div>
+  <section
+    aria-labelledby="test-heading-id"
+    class="root"
+  >
+    <h2
+      class="title"
+      id="test-heading-id"
+    >
+      Containers
+    </h2>
+    <p>
+      Body
+    </p>
+  </section>
+</div>
+`;

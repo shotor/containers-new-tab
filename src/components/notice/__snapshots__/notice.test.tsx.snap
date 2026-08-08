@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Notice > matches snapshot 1`] = `
+<div>
+  <p
+    class="root warning"
+    role="note"
+  >
+    Watch out
+  </p>
+</div>
+`;

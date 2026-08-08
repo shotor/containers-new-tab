@@ -1,0 +1,43 @@
+{
+  "name": "containers-new-tab",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
+
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {
+      "label": "Firefox noVNC",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/history,target=/commandhistory,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/codex,target=/home/node/.codex,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/config,target=/home/node/.config/Cursor,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/cli-config,target=/home/node/.config/cursor,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/home,target=/home/node/.cursor,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/data,target=/home/node/.local/share/Cursor,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/cache,target=/home/node/.cache/Cursor,type=bind,consistency=cached"
+  ],
+
+  "containerEnv": {
+    "HISTFILE": "/commandhistory/.zsh_history"
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode", "openai.chatgpt"],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  }
+}

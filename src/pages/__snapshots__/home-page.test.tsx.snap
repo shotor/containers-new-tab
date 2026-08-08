@@ -1,0 +1,52 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomePage > matches snapshot 1`] = `
+<div>
+  <header
+    class="root"
+  >
+    <div
+      class="brand"
+    >
+      <h1
+        class="brandName"
+      >
+        Containers
+      </h1>
+    </div>
+    <div
+      class="controls"
+    >
+      <div
+        data-mock="SortMenu"
+      />
+      <div
+        data-mock="ThemeMenu"
+      />
+    </div>
+  </header>
+  <main>
+    <section
+      class="root"
+    >
+      <div
+        data-mock="ContainerGrid"
+      />
+    </section>
+    <section
+      aria-labelledby="P0-1"
+      class="root"
+    >
+      <h2
+        class="title"
+        id="P0-1"
+      >
+        Assigned websites
+      </h2>
+      <div
+        data-mock="SiteAssignments"
+      />
+    </section>
+  </main>
+</div>
+`;

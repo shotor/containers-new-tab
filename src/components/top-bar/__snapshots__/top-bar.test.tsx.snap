@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TopBar > matches snapshot 1`] = `
+<div>
+  <header
+    class="root"
+  >
+    <div
+      class="brand"
+    >
+      <h1
+        class="brandName"
+      >
+        Containers
+      </h1>
+    </div>
+    <div
+      class="controls"
+    >
+      <button
+        type="button"
+      >
+        Sort
+      </button>
+    </div>
+  </header>
+</div>
+`;

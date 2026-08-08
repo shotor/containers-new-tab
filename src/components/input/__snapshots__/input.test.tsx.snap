@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Input > matches snapshot 1`] = `
+<div>
+  <input
+    class="root"
+    id="name"
+    placeholder="Name"
+    type="text"
+  />
+</div>
+`;
+
+exports[`Select > matches snapshot 1`] = `
+<div>
+  <select
+    class="root"
+    id="type"
+  >
+    <option
+      value="direct"
+    >
+      Direct
+    </option>
+    <option
+      value="http"
+    >
+      HTTP
+    </option>
+  </select>
+</div>
+`;

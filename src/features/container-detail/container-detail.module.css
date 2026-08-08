@@ -1,0 +1,18 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.error {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--danger);
+}
+
+.saveStatusMuted {
+  color: var(--ink-muted);
+  transform: translateY(1px);
+}

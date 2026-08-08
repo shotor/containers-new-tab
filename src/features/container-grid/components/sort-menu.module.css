@@ -1,0 +1,71 @@
+.root {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.95rem 0.4rem 0.75rem;
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--ink-muted);
+}
+
+.trigger:hover .icon,
+.trigger[aria-expanded='true'] .icon {
+  color: var(--ink);
+}
+
+.label {
+  letter-spacing: -0.01em;
+}
+
+.chevron {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-left: 0.15rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-1px) rotate(45deg);
+  opacity: 0.7;
+}
+
+.list {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  z-index: 20;
+  display: grid;
+  gap: 0.3rem;
+  min-width: 100%;
+  margin: 0;
+  padding: 0.45rem;
+  list-style: none;
+  border: 0;
+  border-radius: 18px;
+  background: var(--bg0);
+  box-shadow: var(--neu-raised);
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  color: var(--ink-muted);
+  text-align: left;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+.option:hover,
+.option:focus-visible {
+  color: var(--ink);
+}
+
+.option.active {
+  color: var(--accent);
+}

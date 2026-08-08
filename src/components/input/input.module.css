@@ -1,0 +1,26 @@
+.root {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg0);
+  border: 0;
+  border-radius: 14px;
+  color: var(--ink);
+  padding: 0.65rem 0.85rem;
+  font: inherit;
+  box-shadow: var(--neu-pressed-sm);
+}
+
+.root:focus {
+  outline: none;
+  box-shadow: var(--neu-pressed);
+}
+
+.root[aria-invalid='true'] {
+  box-shadow:
+    var(--neu-pressed-sm),
+    0 0 0 1px color-mix(in srgb, var(--danger) 55%, transparent);
+}
+
+.root::placeholder {
+  color: var(--ink-muted);
+}

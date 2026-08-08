@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContainerGrid > matches snapshot 1`] = `
+<div>
+  <div
+    data-current="firefox-default"
+    data-mock="TileGrid"
+    data-sortable="false"
+  />
+  <p
+    class="hint hidden"
+  >
+    Drag tiles to set a custom order.
+  </p>
+</div>
+`;

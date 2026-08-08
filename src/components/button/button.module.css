@@ -1,0 +1,86 @@
+.root {
+  position: relative;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+  cursor: pointer;
+  background: var(--bg0);
+  color: var(--ink);
+  box-shadow: var(--neu-raised-sm);
+  transition: box-shadow var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--neu-pressed-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.root:hover,
+.root:focus-visible,
+.root:active {
+  outline: none;
+  box-shadow: var(--neu-raised-sm-fade);
+}
+
+.root:hover::after,
+.root:focus-visible::after,
+.root:active::after {
+  opacity: 1;
+}
+
+.ghost {
+  background: var(--bg0);
+  color: var(--ink-muted);
+}
+
+.ghost:hover,
+.ghost:focus-visible {
+  color: var(--ink-muted);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.danger:hover,
+.danger:focus-visible {
+  color: var(--danger);
+}
+
+.plain {
+  padding: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  box-shadow: none;
+}
+
+.plain::after {
+  content: none;
+}
+
+.plain:hover,
+.plain:focus-visible,
+.plain:active {
+  box-shadow: none;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}

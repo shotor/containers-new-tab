@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ColorField > matches snapshot 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <label
+      class="root"
+      id="detail-color-label"
+    >
+      Color
+    </label>
+    <div
+      aria-labelledby="detail-color-label"
+      class="swatchRow"
+      role="radiogroup"
+    >
+      <button
+        aria-checked="true"
+        aria-label="blue"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #37adff;"
+        title="blue"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="turquoise"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #00c79a;"
+        title="turquoise"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="green"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #51cd00;"
+        title="green"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="yellow"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #ffcb00;"
+        title="yellow"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="orange"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #ff9f00;"
+        title="orange"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="red"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #ff613d;"
+        title="red"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="pink"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #ff4bda;"
+        title="pink"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="purple"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #af51f5;"
+        title="purple"
+        type="button"
+      />
+      <button
+        aria-checked="false"
+        aria-label="toolbar"
+        class="root plain swatch"
+        role="radio"
+        style="--swatch: #7c7c7c;"
+        title="toolbar"
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;

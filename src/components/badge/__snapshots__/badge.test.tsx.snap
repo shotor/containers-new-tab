@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Badge > matches snapshot 1`] = `
+<div>
+  <span
+    class="root"
+  >
+    <span
+      class="dot"
+      style="--badge-color: #ff0000;"
+    />
+    Work
+  </span>
+</div>
+`;

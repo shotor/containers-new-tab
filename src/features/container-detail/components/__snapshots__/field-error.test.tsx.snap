@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldError > matches snapshot 1`] = `
+<div>
+  <p
+    class="error"
+    id="detail-name-error"
+    role="alert"
+  >
+    Name is required
+  </p>
+</div>
+`;

@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DeleteConfirmDialog > matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+    role="presentation"
+  >
+    <div
+      aria-describedby="delete-dialog-desc"
+      aria-labelledby="delete-dialog-title"
+      aria-modal="true"
+      class="dialog"
+      role="alertdialog"
+    >
+      <span
+        aria-hidden="true"
+        class="root icon"
+        style="--title-color: #37adff; --icon-url: url("data:image/svg+xml,%3c!--%20This%20Source%20Code%20Form%20is%20subject%20to%20the%20terms%20of%20the%20Mozilla%20Public%20-%20License,%20v.%202.0.%20If%20a%20copy%20of%20the%20MPL%20was%20not%20distributed%20with%20this%20-%20file,%20You%20can%20obtain%20one%20at%20http://mozilla.org/MPL/2.0/.%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3e%3cpath%20fill='black'%20fill-rule='evenodd'%20d='M23.1,5.3c0-1.4-1.2-2.7-2.8-2.7h-8.7c-1.4,0-2.7,1.2-2.7,2.7v4.4H7.1v19.6h17.8V9.8h-1.8V5.3z%20M20.8,9.8H11%20V5.3c0-0.4,0.2-0.5,0.5-0.5h8.7c0.4,0,0.5,0.2,0.5,0.5V9.8z%20M1.8,9.8h2.7v19.6H1.8c-0.9,0-1.8-0.9-1.8-1.8v-16%20C0,10.5,0.9,9.8,1.8,9.8z%20M32,11.6v16c0,0.9-0.7,1.8-1.8,1.8h-2.7V9.8h2.7C31.3,9.8,32,10.5,32,11.6z'/%3e%3c/svg%3e");"
+      />
+      <h2
+        class="title"
+        id="delete-dialog-title"
+      >
+        Delete 
+        Work
+        ?
+      </h2>
+      <p
+        class="desc"
+        id="delete-dialog-desc"
+      >
+        This permanently deletes the container and its cookie jar — logins and site data for this identity. This cannot be undone.
+      </p>
+      <div
+        class="actions"
+      >
+        <button
+          class="root ghost action"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="root danger action"
+          type="button"
+        >
+          Delete permanently
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

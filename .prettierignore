@@ -1,0 +1,5 @@
+dist/
+.web-ext-profile/
+web-ext-artifacts/
+.cache/
+package-lock.json
