@@ -1,10 +1,60 @@
 import { Router, useLocation } from 'wouter'
 import css from './app.module.css'
-import { DetailPage } from '@/pages/detail-page'
+import type { DetailPageProps } from '@/pages/detail-page'
 import { HomePage } from '@/pages/home-page'
 import { Magnificence } from '@/components/magnificence/magnificence'
+import { Suspense } from 'preact/compat'
 import { ThemeProvider } from '@/theme'
 import { useHashLocation } from 'wouter/use-hash-location'
+
+type DetailPageComponent = React.FC<DetailPageProps>
+
+let detailPage: DetailPageComponent | undefined
+let detailPageError: unknown
+let detailPagePromise: Promise<DetailPageComponent> | undefined
+
+/**
+ * Start (or reuse) loading the detail page chunk.
+ * Sets the component synchronously on resolve so a finished prefetch
+ * does not hit Suspense (Preact's lazy() always suspends once).
+ * @returns Promise of the DetailPage component.
+ */
+const loadDetailPage = (): Promise<DetailPageComponent> => {
+  detailPagePromise ??= import('@/pages/detail-page').then(
+    (module) => {
+      detailPage = module.DetailPage
+      return module.DetailPage
+    },
+    (error: unknown) => {
+      detailPageError = error
+      throw error
+    },
+  )
+
+  return detailPagePromise
+}
+
+// Warm the detail chunk as soon as the app shell loads.
+void loadDetailPage()
+
+/**
+ * Detail page that suspends only while the chunk is still in flight.
+ * @param props - Detail route props.
+ * @returns The detail page, or throws a promise for Suspense.
+ */
+const LazyDetailPage: React.FC<DetailPageProps> = (props) => {
+  if (detailPageError) {
+    throw detailPageError
+  }
+
+  if (!detailPage) {
+    throw loadDetailPage()
+  }
+
+  const Page = detailPage
+
+  return <Page {...props} />
+}
 
 /**
  * Parse hash location into home vs container detail.
@@ -34,7 +84,11 @@ const AppRoutes: React.FC = () => {
   const cookieStoreId = detailCookieStoreId(loc)
 
   if (cookieStoreId !== null) {
-    return <DetailPage cookieStoreId={cookieStoreId} />
+    return (
+      <Suspense fallback={null}>
+        <LazyDetailPage cookieStoreId={cookieStoreId} />
+      </Suspense>
+    )
   }
 
   return <HomePage />

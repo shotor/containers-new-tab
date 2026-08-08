@@ -20,7 +20,7 @@ exports[`SortMenu > matches snapshot 1`] = `
         <span
           aria-hidden="true"
           class="root"
-          style="--icon-url: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3cpath%20d='M4%206h10'/%3e%3cpath%20d='M4%2012h7'/%3e%3cpath%20d='M4%2018h4'/%3e%3cpath%20d='M17%208l3-3%203%203'/%3e%3cpath%20d='M20%205v14'/%3e%3c/svg%3e");"
+          style="--icon-url: url("moz-extension://test/assets/icons/sort.svg");"
         />
       </span>
       <span

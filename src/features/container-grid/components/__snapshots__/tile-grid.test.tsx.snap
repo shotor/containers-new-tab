@@ -3,108 +3,100 @@
 exports[`TileGrid > matches snapshot 1`] = `
 <div>
   <div
-    data-mock="DndContext"
+    class="root"
+    role="list"
   >
     <div
-      data-mock="SortableContext"
+      aria-current="true"
+      class="root noContainer current"
+      role="listitem"
     >
-      <div
-        class="root"
-        role="list"
+      <button
+        aria-label="No Container (current)"
+        class="root plain open"
+        type="button"
       >
-        <div
-          aria-current="true"
-          class="root noContainer current"
-          role="listitem"
+        <span
+          aria-hidden="true"
+          class="iconWrap"
         >
-          <button
-            aria-label="No Container (current)"
-            class="root plain open"
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-              class="iconWrap"
-            >
-              <span
-                aria-hidden="true"
-                class="root icon"
-                style="--icon-url: url("data:image/svg+xml,%3c!--%20This%20Source%20Code%20Form%20is%20subject%20to%20the%20terms%20of%20the%20Mozilla%20Public%20-%20License,%20v.%202.0.%20If%20a%20copy%20of%20the%20MPL%20was%20not%20distributed%20with%20this%20-%20file,%20You%20can%20obtain%20one%20at%20http://mozilla.org/MPL/2.0/.%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3e%3ccircle%20fill='black'%20cx='16'%20cy='16'%20r='16'/%3e%3c/svg%3e");"
-              />
-            </span>
-            <span
-              class="name"
-            >
-              No Container
-            </span>
-          </button>
-        </div>
-        <div
+          <span
+            aria-hidden="true"
+            class="root icon"
+            style="--icon-url: url("moz-extension://test/assets/icons/circle.svg");"
+          />
+        </span>
+        <span
+          class="name"
+        >
+          No Container
+        </span>
+      </button>
+    </div>
+    <div
+      class="root"
+      role="listitem"
+      style="--tile-color: #00f;"
+    >
+      <button
+        aria-label="Work"
+        class="root plain open"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="iconWrap"
+        >
+          <span
+            aria-hidden="true"
+            class="root icon"
+            style="--icon-url: url("moz-extension://test/assets/icons/briefcase.svg");"
+          />
+        </span>
+        <span
+          class="name"
+        >
+          Work
+        </span>
+      </button>
+      <button
+        aria-label="Edit Work"
+        class="root edit"
+        title="Edit container"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
           class="root"
-          role="listitem"
-          style="--tile-color: #00f;"
+          style="height: 14px; width: 14px; --icon-url: url("moz-extension://test/assets/icons/edit.svg");"
+        />
+      </button>
+    </div>
+    <div
+      class="root"
+      role="listitem"
+    >
+      <button
+        aria-label="New container"
+        class="root plain open"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="iconWrap"
         >
-          <button
-            aria-label="Work"
-            class="root plain open"
-            type="button"
+          <span
+            class="plus"
           >
-            <span
-              aria-hidden="true"
-              class="iconWrap"
-            >
-              <span
-                aria-hidden="true"
-                class="root icon"
-                style="--icon-url: url("data:image/svg+xml,%3c!--%20This%20Source%20Code%20Form%20is%20subject%20to%20the%20terms%20of%20the%20Mozilla%20Public%20-%20License,%20v.%202.0.%20If%20a%20copy%20of%20the%20MPL%20was%20not%20distributed%20with%20this%20-%20file,%20You%20can%20obtain%20one%20at%20http://mozilla.org/MPL/2.0/.%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3e%3cpath%20fill='black'%20fill-rule='evenodd'%20d='M23.1,5.3c0-1.4-1.2-2.7-2.8-2.7h-8.7c-1.4,0-2.7,1.2-2.7,2.7v4.4H7.1v19.6h17.8V9.8h-1.8V5.3z%20M20.8,9.8H11%20V5.3c0-0.4,0.2-0.5,0.5-0.5h8.7c0.4,0,0.5,0.2,0.5,0.5V9.8z%20M1.8,9.8h2.7v19.6H1.8c-0.9,0-1.8-0.9-1.8-1.8v-16%20C0,10.5,0.9,9.8,1.8,9.8z%20M32,11.6v16c0,0.9-0.7,1.8-1.8,1.8h-2.7V9.8h2.7C31.3,9.8,32,10.5,32,11.6z'/%3e%3c/svg%3e");"
-              />
-            </span>
-            <span
-              class="name"
-            >
-              Work
-            </span>
-          </button>
-          <button
-            aria-label="Edit Work"
-            class="root edit"
-            title="Edit container"
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-              class="root"
-              style="height: 14px; width: 14px; --icon-url: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3cpath%20d='M12%2020h9'/%3e%3cpath%20d='M16.5%203.5a2.1%202.1%200%200%201%203%203L7%2019l-4%201%201-4Z'/%3e%3c/svg%3e");"
-            />
-          </button>
-        </div>
-        <div
-          class="root"
-          role="listitem"
+            +
+          </span>
+        </span>
+        <span
+          class="name"
         >
-          <button
-            aria-label="New container"
-            class="root plain open"
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-              class="iconWrap"
-            >
-              <span
-                class="plus"
-              >
-                +
-              </span>
-            </span>
-            <span
-              class="name"
-            >
-              New container
-            </span>
-          </button>
-        </div>
-      </div>
+          New container
+        </span>
+      </button>
     </div>
   </div>
 </div>

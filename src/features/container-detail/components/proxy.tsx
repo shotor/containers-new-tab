@@ -1,3 +1,4 @@
+import * as z from 'zod/mini'
 import {
   type ContainerDetailFormValues,
   type ProxyFormValues,
@@ -12,7 +13,6 @@ import { PROXY_TYPES } from '@/data/types'
 import { ProxyOptionalFields } from '@/features/container-detail/components/proxy-optional-fields'
 import type { UseFormRegister } from 'react-hook-form'
 import { useState } from 'preact/hooks'
-import { z } from 'zod'
 
 export type ProxyProps = {
   register: UseFormRegister<ContainerDetailFormValues>

@@ -1,10 +1,10 @@
 import '@/data/zod-config'
+import * as z from 'zod/mini'
 import {
   CONTAINER_COLOR_NAMES,
   CONTAINER_ICON_NAMES,
 } from '@/data/browser/types'
 import { type ContainerProxy, PROXY_TYPES } from '@/data/types'
-import { z } from 'zod'
 
 /** Proxy type values accepted by the detail form. */
 const proxyTypeSchema = z.enum(PROXY_TYPES)
@@ -46,25 +46,31 @@ export type ProxyFormValues = Pick<
 export const identityPersistSchema = z.object({
   color: containerColorSchema,
   icon: containerIconSchema,
-  name: z.string().trim().min(1, 'Name is required'),
+  name: z
+    .string()
+    .check(z.trim(), z.minLength(1, { error: 'Name is required' })),
 })
 
 /** Port string that is an integer in 1024…65535 (non-privileged on Linux). */
-const proxyPortSchema = z
-  .string()
-  .trim()
-  .regex(/^\d+$/, 'Port must be a number')
-  .refine((value) => {
-    const port = Number(value)
-    return port >= 1024 && port <= 65535
-  }, 'Port must be between 1024 and 65535')
+const proxyPortSchema = z.string().check(
+  z.trim(),
+  z.regex(/^\d+$/, { error: 'Port must be a number' }),
+  z.refine(
+    (value) => {
+      const port = Number(value)
+
+      return port >= 1024 && port <= 65535
+    },
+    { error: 'Port must be between 1024 and 65535' },
+  ),
+)
 
 /**
  * Proxy form values ready to write to storage.
  * Parses to `null` for direct, or a {@link ContainerProxy} when complete.
  */
-export const proxyPersistSchema = z
-  .discriminatedUnion('type', [
+export const proxyPersistSchema = z.pipe(
+  z.discriminatedUnion('type', [
     z.object({
       doNotProxyLocal: z.boolean(),
       host: z.string(),
@@ -75,14 +81,16 @@ export const proxyPersistSchema = z
     }),
     z.object({
       doNotProxyLocal: z.boolean(),
-      host: z.string().trim().min(1, 'Host is required'),
+      host: z
+        .string()
+        .check(z.trim(), z.minLength(1, { error: 'Host is required' })),
       password: z.string(),
       port: proxyPortSchema,
       type: z.enum(['http', 'https', 'socks', 'socks4']),
       username: z.string(),
     }),
-  ])
-  .transform((data): ContainerProxy | null => {
+  ]),
+  z.transform((data): ContainerProxy | null => {
     if (data.type === 'direct') {
       return null
     }
@@ -95,7 +103,8 @@ export const proxyPersistSchema = z
       type: data.type,
       username: data.username.trim() || undefined,
     }
-  })
+  }),
+)
 
 /**
  * Map a stored proxy (or none) onto proxy form fields.

@@ -4,7 +4,7 @@ REMOTE=ff-containers-tab.devsy
 DIR=/workspaces/ff-containers-tab
 
 if command -v npm >/dev/null 2>&1; then
-  npm run lint
+  npx lint-staged
 else
-  ssh "$REMOTE" "cd $DIR && npm run lint"
+  ssh "$REMOTE" "cd $DIR && npx lint-staged"
 fi

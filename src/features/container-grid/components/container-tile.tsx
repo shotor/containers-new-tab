@@ -27,6 +27,7 @@ export type ContainerTileProps = {
   dragListeners?: DraggableSyntheticListeners
   onOpen: (opts?: { replaceCurrent?: boolean }) => void
   onEdit?: () => void
+  onPrefetch?: () => void
 }
 
 /**
@@ -49,6 +50,7 @@ export const ContainerTile: React.FC<ContainerTileProps> = ({
   dragListeners,
   onOpen,
   onEdit,
+  onPrefetch,
 }) => {
   const style: CSSProperties = {
     ...(color ? { '--tile-color': color } : {}),
@@ -71,6 +73,7 @@ export const ContainerTile: React.FC<ContainerTileProps> = ({
       {...dragListeners}
       role="listitem"
       aria-current={current ? 'true' : undefined}
+      onPointerEnter={onPrefetch}
     >
       <Button
         variant="plain"

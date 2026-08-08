@@ -17,7 +17,7 @@ exports[`ThemeMenu > matches snapshot 1`] = `
       <span
         aria-hidden="true"
         class="root"
-        style="--icon-url: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3ccircle%20cx='12'%20cy='12'%20r='9'/%3e%3cpath%20d='M12%203v18'/%3e%3cpath%20d='M12%203a9%209%200%200%201%200%2018'%20fill='black'%20stroke='none'%20opacity='0.35'/%3e%3c/svg%3e");"
+        style="--icon-url: url("moz-extension://test/assets/icons/contrast.svg");"
       />
     </button>
   </div>

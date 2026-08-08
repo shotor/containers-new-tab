@@ -22,7 +22,7 @@ export const DetailPage: React.FC<DetailPageProps> = ({ cookieStoreId }) => {
   const detail = useContainerDetail({ cookieStoreId })
 
   if (detail.loading) {
-    return <p class="empty">Loading…</p>
+    return null
   }
 
   return (

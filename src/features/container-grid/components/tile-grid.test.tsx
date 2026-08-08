@@ -1,48 +1,6 @@
-import { describe, expect, it, vi } from 'vitest'
-import type { ComponentChildren } from 'preact'
+import { describe, expect, it } from 'vitest'
 import { renderSnapshot } from '@/test/render-snapshot'
 import { TileGrid } from '@/features/container-grid/components/tile-grid'
-
-vi.mock('@dnd-kit/core', () => ({
-  closestCenter: () => null,
-  DndContext: ({ children }: { children?: ComponentChildren }) => (
-    <div data-mock="DndContext">{children}</div>
-  ),
-}))
-
-vi.mock('@dnd-kit/sortable', () => ({
-  rectSortingStrategy: {},
-  SortableContext: ({ children }: { children?: ComponentChildren }) => (
-    <div data-mock="SortableContext">{children}</div>
-  ),
-  useSortable: () => ({
-    attributes: {},
-    isDragging: false,
-    listeners: undefined,
-    setNodeRef: () => undefined,
-    transform: null,
-    transition: undefined,
-  }),
-}))
-
-vi.mock('@dnd-kit/utilities', () => ({
-  CSS: {
-    Transform: {
-      toString: () => undefined,
-    },
-  },
-}))
-
-vi.mock('@/features/container-grid/hooks/use-tile-grid', () => ({
-  useTileGrid: () => ({
-    isSortingDrag: false,
-    onDragCancel: () => undefined,
-    onDragEnd: () => undefined,
-    onDragStart: () => undefined,
-    sensors: [],
-    sortableIds: ['firefox-container-1'],
-  }),
-}))
 
 describe('TileGrid', () => {
   it('matches snapshot', () => {
