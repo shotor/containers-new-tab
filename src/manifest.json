@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Containers New Tab",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Create and edit containers and open sites in containers in your new tab.",
   "browser_specific_settings": {
     "gecko": {
