@@ -31,7 +31,7 @@
   "devDependencies": {
     "@preact/preset-vite": "2.10.6",
     "@stylistic/eslint-plugin": "5.10.0",
-    "@types/firefox-webext-browser": "120.0.5",
+    "@types/firefox-webext-browser": "143.0.0",
     "@types/node": "26.2.0",
     "@vitest/coverage-v8": "4.1.10",
     "happy-dom": "20.11.2",
