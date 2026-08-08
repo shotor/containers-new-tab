@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SiteAssignments > matches snapshot after assignments load 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <label
+      class="visually-hidden"
+      for="sites-search"
+    >
+      Search websites
+    </label>
+    <input
+      autocomplete="off"
+      class="root"
+      id="sites-search"
+      placeholder="Search websites…"
+      type="search"
+    />
+  </div>
+  <ul
+    class="list"
+  >
+    <li>
+      <button
+        class="root plain root"
+        title="https://github.com"
+        type="button"
+      >
+        <img
+          alt=""
+          class="favicon"
+          src="https://www.google.com/s2/favicons?domain=github.com&sz=32"
+        />
+        <span
+          class="title"
+        >
+          github.com
+        </span>
+        <span
+          class="root"
+        >
+          <span
+            class="dot"
+            style="--badge-color: #00f;"
+          />
+          Work
+        </span>
+      </button>
+    </li>
+  </ul>
+</div>
+`;

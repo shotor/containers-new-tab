@@ -1,0 +1,61 @@
+{
+  "name": "containers-new-tab",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "###### dev ######": "######################",
+    "dev": "vite",
+    "dev:watch": "vite build --watch --mode development",
+    "dev:firefox": "web-ext run -s dist --pref privacy.userContext.enabled=true --pref browser.startup.page=0 --start-url about:newtab --firefox-profile ./.web-ext-profile --keep-profile-changes",
+    "start": "npm run build && web-ext run -s dist --pref privacy.userContext.enabled=true --pref browser.startup.page=0 --start-url about:newtab",
+    "###### build ######": "######################",
+    "build": "tsc --noEmit && vite build",
+    "package": "rm -rf dist && npm run build && web-ext build --source-dir dist --overwrite-dest --ignore-files \"virtual:*\"",
+    "###### lint ######": "######################",
+    "lint": "npm run prettier && npm run oxide",
+    "lint:fix": "npm run prettier:fix && npm run oxide:fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "oxide": "oxlint",
+    "oxide:fix": "oxlint --fix",
+    "typecheck": "tsc --noEmit",
+    "###### test ######": "######################",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:firefox": "bash scripts/firefox-novnc.sh",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "2.10.6",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@types/firefox-webext-browser": "120.0.5",
+    "@types/node": "26.2.0",
+    "@vitest/coverage-v8": "4.1.10",
+    "happy-dom": "20.11.2",
+    "husky": "9.1.7",
+    "oxlint": "1.77.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
+    "vite": "6.4.3",
+    "vite-plugin-web-extension": "4.5.1",
+    "vitest": "4.1.10",
+    "web-ext": "8.10.0"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "spawn-sync@1.0.15": true
+  },
+  "dependencies": {
+    "@dnd-kit/core": "6.3.1",
+    "@dnd-kit/sortable": "10.0.0",
+    "@dnd-kit/utilities": "3.2.2",
+    "classnames": "2.5.1",
+    "preact": "10.29.8",
+    "react-hook-form": "7.85.0",
+    "wouter": "3.10.0",
+    "zod": "4.4.3"
+  }
+}

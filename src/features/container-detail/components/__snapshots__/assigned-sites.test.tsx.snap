@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AssignedSites > matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <label
+      class="visually-hidden"
+      for="detail-sites-search"
+    >
+      Search websites
+    </label>
+    <input
+      autocomplete="off"
+      class="root"
+      id="detail-sites-search"
+      placeholder="Search websites…"
+      type="search"
+    />
+  </div>
+  <ul
+    class="list"
+  >
+    <li>
+      <button
+        class="root plain root"
+        title="https://example.com"
+        type="button"
+      >
+        <img
+          alt=""
+          class="favicon"
+          src="https://www.google.com/s2/favicons?domain=example.com&sz=32"
+        />
+        <span
+          class="title"
+        >
+          example.com
+        </span>
+      </button>
+    </li>
+    <li>
+      <button
+        class="root plain root"
+        title="https://github.com"
+        type="button"
+      >
+        <img
+          alt=""
+          class="favicon"
+          src="https://www.google.com/s2/favicons?domain=github.com&sz=32"
+        />
+        <span
+          class="title"
+        >
+          github.com
+        </span>
+      </button>
+    </li>
+  </ul>
+</div>
+`;

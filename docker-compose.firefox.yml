@@ -1,0 +1,24 @@
+# Optional: run Firefox+noVNC in a separate container if you have Docker
+# on the host (this repo's main path is in-devcontainer noVNC — see scripts/firefox-novnc.sh).
+#
+# Usage (from repo root, on a machine with Docker):
+#   npm run build
+#   docker compose -f docker-compose.firefox.yml up
+#   open http://localhost:6080
+#
+# Then in the remote Firefox: about:debugging → Load Temporary Add-on →
+# mount shows the repo at /config/workspace (or use the baked start script).
+
+services:
+  firefox:
+    image: jlesage/firefox:latest
+    ports:
+      - '6080:5800'
+    shm_size: '1gb'
+    environment:
+      - DISPLAY_WIDTH=2200
+      - DISPLAY_HEIGHT=1280
+      - FF_OPEN_URL=about:debugging#/runtime/this-firefox
+    volumes:
+      - ./:/config/workspace:ro
+      - ./dist:/config/dist:ro

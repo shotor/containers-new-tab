@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > matches snapshot 1`] = `
+<div>
+  <button
+    class="root ghost extra"
+    type="button"
+  >
+    Label
+  </button>
+</div>
+`;
+
+exports[`ButtonRow > matches snapshot 1`] = `
+<div>
+  <div
+    class="row"
+  >
+    <button
+      class="root"
+      type="button"
+    >
+      One
+    </button>
+    <button
+      class="root danger"
+      type="button"
+    >
+      Two
+    </button>
+  </div>
+</div>
+`;

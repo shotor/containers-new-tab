@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SortMenu > matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <button
+      aria-controls="sort-list-id"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Sort containers: Most used"
+      class="root trigger"
+      title="Sort containers"
+      type="button"
+    >
+      <span
+        class="icon"
+      >
+        <span
+          aria-hidden="true"
+          class="root"
+          style="--icon-url: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3cpath%20d='M4%206h10'/%3e%3cpath%20d='M4%2012h7'/%3e%3cpath%20d='M4%2018h4'/%3e%3cpath%20d='M17%208l3-3%203%203'/%3e%3cpath%20d='M20%205v14'/%3e%3c/svg%3e");"
+        />
+      </span>
+      <span
+        class="label"
+      >
+        Most used
+      </span>
+      <span
+        aria-hidden="true"
+        class="chevron"
+      />
+    </button>
+  </div>
+</div>
+`;

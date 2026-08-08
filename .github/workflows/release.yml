@@ -1,0 +1,173 @@
+name: release
+
+# On push to main (a merged PR, or a direct push): version check first (does the
+# version even change?), then lint + test, then bump → build → publish.
+on:
+  push:
+    branches: [main]
+
+# Serialize releases: two pushes landing close together must not race the version bump.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  version:
+    name: version check
+    # Skip the bump commit's own push so the pipeline doesn't re-run itself.
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.cz.outputs.version }}
+      previous_version: ${{ steps.cz.outputs.previous_version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Dry run: the next version from conventional commits since the last tag
+      # (feat → minor, fix → patch, BREAKING CHANGE → major), without committing
+      # or pushing anything. No bumpable commits ⇒ empty output ⇒ everything
+      # below is skipped. NOTE: requires one initial version tag (e.g. v0.1.0).
+      - name: Determine next version
+        id: cz
+        uses: commitizen-tools/commitizen-action@338bbd841b75aaee6bf5340e1fa12f6ab58ff9ff # v0.27.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          changelog: false
+          dry_run: true
+
+  lint:
+    name: lint
+    needs: version
+    if: needs.version.outputs.version != '' && needs.version.outputs.version != needs.version.outputs.previous_version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run lint
+
+  test:
+    name: test
+    needs: version
+    if: needs.version.outputs.version != '' && needs.version.outputs.version != needs.version.outputs.previous_version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm test
+
+  bump:
+    name: semver bump
+    needs: [version, lint, test]
+    if: needs.version.outputs.version != '' && needs.version.outputs.version != needs.version.outputs.previous_version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.cz.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # The real bump (lint + test passed): updates the version files
+      # (.cz.toml), commits, tags vX.Y.Z, and pushes to main.
+      - name: Bump, commit, tag, push
+        id: cz
+        uses: commitizen-tools/commitizen-action@338bbd841b75aaee6bf5340e1fa12f6ab58ff9ff # v0.27.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          changelog: false
+
+  # Built on the BUMPED main, so package.json, .cz.toml, package-lock.json and
+  # dist/manifest.json all carry the release version. `ref: main` is required:
+  # the default checkout would use this event's pre-bump sha.
+  build:
+    name: build
+    needs: bump
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
+
+  publish:
+    name: publish to AMO
+    needs: [bump, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci
+
+      # Built by the build job above on the bumped main — not rebuilt here.
+      - name: Download built extension
+        uses: actions/download-artifact@v7
+        with:
+          name: dist
+          path: dist
+
+      # Signs and uploads to addons.mozilla.org. First-time submission must be
+      # created via the AMO web UI (listing metadata); afterwards this publishes
+      # new versions. Requires secrets AMO_API_KEY + AMO_API_SECRET (AMO JWT
+      # issuer/secret from https://addons.mozilla.org/developers/addon/api/key/).
+      - name: Publish to Firefox (AMO)
+        run: npx web-ext sign --source-dir dist --artifacts-dir web-ext-artifacts --channel listed
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: containers-tab-v${{ needs.bump.outputs.version }}
+          path: web-ext-artifacts/*.zip
+          if-no-files-found: error

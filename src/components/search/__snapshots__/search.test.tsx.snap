@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Search > matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <label
+      class="visually-hidden"
+      for="sites-search"
+    >
+      Search sites
+    </label>
+    <input
+      autocomplete="off"
+      class="root"
+      id="sites-search"
+      placeholder="Search…"
+      type="search"
+    />
+  </div>
+</div>
+`;

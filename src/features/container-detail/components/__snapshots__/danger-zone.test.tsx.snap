@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DangerZone > matches snapshot 1`] = `
+<div>
+  <section
+    aria-labelledby="P0-0"
+    class="root"
+  >
+    <h2
+      class="title"
+      id="P0-0"
+    >
+      Danger Zone
+    </h2>
+    <div
+      class="row"
+    >
+      <button
+        class="root danger"
+        type="button"
+      >
+        Delete Container
+      </button>
+    </div>
+  </section>
+</div>
+`;

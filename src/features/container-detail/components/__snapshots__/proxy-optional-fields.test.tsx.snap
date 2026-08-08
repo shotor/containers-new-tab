@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProxyOptionalFields > matches snapshot 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <label
+      class="root"
+      for="detail-proxy-user"
+    >
+      Username (optional)
+    </label>
+    <input
+      autocomplete="off"
+      class="root"
+      id="detail-proxy-user"
+      name="username"
+      type="text"
+    />
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="root"
+      for="detail-proxy-pass"
+    >
+      Password (optional)
+    </label>
+    <input
+      autocomplete="new-password"
+      class="root"
+      id="detail-proxy-pass"
+      name="password"
+      type="password"
+    />
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="root"
+    >
+      <input
+        name="doNotProxyLocal"
+        type="checkbox"
+      />
+       Don’t proxy localhost
+    </label>
+  </div>
+</div>
+`;

@@ -1,0 +1,66 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["import", "jsdoc", "react", "typescript", "unicorn", "vitest"],
+  "jsPlugins": ["@stylistic/eslint-plugin"],
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    ".web-ext-profile/**",
+    "web-ext-artifacts/**"
+  ],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "curly": ["error", "all"],
+    "func-style": ["error", "expression"],
+    "prefer-arrow-callback": "error",
+    "react/jsx-pascal-case": "error",
+    "react/rules-of-hooks": "error",
+    "unicorn/filename-case": ["error", { "case": "kebabCase" }],
+    "sort-imports": [
+      "error",
+      { "ignoreCase": true, "allowSeparatedGroups": true }
+    ],
+    "no-duplicate-imports": "error",
+    "no-debugger": "warn",
+    "no-bitwise": "error",
+    "no-lonely-if": "error",
+    "no-unused-vars": "warn",
+    "prefer-const": "error",
+    "radix": "error",
+    "sort-keys": [
+      "error",
+      "asc",
+      { "allowLineSeparatedGroups": true, "caseSensitive": false }
+    ],
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-default-export": "error",
+    "jsdoc/require-param": ["error", { "interfaceExemptsParamsCheck": true }],
+    "jsdoc/require-returns": "error",
+    "typescript/await-thenable": "off",
+    "typescript/dot-notation": "error",
+    "typescript/method-signature-style": ["error", "property"],
+    "typescript/prefer-find": "error",
+    "typescript/prefer-nullish-coalescing": "error",
+    "typescript/return-await": ["warn", "never"],
+    "typescript/no-array-delete": "off",
+    "typescript/no-base-to-string": "off",
+    "typescript/no-duplicate-type-constituents": "off",
+    "typescript/no-floating-promises": "off",
+    "typescript/no-for-in-array": "off",
+    "typescript/no-implied-eval": "off",
+    "typescript/no-meaningless-void-operator": "off",
+    "typescript/no-misused-spread": "off",
+    "typescript/no-redundant-type-constituents": "off",
+    "typescript/no-unnecessary-parameter-property-assignment": "off",
+    "typescript/no-unsafe-unary-minus": "off",
+    "typescript/no-useless-default-assignment": "off",
+    "typescript/require-array-sort-compare": "off",
+    "typescript/restrict-template-expressions": "off",
+    "typescript/unbound-method": "off",
+    "@stylistic/quotes": ["error", "single", { "avoidEscape": true }],
+    "@stylistic/jsx-quotes": ["error", "prefer-double"]
+  }
+}

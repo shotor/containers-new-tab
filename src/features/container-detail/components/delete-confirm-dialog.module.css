@@ -1,0 +1,90 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--bg0) 72%, transparent);
+  backdrop-filter: blur(10px) saturate(1.05);
+  animation: dialog-backdrop 0.2s ease;
+}
+
+.dialog {
+  width: min(100%, 32rem);
+  padding: 1.65rem 1.5rem 1.4rem;
+  border-radius: 24px;
+  background: var(--bg0);
+  box-shadow: var(--neu-raised);
+  text-align: center;
+  animation: dialog-pop 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.icon {
+  margin: 0 auto 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background-color: transparent;
+  box-shadow: var(--neu-raised-sm);
+  position: relative;
+  /* Glyph is painted on ::after; clear SvgIcon's own mask paint. */
+  mask: none;
+  -webkit-mask: none;
+}
+
+.icon::after {
+  content: '';
+  position: absolute;
+  inset: 0.55rem;
+  background-color: var(--title-color, var(--danger));
+  mask: var(--icon-url) center / contain no-repeat;
+  -webkit-mask: var(--icon-url) center / contain no-repeat;
+}
+
+.title {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.desc {
+  margin: 0 0 1.35rem;
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.action {
+  min-width: 7.5rem;
+}
+
+@keyframes dialog-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

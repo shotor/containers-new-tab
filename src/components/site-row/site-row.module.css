@@ -1,0 +1,62 @@
+.root {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-radius: 18px;
+  background: var(--bg0);
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--neu-raised-sm);
+  transition: box-shadow var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--neu-pressed-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.root > * {
+  position: relative;
+  z-index: 1;
+}
+
+.root:hover,
+.root:focus-visible {
+  outline: none;
+  box-shadow: var(--neu-raised-sm-fade);
+}
+
+.root:hover::after,
+.root:focus-visible::after {
+  opacity: 1;
+}
+
+.favicon {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 4px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

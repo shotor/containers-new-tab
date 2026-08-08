@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App > matches snapshot 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="atmosphere"
+  />
+  <div
+    class="root"
+  >
+    <div
+      data-mock="ThemeProvider"
+    >
+      <div
+        data-mock="Router"
+      >
+        <div
+          data-mock="HomePage"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

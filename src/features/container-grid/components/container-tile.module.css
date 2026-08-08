@@ -1,0 +1,149 @@
+.root {
+  position: relative;
+  min-height: 152px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--bg0);
+  color: var(--ink);
+  box-shadow: var(--neu-raised);
+  transition:
+    box-shadow var(--neu-press-duration) var(--neu-press-ease),
+    opacity var(--neu-press-duration) var(--neu-press-ease),
+    filter var(--neu-press-duration) var(--neu-press-ease);
+}
+
+/* Pressed layer fades in — inset/outset shadows don't interpolate cleanly alone */
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--neu-pressed);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.open {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.95rem;
+  width: 100%;
+  min-height: 152px;
+  padding: 1.25rem 0.9rem 1.15rem;
+  text-align: center;
+}
+
+.root:hover,
+.root:focus-within,
+.root:active,
+.current {
+  box-shadow: var(--neu-raised-fade);
+}
+
+.root:hover::after,
+.root:focus-within::after,
+.root:active::after,
+.current::after {
+  opacity: 1;
+}
+
+.open:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
+  outline-offset: 3px;
+}
+
+.root.dragging {
+  opacity: 0.55;
+  z-index: 2;
+}
+
+.sortable {
+  touch-action: none;
+}
+
+.muted {
+  opacity: 0.38;
+  filter: grayscale(0.35);
+  pointer-events: none;
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  background-color: var(--tile-color, var(--accent));
+  mask: var(--icon-url) center / contain no-repeat;
+  -webkit-mask: var(--icon-url) center / contain no-repeat;
+}
+
+.plus {
+  font-size: 2.1rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  word-break: break-word;
+  max-width: 11ch;
+}
+
+.edit {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  padding: 0;
+  color: var(--ink-muted);
+  opacity: 0;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease,
+    box-shadow var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.edit > * {
+  position: relative;
+  z-index: 1;
+}
+
+.edit:hover,
+.edit:focus-visible {
+  color: var(--accent);
+}
+
+.root:hover .edit,
+.root:focus-within .edit {
+  opacity: 1;
+}
+
+.noContainer {
+  --tile-color: #9b8fb8;
+}
+
+html[data-theme='light'] .noContainer {
+  --tile-color: #7c6f9a;
+}
