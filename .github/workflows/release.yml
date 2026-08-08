@@ -97,6 +97,8 @@ jobs:
 
   # Same runner: set versions → build → only then push. Publish stays separate
   # so a failed AMO upload can be re-run without bumping again.
+  # Push uses RELEASE_DEPLOY_KEY (repo write deploy key) so protected main can
+  # allow Deploy keys to bypass without a user PAT.
   build:
     name: bump, build, push
     needs: [version, lint, test]
@@ -107,8 +109,6 @@ jobs:
       needs.lint.result == 'success' &&
       needs.test.result == 'success'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     outputs:
       version: ${{ steps.cz.outputs.version }}
     steps:
@@ -116,13 +116,12 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
 
       - name: Bump version (local commit + tag, no push yet)
         id: cz
         uses: commitizen-tools/commitizen-action@338bbd841b75aaee6bf5340e1fa12f6ab58ff9ff # v0.27.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           changelog: false
           commitizen_version: '4.17.0'
