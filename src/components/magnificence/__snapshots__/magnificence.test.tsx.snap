@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Magnificence > matches snapshot 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="root"
+  >
+    <span
+      class="emoji"
+    >
+      🐪
+    </span>
+  </div>
+</div>
+`;

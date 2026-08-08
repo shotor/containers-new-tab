@@ -1,6 +1,14 @@
-# Containers New Tab
+# Containers Tab
 
-Firefox new-tab and homepage for [containers](https://addons.mozilla.org/firefox/addon/containers-tab/) — pick a container, open sites where they belong, and edit containers in place.
+[![release](https://github.com/shotor/containers-new-tab/actions/workflows/release.yml/badge.svg)](https://github.com/shotor/containers-new-tab/actions/workflows/release.yml)
+
+Replace Firefox’s new tab and homepage with a container picker that feels like home — open the right container in one click, see where your sites belong, and edit containers without leaving the page.
+
+Built for [Multi-Account Containers](https://addons.mozilla.org/firefox/addon/multi-account-containers/).
+
+[Install on Firefox Add-ons](https://addons.mozilla.org/firefox/addon/containers-tab/)
+
+![Containers Tab — light and dark themes](assets/screenshots/01-home-themes-branded.jpg)
 
 ## Development
 

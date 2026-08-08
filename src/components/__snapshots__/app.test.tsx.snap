@@ -21,5 +21,15 @@ exports[`App > matches snapshot 1`] = `
       </div>
     </div>
   </div>
+  <div
+    aria-hidden="true"
+    class="root"
+  >
+    <span
+      class="emoji"
+    >
+      🐪
+    </span>
+  </div>
 </div>
 `;
