@@ -27,7 +27,7 @@ Dependencies are **pinned** (`.npmrc` has `save-exact=true`); keep exact version
 ### CI/CD (GitHub Actions)
 
 - `.github/workflows/pull-request.yml` — on every PR: `test` + `lint` + `build` run in parallel; any failure fails the run.
-- `.github/workflows/release.yml` — on **push to main** (merged PR or direct push): `version` check first (`cz bump --get-next` — no bumpable commits ⇒ stop) → `lint` + `test` (parallel; both must succeed) → one `release` job that bumps locally (commit + tag, **no push yet**), builds `dist`, **then** pushes the bump commit/tag, then `web-ext sign` to AMO. Needs secrets `AMO_API_KEY` / `AMO_API_SECRET` (AMO JWT issuer/secret). First-time submission must go through the AMO web UI once. Requires one initial version tag (created manually).
+- `.github/workflows/release.yml` — on **push to main** (merged PR or direct push): `version` check first (`cz bump --get-next` — no bumpable commits ⇒ stop) → `lint` + `test` (parallel; both must succeed) → `build` job that bumps version files locally (commit + tag, **no push yet**), builds `dist`, **then** pushes the bump commit/tag → separate `publish` job downloads `dist` and runs `web-ext sign` to AMO (re-runnable alone if signing fails). Needs secrets `AMO_API_KEY` / `AMO_API_SECRET` (AMO JWT issuer/secret). First-time submission must go through the AMO web UI once. Requires one initial version tag (created manually).
 
 ### Testing in the browser (noVNC)
 

@@ -1,7 +1,8 @@
 name: release
 
 # On push to main (merged PR or direct push):
-#   version check → lint ∥ test → bump (local) → build → push bump → publish
+#   version check → lint ∥ test → bump (local) → build → push → publish
+# Publish is a separate job so it can be re-run alone if AMO signing fails.
 on:
   push:
     branches: [main]
@@ -94,9 +95,10 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  # Bump stays on the runner until build succeeds, then we push commit + tag.
-  release:
-    name: bump, build, push, publish
+  # Same runner: set versions → build → only then push. Publish stays separate
+  # so a failed AMO upload can be re-run without bumping again.
+  build:
+    name: bump, build, push
     needs: [version, lint, test]
     if: |
       always() &&
@@ -107,6 +109,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      version: ${{ steps.cz.outputs.version }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -146,6 +150,34 @@ jobs:
       - name: Push bump commit and tag
         run: git push origin "HEAD:main" --tags
 
+  publish:
+    name: publish to AMO
+    needs: build
+    if: needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - run: npm ci
+
+      - name: Download built extension
+        uses: actions/download-artifact@v7
+        with:
+          name: dist
+          path: dist
+
       # Signs and uploads to addons.mozilla.org. First-time submission must be
       # created via the AMO web UI (listing metadata); afterwards this publishes
       # new versions. Requires secrets AMO_API_KEY + AMO_API_SECRET (AMO JWT
@@ -158,6 +190,6 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: containers-tab-v${{ steps.cz.outputs.version }}
+          name: containers-tab-v${{ needs.build.outputs.version }}
           path: web-ext-artifacts/*.zip
           if-no-files-found: error
