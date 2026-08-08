@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { defineConfig, type Plugin } from 'vite'
 import { fileURLToPath } from 'node:url'
 import preact from '@preact/preset-vite'
@@ -39,6 +39,32 @@ const copyStaticAssets = (): Plugin => ({
     }
   },
   name: 'copy-static-assets',
+})
+
+/**
+ * Remove vite-plugin-web-extension junk like `virtual:temp.js.js.map`.
+ * Colons in paths break GitHub Actions artifact upload (and NTFS).
+ * @returns The scrub plugin.
+ */
+const scrubVirtualArtifacts = (): Plugin => ({
+  closeBundle: {
+    handler() {
+      const dist = resolve('dist')
+
+      if (!existsSync(dist)) {
+        return
+      }
+
+      for (const name of readdirSync(dist)) {
+        if (name.includes(':')) {
+          unlinkSync(resolve(dist, name))
+        }
+      }
+    },
+    order: 'post',
+    sequential: true,
+  },
+  name: 'scrub-virtual-artifacts',
 })
 
 /**
@@ -106,6 +132,7 @@ export default defineConfig({
       watchFilePaths: ['src/manifest.json'],
     }),
     copyStaticAssets(),
+    scrubVirtualArtifacts(),
   ],
   resolve: {
     alias: [
