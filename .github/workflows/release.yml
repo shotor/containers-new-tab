@@ -1,8 +1,7 @@
 name: release
 
-# On push to main (a merged PR, or a direct push): version check first (does the
-# version even change?), then lint + test in parallel (both must succeed), then
-# bump → build → publish.
+# On push to main (merged PR or direct push):
+#   version check → lint ∥ test → bump (local) → build → push bump → publish
 on:
   push:
     branches: [main]
@@ -31,9 +30,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      # commitizen-action's dry_run still writes outputs.version from
-      # `cz version --project` (unchanged), so version == previous and every
-      # downstream job was skipped. --get-next returns the real next semver.
+      # Prefer `cz bump --get-next` over commitizen-action dry_run: the action's
+      # outputs.version stays at the old project version when nothing is committed.
       - name: Determine next version
         id: next
         run: |
@@ -96,10 +94,10 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  bump:
-    name: semver bump
+  # Bump stays on the runner until build succeeds, then we push commit + tag.
+  release:
+    name: bump, build, push, publish
     needs: [version, lint, test]
-    # Lint + test run in parallel; both must succeed before we bump.
     if: |
       always() &&
       needs.version.outputs.version != '' &&
@@ -109,17 +107,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      version: ${{ steps.cz.outputs.version }}
     steps:
       - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # The real bump (lint + test passed): updates the version files
-      # (.cz.toml), commits, tags vX.Y.Z, and pushes to main.
-      - name: Bump, commit, tag, push
+      - name: Bump version (local commit + tag, no push yet)
         id: cz
         uses: commitizen-tools/commitizen-action@338bbd841b75aaee6bf5340e1fa12f6ab58ff9ff # v0.27.1
         with:
@@ -127,60 +122,29 @@ jobs:
           branch: main
           changelog: false
           commitizen_version: '4.17.0'
+          push: false
 
-  # Built on the BUMPED main, so package.json, .cz.toml, package-lock.json and
-  # dist/manifest.json all carry the release version. `ref: main` is required:
-  # the default checkout would use this event's pre-bump sha.
-  build:
-    name: build
-    needs: bump
-    if: needs.bump.result == 'success'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: main
       - uses: actions/cache@v6
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
           restore-keys: ${{ runner.os }}-npm-
+
       - uses: actions/setup-node@v7
         with:
           node-version: 24
+
       - run: npm ci
       - run: npm run build
+
       - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
           if-no-files-found: error
 
-  publish:
-    name: publish to AMO
-    needs: [bump, build]
-    if: needs.bump.result == 'success' && needs.build.result == 'success'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: main
-      - uses: actions/cache@v6
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: ${{ runner.os }}-npm-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-      - run: npm ci
-
-      # Built by the build job above on the bumped main — not rebuilt here.
-      - name: Download built extension
-        uses: actions/download-artifact@v7
-        with:
-          name: dist
-          path: dist
+      - name: Push bump commit and tag
+        run: git push origin "HEAD:main" --tags
 
       # Signs and uploads to addons.mozilla.org. First-time submission must be
       # created via the AMO web UI (listing metadata); afterwards this publishes
@@ -194,6 +158,6 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: containers-tab-v${{ needs.bump.outputs.version }}
+          name: containers-tab-v${{ steps.cz.outputs.version }}
           path: web-ext-artifacts/*.zip
           if-no-files-found: error
