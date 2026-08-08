@@ -2,6 +2,7 @@ import { Router, useLocation } from 'wouter'
 import css from './app.module.css'
 import { DetailPage } from '@/pages/detail-page'
 import { HomePage } from '@/pages/home-page'
+import { Magnificence } from '@/components/magnificence/magnificence'
 import { ThemeProvider } from '@/theme'
 import { useHashLocation } from 'wouter/use-hash-location'
 
@@ -54,5 +55,7 @@ export const App: React.FC = () => (
         </Router>
       </ThemeProvider>
     </div>
+
+    <Magnificence />
   </>
 )

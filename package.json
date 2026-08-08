@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
+  "description": "New tab and homepage for Firefox Multi Account Containers - pick, sort, create, edit, and open sites in the right container with ease.",
   "scripts": {
     "###### dev ######": "######################",
     "dev": "vite",
