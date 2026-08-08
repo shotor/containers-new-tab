@@ -11,7 +11,7 @@
 Containers New Tab
 </h1>
 
-![Containers Tab — light and dark themes](assets/screenshots/01-home-themes-branded.jpg)
+![Containers Tab — light and dark themes](assets/screenshot-home-themes.jpg)
 
 [Multi-Account Containers](https://addons.mozilla.org/firefox/addon/multi-account-containers/) is great - until you want a new tab in the right one. Hunting the toolbar icon, misclicking or remembering which sites belong where gets old fast. This extension turns every new tab into a clear overview: open a container in one click, see which sites are already assigned, and create or edit containers, including proxy configurations, without leaving the page.
 
