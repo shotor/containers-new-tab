@@ -1,7 +1,8 @@
 name: release
 
 # On push to main (a merged PR, or a direct push): version check first (does the
-# version even change?), then lint + test, then bump → build → publish.
+# version even change?), then lint + test in parallel (both must succeed), then
+# bump → build → publish.
 on:
   push:
     branches: [main]
@@ -18,26 +19,42 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.cz.outputs.version }}
-      previous_version: ${{ steps.cz.outputs.previous_version }}
+      version: ${{ steps.next.outputs.version }}
+      previous_version: ${{ steps.next.outputs.previous_version }}
     steps:
       - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
 
-      # Dry run: the next version from conventional commits since the last tag
-      # (feat → minor, fix → patch, BREAKING CHANGE → major), without committing
-      # or pushing anything. No bumpable commits ⇒ empty output ⇒ everything
-      # below is skipped. NOTE: requires one initial version tag (e.g. v0.1.0).
-      - name: Determine next version
-        id: cz
-        uses: commitizen-tools/commitizen-action@338bbd841b75aaee6bf5340e1fa12f6ab58ff9ff # v0.27.1
+      - uses: actions/setup-python@v6
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          changelog: false
-          dry_run: true
+          python-version: '3.12'
+
+      # commitizen-action's dry_run still writes outputs.version from
+      # `cz version --project` (unchanged), so version == previous and every
+      # downstream job was skipped. --get-next returns the real next semver.
+      - name: Determine next version
+        id: next
+        run: |
+          pip install 'commitizen==4.17.0'
+          previous="$(cz version --project)"
+          set +e
+          next="$(cz bump --yes --get-next 2>/tmp/cz-get-next.err)"
+          status=$?
+          set -e
+
+          if [[ "$status" -ne 0 ]]; then
+            echo "No bumpable increment (exit ${status})."
+            cat /tmp/cz-get-next.err || true
+            next=""
+          fi
+
+          {
+            echo "previous_version=${previous}"
+            echo "version=${next}"
+          } >> "$GITHUB_OUTPUT"
+          echo "previous=${previous} next=${next:-<none>}"
 
   lint:
     name: lint
@@ -82,7 +99,13 @@ jobs:
   bump:
     name: semver bump
     needs: [version, lint, test]
-    if: needs.version.outputs.version != '' && needs.version.outputs.version != needs.version.outputs.previous_version
+    # Lint + test run in parallel; both must succeed before we bump.
+    if: |
+      always() &&
+      needs.version.outputs.version != '' &&
+      needs.version.outputs.version != needs.version.outputs.previous_version &&
+      needs.lint.result == 'success' &&
+      needs.test.result == 'success'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -103,6 +126,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           changelog: false
+          commitizen_version: '4.17.0'
 
   # Built on the BUMPED main, so package.json, .cz.toml, package-lock.json and
   # dist/manifest.json all carry the release version. `ref: main` is required:
@@ -110,6 +134,7 @@ jobs:
   build:
     name: build
     needs: bump
+    if: needs.bump.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -134,6 +159,7 @@ jobs:
   publish:
     name: publish to AMO
     needs: [bump, build]
+    if: needs.bump.result == 'success' && needs.build.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
