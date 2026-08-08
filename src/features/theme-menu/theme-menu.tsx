@@ -16,9 +16,9 @@ const OPTIONS: { value: ThemeMode; label: string }[] = [
 
 /** Map theme mode to its glyph in {@link SvgIcon}. */
 const THEME_ICON: Record<ThemeMode, SvgIconName> = {
-  dark: 'theme-dark',
-  light: 'theme-light',
-  system: 'theme-system',
+  dark: 'moon',
+  light: 'sun',
+  system: 'contrast',
 }
 
 /**

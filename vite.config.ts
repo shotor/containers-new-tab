@@ -3,6 +3,7 @@ import { defineConfig, type Plugin } from 'vite'
 import { fileURLToPath } from 'node:url'
 import preact from '@preact/preset-vite'
 import { resolve } from 'node:path'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import webExtension from 'vite-plugin-web-extension'
 
 const DEV_ORIGIN = 'http://localhost:5173'
@@ -31,8 +32,10 @@ const copyStaticAssets = (): Plugin => ({
   closeBundle() {
     const out = resolve('dist/assets')
     mkdirSync(out, { recursive: true })
+
     for (const file of ['icon-48.png', 'icon-96.png']) {
       const src = resolve('assets', file)
+
       if (existsSync(src)) {
         cpSync(src, resolve(out, file))
       }
@@ -132,6 +135,15 @@ export default defineConfig({
       watchFilePaths: ['src/manifest.json'],
     }),
     copyStaticAssets(),
+    viteStaticCopy({
+      targets: [
+        {
+          dest: 'assets/icons',
+          rename: { stripBase: true },
+          src: 'src/components/svg-icon/assets/*.svg',
+        },
+      ],
+    }),
     scrubVirtualArtifacts(),
   ],
   resolve: {

@@ -85,9 +85,7 @@
 .icon {
   width: 2.35rem;
   height: 2.35rem;
-  background-color: var(--tile-color, var(--accent));
-  mask: var(--icon-url) center / contain no-repeat;
-  -webkit-mask: var(--icon-url) center / contain no-repeat;
+  color: var(--tile-color, var(--accent));
 }
 
 .plus {

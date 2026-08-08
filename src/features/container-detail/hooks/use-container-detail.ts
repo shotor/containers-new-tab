@@ -1,11 +1,16 @@
 import {
+  clearPrefetchedContainerDetail,
+  type ContainerDetailPayload,
+  loadContainerDetailPayload,
+  peekReadyContainerDetail,
+  takePrefetchedContainerDetail,
+} from '@/features/container-detail/prefetch-container-detail'
+import {
   type ContainerDetailFormValues,
   DEFAULT_CONTAINER_DETAIL_FORM,
   type ProxyFormValues,
-  proxyFormValuesFromStored,
 } from '@/features/container-detail/container-detail.schema'
 import {
-  listMacAssignmentsForContainer,
   type MacSiteAssignment,
   removeContainer,
 } from '@/data/browser/browser-api'
@@ -35,14 +40,31 @@ export const useContainerDetail = ({
   cookieStoreId,
 }: UseContainerDetailOptions) => {
   const [, navigate] = useLocation()
+  const warm =
+    cookieStoreId === undefined
+      ? undefined
+      : peekReadyContainerDetail(cookieStoreId)
+
   const { register, reset, setValue, watch } =
     useForm<ContainerDetailFormValues>({
-      defaultValues: DEFAULT_CONTAINER_DETAIL_FORM,
+      defaultValues: warm
+        ? {
+            // Trust boundary: Firefox returns color/icon as plain strings.
+            color: warm.identity.color as ContainerDetailFormValues['color'],
+            icon: warm.identity.icon as ContainerDetailFormValues['icon'],
+            name: warm.identity.name,
+            ...warm.proxy,
+          }
+        : DEFAULT_CONTAINER_DETAIL_FORM,
     })
 
-  const [identity, setIdentity] = useState<ContainerIdentity | null>(null)
-  const [loading, setLoading] = useState(Boolean(cookieStoreId))
-  const [sites, setSites] = useState<MacSiteAssignment[]>([])
+  const [identity, setIdentity] = useState<ContainerIdentity | null>(
+    () => warm?.identity ?? null,
+  )
+  const [loading, setLoading] = useState(() => Boolean(cookieStoreId) && !warm)
+  const [sites, setSites] = useState<MacSiteAssignment[]>(
+    () => warm?.sites ?? [],
+  )
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   const {
@@ -60,8 +82,16 @@ export const useContainerDetail = ({
 
   const identityRef = useRef<ContainerIdentity | null>(null)
   identityRef.current = identity
-  const lastSavedRef = useRef<SavedIdentity | null>(null)
-  const lastProxySavedRef = useRef<ProxyFormValues | null>(null)
+  const lastSavedRef = useRef<SavedIdentity | null>(
+    warm
+      ? {
+          color: warm.identity.color,
+          icon: warm.identity.icon,
+          name: warm.identity.name,
+        }
+      : null,
+  )
+  const lastProxySavedRef = useRef<ProxyFormValues | null>(warm?.proxy ?? null)
   const creatingRef = useRef(false)
 
   const values = watch()
@@ -93,36 +123,34 @@ export const useContainerDetail = ({
     creatingRef.current = false
     resetIdentitySave()
     resetProxySave()
+    setSites([])
     setLoading(false)
   }, [reset, resetIdentitySave, resetProxySave])
 
   /**
-   * Populate the form from an existing container and its related data.
-   * @param found - The loaded container identity.
+   * Apply a loaded detail payload to form state.
+   * @param payload - Identity, sites, and proxy fields.
    */
-  const fillForm = useCallback(
-    async (found: ContainerIdentity) => {
-      setIdentity(found)
+  const applyPayload = useCallback(
+    (payload: ContainerDetailPayload) => {
+      setIdentity(payload.identity)
       lastSavedRef.current = {
-        color: found.color,
-        icon: found.icon,
-        name: found.name,
+        color: payload.identity.color,
+        icon: payload.identity.icon,
+        name: payload.identity.name,
       }
       creatingRef.current = false
       resetIdentitySave()
       resetProxySave()
-      setSites(await listMacAssignmentsForContainer(found.cookieStoreId))
-      const proxy = proxyFormValuesFromStored(
-        await extensionStorageApi.getProxyForContainer(found.cookieStoreId),
-      )
+      setSites(payload.sites)
       // Trust boundary: Firefox returns color/icon as plain strings.
       reset({
-        color: found.color as ContainerDetailFormValues['color'],
-        icon: found.icon as ContainerDetailFormValues['icon'],
-        name: found.name,
-        ...proxy,
+        color: payload.identity.color as ContainerDetailFormValues['color'],
+        icon: payload.identity.icon as ContainerDetailFormValues['icon'],
+        name: payload.identity.name,
+        ...payload.proxy,
       })
-      lastProxySavedRef.current = proxy
+      lastProxySavedRef.current = payload.proxy
       setLoading(false)
     },
     [reset, resetIdentitySave, resetProxySave],
@@ -146,21 +174,30 @@ export const useContainerDetail = ({
     }
 
     const load = async () => {
-      setLoading(true)
-      const found = (await extensionStorageApi.getContainers()).find(
-        (c) => c.cookieStoreId === cookieStoreId,
-      )
+      const prefetched = takePrefetchedContainerDetail(cookieStoreId)
 
-      if (!found) {
+      if (prefetched) {
+        const payload = await prefetched
+
+        if (payload) {
+          applyPayload(payload)
+          return
+        }
+      }
+
+      setLoading(true)
+      const payload = await loadContainerDetailPayload(cookieStoreId)
+
+      if (!payload) {
         navigate('/')
         return
       }
 
-      await fillForm(found)
+      applyPayload(payload)
     }
 
     void load()
-  }, [cookieStoreId, navigate, resetForm, fillForm])
+  }, [cookieStoreId, navigate, resetForm, applyPayload])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -244,6 +281,7 @@ export const useContainerDetail = ({
 
     const id = identity.cookieStoreId
     setShowDeleteConfirm(false)
+    clearPrefetchedContainerDetail(id)
     await removeContainer(id)
     await extensionStorageApi.purgeProxyForContainer(id)
     await extensionStorageApi.purgeUsageForContainer(id)

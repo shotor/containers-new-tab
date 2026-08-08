@@ -36,11 +36,13 @@
     "@vitest/coverage-v8": "4.1.10",
     "happy-dom": "20.11.2",
     "husky": "9.1.7",
+    "lint-staged": "16.2.7",
     "oxlint": "1.77.0",
     "oxlint-tsgolint": "7.0.2001",
     "prettier": "3.9.6",
     "typescript": "5.9.3",
     "vite": "6.4.3",
+    "vite-plugin-static-copy": "4.1.1",
     "vite-plugin-web-extension": "4.5.1",
     "vitest": "4.1.10",
     "web-ext": "8.10.0"
@@ -48,6 +50,10 @@
   "allowScripts": {
     "esbuild@0.25.12": true,
     "spawn-sync@1.0.15": true
+  },
+  "lint-staged": {
+    "*": "prettier --check --ignore-unknown",
+    "*.{ts,tsx,js,jsx,mjs,cjs}": "oxlint"
   },
   "dependencies": {
     "@dnd-kit/core": "6.3.1",

@@ -1,25 +1,6 @@
-import briefcaseUrl from '@/components/svg-icon/assets/briefcase.svg'
-import cartUrl from '@/components/svg-icon/assets/cart.svg'
-import checkUrl from '@/components/svg-icon/assets/check.svg'
-import chillUrl from '@/components/svg-icon/assets/chill.svg'
-import circleUrl from '@/components/svg-icon/assets/circle.svg'
 import css from './svg-icon.module.css'
 import type { CSSProperties } from 'preact'
 import cx from 'classnames'
-import dollarUrl from '@/components/svg-icon/assets/dollar.svg'
-import editUrl from '@/components/svg-icon/assets/edit.svg'
-import fenceUrl from '@/components/svg-icon/assets/fence.svg'
-import fingerprintUrl from '@/components/svg-icon/assets/fingerprint.svg'
-import foodUrl from '@/components/svg-icon/assets/food.svg'
-import fruitUrl from '@/components/svg-icon/assets/fruit.svg'
-import giftUrl from '@/components/svg-icon/assets/gift.svg'
-import petUrl from '@/components/svg-icon/assets/pet.svg'
-import sortUrl from '@/components/svg-icon/assets/sort.svg'
-import themeDarkUrl from '@/components/svg-icon/assets/theme-dark.svg'
-import themeLightUrl from '@/components/svg-icon/assets/theme-light.svg'
-import themeSystemUrl from '@/components/svg-icon/assets/theme-system.svg'
-import treeUrl from '@/components/svg-icon/assets/tree.svg'
-import vacationUrl from '@/components/svg-icon/assets/vacation.svg'
 
 /** Known bundled SVG glyph names (UI chrome + Firefox container icons). */
 export type SvgIconName =
@@ -28,6 +9,7 @@ export type SvgIconName =
   | 'check'
   | 'chill'
   | 'circle'
+  | 'contrast'
   | 'dollar'
   | 'edit'
   | 'fence'
@@ -35,44 +17,50 @@ export type SvgIconName =
   | 'food'
   | 'fruit'
   | 'gift'
+  | 'moon'
   | 'pet'
   | 'sort'
-  | 'theme-dark'
-  | 'theme-light'
-  | 'theme-system'
+  | 'sun'
   | 'tree'
   | 'vacation'
 
-/** Bundled URL for every SVG glyph, keyed by name. */
-const ICON_URLS: Record<SvgIconName, string> = {
-  briefcase: briefcaseUrl,
-  cart: cartUrl,
-  check: checkUrl,
-  chill: chillUrl,
-  circle: circleUrl,
-  dollar: dollarUrl,
-  edit: editUrl,
-  fence: fenceUrl,
-  fingerprint: fingerprintUrl,
-  food: foodUrl,
-  fruit: fruitUrl,
-  gift: giftUrl,
-  pet: petUrl,
-  sort: sortUrl,
-  'theme-dark': themeDarkUrl,
-  'theme-light': themeLightUrl,
-  'theme-system': themeSystemUrl,
-  tree: treeUrl,
-  vacation: vacationUrl,
+/**
+ * Packaged SVG filenames under dist/assets/icons/ (copied by Vite).
+ */
+const ICON_FILES: Record<SvgIconName, string> = {
+  briefcase: 'briefcase.svg',
+  cart: 'cart.svg',
+  check: 'check.svg',
+  chill: 'chill.svg',
+  circle: 'circle.svg',
+  contrast: 'contrast.svg',
+  dollar: 'dollar.svg',
+  edit: 'edit.svg',
+  fence: 'fence.svg',
+  fingerprint: 'fingerprint.svg',
+  food: 'food.svg',
+  fruit: 'fruit.svg',
+  gift: 'gift.svg',
+  moon: 'moon.svg',
+  pet: 'pet.svg',
+  sort: 'sort.svg',
+  sun: 'sun.svg',
+  tree: 'tree.svg',
+  vacation: 'vacation.svg',
 }
 
 /**
- * Resolve a glyph name to its bundled URL, falling back to circle.
+ * Resolve a glyph name to an absolute extension URL, falling back to circle.
+ * Absolute moz-extension:// URLs are required: CSS `var(--icon-url)` resolves
+ * relative urls against the stylesheet (Vite HMR = localhost), not the page.
  * @param name - Glyph name (e.g. "edit", "briefcase").
- * @returns The bundled icon URL.
+ * @returns Absolute icon URL for CSS masks.
  */
-export const iconUrlFor = (name: string): string =>
-  ICON_URLS[name as SvgIconName] ?? circleUrl
+export const iconUrlFor = (name: string): string => {
+  const file = ICON_FILES[name as SvgIconName] ?? ICON_FILES.circle
+
+  return browser.runtime.getURL(`assets/icons/${file}`)
+}
 
 export type SvgIconProps = {
   name: string

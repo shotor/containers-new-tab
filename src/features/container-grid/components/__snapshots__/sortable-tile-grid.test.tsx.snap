@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SortableTileGrid > matches snapshot 1`] = `
+<div>
+  <div
+    data-mock="DndContext"
+  >
+    <div
+      data-mock="SortableContext"
+    >
+      <div
+        class="root"
+        role="list"
+      >
+        <div
+          aria-current="true"
+          class="root noContainer current"
+          role="listitem"
+        >
+          <button
+            aria-label="No Container (current)"
+            class="root plain open"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="iconWrap"
+            >
+              <span
+                aria-hidden="true"
+                class="root icon"
+                style="--icon-url: url("moz-extension://test/assets/icons/circle.svg");"
+              />
+            </span>
+            <span
+              class="name"
+            >
+              No Container
+            </span>
+          </button>
+        </div>
+        <div
+          class="root sortable"
+          role="listitem"
+          style="--tile-color: #00f;"
+        >
+          <button
+            aria-label="Work"
+            class="root plain open"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="iconWrap"
+            >
+              <span
+                aria-hidden="true"
+                class="root icon"
+                style="--icon-url: url("moz-extension://test/assets/icons/briefcase.svg");"
+              />
+            </span>
+            <span
+              class="name"
+            >
+              Work
+            </span>
+          </button>
+          <button
+            aria-label="Edit Work"
+            class="root edit"
+            title="Edit container"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="root"
+              style="height: 14px; width: 14px; --icon-url: url("moz-extension://test/assets/icons/edit.svg");"
+            />
+          </button>
+        </div>
+        <div
+          class="root"
+          role="listitem"
+        >
+          <button
+            aria-label="New container"
+            class="root plain open"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="iconWrap"
+            >
+              <span
+                class="plus"
+              >
+                +
+              </span>
+            </span>
+            <span
+              class="name"
+            >
+              New container
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

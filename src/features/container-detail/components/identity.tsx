@@ -1,3 +1,4 @@
+import * as z from 'zod/mini'
 import {
   type ContainerDetailFormValues,
   identityPersistSchema,
@@ -10,7 +11,6 @@ import { Input } from '@/components/input/input'
 import { Label } from '@/components/label/label'
 import type { UseFormRegister } from 'react-hook-form'
 import { useState } from 'preact/hooks'
-import { z } from 'zod'
 
 export type IdentityProps = {
   register: UseFormRegister<ContainerDetailFormValues>

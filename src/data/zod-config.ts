@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod/mini'
 
 /**
  * Zod probes `new Function("")` for a JIT parse fast path; under MV3 CSP that
