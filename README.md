@@ -29,76 +29,23 @@ Install from [Firefox Add-ons][Mozilla]. You'll want [Multi-Account Containers](
 
 ```bash
 npm install
-
-# Vite HMR for the new-tab UI
 npm run dev
 
-# build + web-ext run (needs Firefox + display)
+# in separate terminal
+# after npm run dev finishes
 npm start
-
-npm run build
 ```
 
-**Firefox automation (Xpra + Selenium)**
+**Devcontainer**
 
-The devcontainer uses morgh's Firefox and Xpra features. Selenium is an npm dev
-dependency; Selenium Manager downloads and caches geckodriver on first use.
-The first session also downloads Multi-Account Containers. Internet access is
-needed for these initial downloads.
+Rebuild the container, then:
 
 ```bash
 npm install
 
-# Xpra normally starts through its feature hook; if no session is running:
-xpra start :100 --daemon=yes --exit-with-children=no
-
-# Build and run the browser smoke test, then close the test browser
-npm run test:firefox
-
-# Or run without a display
-HEADLESS=1 npm run test:firefox
+# Firefox + xpra
+npm run dev:firefox
 ```
-
-To watch from the host:
-
-```bash
-xpra attach ssh://containers-new-tab.devvm/100
-```
-
-For interactive development, run `npm run dev:firefox`. It starts Vite and the
-existing `npm run firefox` script through concurrently, waiting for the HMR
-extension build before launching Firefox. Input goes to the Firefox prompt;
-`.exit` stops both processes. If Vite is already running, use `npm run firefox`
-on its own. The Node prompt exposes `driver`, `By`, and `until`:
-
-```js
-await driver.getTitle()
-await driver.findElement(By.css('[aria-label="New container"]')).click()
-await driver.executeScript('return document.body.innerText')
-```
-
-Concurrently's settings live in root `dev.ts`; Firefox helpers live in `.scripts/`.
-Node 24 runs these TypeScript files directly, and `npm run typecheck` checks them.
-
-Use `.exit` to close the automated browser. Each session gets a fresh, isolated
-profile with MAC installed; it does not reuse your manually opened Firefox.
-The Xpra server stays running. Background-script changes require restarting the
-Selenium session. The smoke test saves `.cache/firefox/smoke.png`.
-
-`DISPLAY` defaults to `:100`; `FIREFOX_BIN` defaults to `/usr/bin/firefox`.
-Reusable automation can import `createFirefoxSession` from
-`.scripts/firefox-session.ts` and must call `driver.quit()` when finished.
-WebDriver BiDi is enabled for further console/network inspection tooling.
-
-To start from an existing profile:
-
-```bash
-FIREFOX_PROFILE=.web-ext-profile npm run dev:firefox
-```
-
-Selenium copies that profile for the session; changes are not saved back to the
-original. The launcher reuses the startup tab, loading Firefox's configured
-new-tab URL there only when the extension is not already rendered.
 
 **Lint**
 
@@ -115,10 +62,11 @@ npm run test:watch
 npm run test:coverage
 ```
 
-**Publish**
+**Package**
 
 ```bash
-npm run package   # outputs web-ext-artifacts/*.zip
+# outputs web-ext-artifacts/*.zip
+npm run package
 ```
 
 Listed releases go out from GitHub Actions on push to `main`.

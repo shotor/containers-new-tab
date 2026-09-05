@@ -1,5 +1,4 @@
 import { access, mkdir, writeFile } from 'node:fs/promises'
-import { By, until } from 'selenium-webdriver'
 import firefox from 'selenium-webdriver/firefox.js'
 import { resolve } from 'node:path'
 
@@ -70,26 +69,32 @@ export const createFirefoxSession = async (): Promise<firefox.Driver> => {
     await driver.manage().window().setRect({ height: 900, width: 1280 })
     await driver.installAddon(addon, true)
     await driver.installAddon(resolve('dist'), true)
-    // Keep an already-rendered extension tab; otherwise load the override in place.
-    const tiles = await driver.findElements(
-      By.css('[aria-label="New container"]'),
-    )
-
-    if (tiles.length === 0) {
-      // MAC may have selected a welcome tab during installation.
-      await driver.switchTo().window(await driver.getWindowHandle())
-      await driver.setContext(firefox.Context.CHROME)
-      await driver.executeScript(`
-        window.gBrowser.selectedBrowser.loadURI(Services.io.newURI(window.BROWSER_NEW_TAB_URL), {
-          triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal()
-        })
-      `)
-      await driver.setContext(firefox.Context.CONTENT)
-    }
+    // onInstalled repairs the startup tab asynchronously. Wait for that page
+    // instead of racing it with a second navigation or opening another tab.
     await driver.wait(
-      until.elementLocated(By.css('[aria-label="New container"]')),
+      async () => {
+        for (const handle of await driver.getAllWindowHandles()) {
+          await driver.switchTo().window(handle)
+
+          if (!(await driver.getCurrentUrl()).startsWith('moz-extension://')) {
+            continue
+          }
+
+          const ready = await driver.executeScript<boolean>(`
+          return document.readyState === "complete" &&
+            globalThis.browser?.runtime?.id === "containers-new-tab@shotor.dev" &&
+            !!document.querySelector('[aria-label="New container"]')
+        `)
+
+          if (ready) {
+            return true
+          }
+        }
+
+        return false
+      },
       20_000,
-      'The extension new-tab page did not render',
+      'The extension startup page did not render',
     )
     return driver
   } catch (error) {
