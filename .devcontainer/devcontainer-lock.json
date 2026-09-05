@@ -25,6 +25,11 @@
       "resolved": "ghcr.io/shotor/devcontainer/features/codex@sha256:d005569c58bac42c056412b8fd8b3bb7e6d760b85903808f25b3b72b472d4d67",
       "integrity": "sha256:d005569c58bac42c056412b8fd8b3bb7e6d760b85903808f25b3b72b472d4d67"
     },
+    "ghcr.io/shotor/devcontainer/features/firefox:0": {
+      "version": "0.1.0",
+      "resolved": "ghcr.io/shotor/devcontainer/features/firefox@sha256:29ad1ceeca91f30212429fc12e41c136ff1b7f764b29d1feb8e54155cf5a8e6d",
+      "integrity": "sha256:29ad1ceeca91f30212429fc12e41c136ff1b7f764b29d1feb8e54155cf5a8e6d"
+    },
     "ghcr.io/shotor/devcontainer/features/import-ca:0": {
       "version": "0.1.1",
       "resolved": "ghcr.io/shotor/devcontainer/features/import-ca@sha256:91f798a23653aee1b7622a7fc5979d3b20e1da7efbb70cbdb0bfad58caf0f53e",
@@ -39,7 +44,14 @@
       "version": "0.1.0",
       "resolved": "ghcr.io/shotor/devcontainer/features/python@sha256:ac4e1493727ead91c3f954c489361cd6138b302f707bc101468a09d2b5b64d1d",
       "integrity": "sha256:ac4e1493727ead91c3f954c489361cd6138b302f707bc101468a09d2b5b64d1d",
-      "dependsOn": ["ghcr.io/shotor/devcontainer/features/mise:0"]
+      "dependsOn": [
+        "ghcr.io/shotor/devcontainer/features/mise:0"
+      ]
+    },
+    "ghcr.io/shotor/devcontainer/features/xpra:0": {
+      "version": "0.1.0",
+      "resolved": "ghcr.io/shotor/devcontainer/features/xpra@sha256:53e9aa84c73140ca3edfcb5a4616c16e35e9c068d0398771d12ffe1f6d8b3cbe",
+      "integrity": "sha256:53e9aa84c73140ca3edfcb5a4616c16e35e9c068d0398771d12ffe1f6d8b3cbe"
     }
   }
 }

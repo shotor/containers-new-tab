@@ -9,3 +9,5 @@ dist/
 web-ext-artifacts/
 *.log
 .DS_Store
+
+__NOTES__.md
