@@ -1,11 +1,23 @@
 {
   "name": "containers-new-tab",
 
-  "build": {
-    "dockerfile": "Dockerfile"
+  "image": "ghcr.io/shotor/devcontainer/images/debian:0",
+  "features": {
+    "ghcr.io/shotor/devcontainer/features/apt-upgrade:0": {},
+    "ghcr.io/shotor/devcontainer/features/import-ca:0": {},
+    "ghcr.io/shotor/devcontainer/features/claude:0": {},
+    "ghcr.io/shotor/devcontainer/features/codex:0": {},
+    "ghcr.io/shotor/devcontainer/features/python:0": {}
   },
 
-  "remoteUser": "node",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  },
+
+
+  "remoteUser": "user",
   "updateRemoteUserUID": true,
 
   "forwardPorts": [6080],
@@ -17,13 +29,41 @@
   },
 
   "mounts": [
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/history,target=/commandhistory,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/codex,target=/home/node/.codex,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/config,target=/home/node/.config/Cursor,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/cli-config,target=/home/node/.config/cursor,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/home,target=/home/node/.cursor,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/data,target=/home/node/.local/share/Cursor,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/volumes/cursor/cache,target=/home/node/.cache/Cursor,type=bind,consistency=cached"
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}/.devcontainer/volumes/ca-certificates",
+      "target": "/usr/local/share/ca-certificates"
+    },
+    {
+      "type": "volume",
+      "source": "${devcontainerId}-local-bin",
+      "target": "/home/user/.local/bin"
+    },
+    {
+      "type": "volume",
+      "source": "${devcontainerId}-claude-install",
+      "target": "/home/user/.local/share/claude"
+    },
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}/.devcontainer/volumes/history",
+      "target": "/commandhistory"
+    },
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}/.devcontainer/volumes/claude",
+      "target": "/home/user/.claude"
+    },
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}/.devcontainer/volumes/cache",
+      "target": "/home/user/.cache"
+    },
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}/.devcontainer/volumes/codex",
+      "target": "/home/user/.codex"
+    }
   ],
 
   "containerEnv": {
@@ -31,11 +71,18 @@
   },
 
   "customizations": {
+    "devvm": {
+      "checkout": ["/usr/local/share/ca-certificates"]
+    },
     "vscode": {
-      "extensions": ["esbenp.prettier-vscode", "openai.chatgpt"],
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "oxc.oxc-vscode"
+      ],
       "settings": {
+        "editor.defaultFormatter": "oxc.oxc-vscode",
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSaveMode": "file",
         "terminal.integrated.defaultProfile.linux": "zsh"
       }
     }
