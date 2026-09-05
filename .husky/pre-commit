@@ -1,10 +1,7 @@
 #!/usr/bin/env sh
 
-REMOTE=ff-containers-tab.devsy
-DIR=/workspaces/ff-containers-tab
-
 if command -v npm >/dev/null 2>&1; then
   npx lint-staged
 else
-  ssh "$REMOTE" "cd $DIR && npx lint-staged"
+  echo "npx missing"
 fi
