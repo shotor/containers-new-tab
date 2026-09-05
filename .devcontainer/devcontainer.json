@@ -68,7 +68,7 @@
       "checkout": ["/usr/local/share/ca-certificates"]
     },
     "vscode": {
-      "extensions": ["esbenp.prettier-vscode", "oxc.oxc-vscode"],
+      "extensions": ["oxc.oxc-vscode"],
       "settings": {
         "editor.defaultFormatter": "oxc.oxc-vscode",
         "editor.formatOnSave": true,

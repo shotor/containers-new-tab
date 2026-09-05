@@ -14,8 +14,8 @@ npm run dev:watch      # full rebuild on change (no HMR; use if Vite HMR unavail
 npm run test           # vitest run (unit tests next to mirrored files)
 npm run test:watch     # vitest watch mode
 npm run test:coverage  # vitest run --coverage
-npm run lint           # prettier --check + oxlint
-npm run lint:fix       # prettier --write + oxlint --fix
+npm run lint           # oxfmt --check + oxlint
+npm run lint:fix       # oxfmt --write + oxlint --fix
 npm run typecheck      # tsc --noEmit
 npm run test:firefox   # build + Selenium smoke test in Firefox on Xpra
 ```
@@ -80,7 +80,7 @@ Dependency flow: `utils` ← `data` ← `features` / `components` ← `pages`. P
 
 ## Conventions
 
-Enforced by oxlint (`.oxlintrc.json`) + prettier (`.prettierrc`):
+Enforced by oxlint (`.oxlintrc.json`) + oxfmt (`.oxfmtrc.json`):
 
 - Files: lowercase kebab-case (`unicorn/filename-case`).
 - Functions: arrow expressions only (`func-style`, `prefer-arrow-callback`); functional collection chains over loops unless less readable; no classes.
@@ -92,7 +92,7 @@ Enforced by oxlint (`.oxlintrc.json`) + prettier (`.prettierrc`):
 - **No barrels**: never add `index.ts` re-export files; import from the concrete module path. Named facades are fine when intentional (e.g. `browser-api.ts`).
 - Unused code is a warning (`no-unused-vars: warn`) — delete it instead.
 - Utils are one-export files; tiny one-liners used once get inlined instead.
-- Prettier: 2 spaces, trailing commas, no semicolons, single quotes (double quotes for JSX attributes). Oxlint `@stylistic/quotes` + `@stylistic/jsx-quotes` mirror that.
+- Oxfmt: 2 spaces, trailing commas, no semicolons, single quotes (double quotes for JSX attributes). Oxlint `@stylistic/quotes` + `@stylistic/jsx-quotes` mirror that.
 - Newlines between logical code blocks when it improves readability (don’t pack unrelated statements together). **Does not apply to imports** — keep the import block contiguous (see Imports above). Skip blank lines between short, tightly related one-liners. Do use a blank line after a multi-line block before following lines, and between consecutive multi-line blocks — dense stacked multi-line expects are hard to scan. Always put a blank line before a `try` / `catch`. Always put a blank line before an `if` when it follows other statements in the same block (setup/declarations then the guard — not jammed on the next line); no extra blank when `if` is the first statement in the block, and none between `else` and `if` in an `else if`. Always put a blank line after a multi-line assignment or declaration (including multi-line `useState`) before the next statement. Multi-line inline functions (callbacks, arrow handlers, etc.) also get a blank line after them when the next sibling follows in the same block — except when they are the callback passed to a closer like `.map` / `.filter` / `.find` / similar (no blank line forced after those). In JSX/HTML, put a blank line between sibling multi-line elements/sections (e.g. `.brand` then `.topbar-controls`, `SortMenu` then `ThemeMenu`). (Not enforced by oxlint — no padding-line rule yet.)
 - Types: everything typed; inference over `as` — casts only at trust boundaries (browser storage, external extension messages), with a comment saying why.
 - Tests: colocate as close as possible to the unit under test — for a single-function file `foo.ts`, use `foo.test.ts` beside it (not a parent-folder suite). Mock that file's collaborators (`vi.mock` modules, `vi.stubGlobal("browser", …)`); skip trivial assertions. **Components:** every component file gets one HTML snapshot test (refactor safety). Add behavior tests only when the component has non-trivial logic of our own. Mock hooks, context providers, data/browser modules, and 3rd-party libs — do **not** mock simple presentational internal components (Button, Label, SvgIcon, …).

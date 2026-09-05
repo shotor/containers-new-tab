@@ -50,7 +50,7 @@ npm run dev:firefox
 **Lint**
 
 ```bash
-npm run lint       # prettier + oxlint
+npm run lint       # oxfmt + oxlint
 npm run lint:fix   # autofix
 ```
 

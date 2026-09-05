@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "dist/",
+    ".web-ext-profile/",
+    "web-ext-artifacts/",
+    ".cache/",
+    "package-lock.json",
+    "devcontainer-lock.json"
+  ]
+}

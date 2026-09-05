@@ -2,10 +2,11 @@ import concurrently from 'concurrently'
 
 const { result } = concurrently(
   [
-    { command: 'npm run dev', name: 'dev' },
+    { command: 'npm run dev', name: 'dev', prefixColor: 'green' },
     {
       command: 'node .scripts/wait-for-vite.ts && npm run firefox',
       name: 'firefox',
+      prefixColor: 'magenta',
     },
   ],
   {

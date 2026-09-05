@@ -14,10 +14,10 @@
     "build": "tsc --noEmit && vite build",
     "package": "rm -rf dist && npm run build && web-ext build --source-dir dist --overwrite-dest --ignore-files \"virtual:*\"",
     "────────── lint ─────────": "────────────────────────────────────────────────",
-    "lint": "npm run prettier && npm run oxide",
-    "lint:fix": "npm run prettier:fix && npm run oxide:fix",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write .",
+    "lint": "npm run oxfmt && npm run oxide",
+    "lint:fix": "npm run oxfmt:fix && npm run oxide:fix",
+    "oxfmt": "oxfmt --check .",
+    "oxfmt:fix": "oxfmt --write .",
     "oxide": "oxlint",
     "oxide:fix": "oxlint --fix",
     "typecheck": "tsc --noEmit",
@@ -42,9 +42,9 @@
     "happy-dom": "20.14.0",
     "husky": "9.1.7",
     "lint-staged": "17.5.0",
+    "oxfmt": "0.66.0",
     "oxlint": "1.81.0",
     "oxlint-tsgolint": "7.0.2001",
-    "prettier": "3.9.6",
     "selenium-webdriver": "4.48.0",
     "typescript": "7.0.2",
     "vite": "8.2.2",
@@ -58,7 +58,7 @@
     "spawn-sync@1.0.15": true
   },
   "lint-staged": {
-    "*": "prettier --check --ignore-unknown",
+    "*": "oxfmt --check --no-error-on-unmatched-pattern",
     "*.{ts,tsx,js,jsx,mjs,cjs}": "oxlint"
   },
   "dependencies": {
