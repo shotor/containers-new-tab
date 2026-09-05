@@ -3,11 +3,11 @@
 
   "image": "ghcr.io/shotor/devcontainer/images/debian:0",
   "features": {
-    "ghcr.io/shotor/devcontainer/features/apt-upgrade:0": {},
     "ghcr.io/shotor/devcontainer/features/import-ca:0": {},
     "ghcr.io/shotor/devcontainer/features/claude:0": {},
     "ghcr.io/shotor/devcontainer/features/codex:0": {},
-    "ghcr.io/shotor/devcontainer/features/python:0": {}
+    "ghcr.io/shotor/devcontainer/features/python:0": {},
+    "ghcr.io/shotor/devcontainer/features/apt-upgrade:0": {}
   },
 
   "hostRequirements": {
@@ -15,7 +15,6 @@
     "memory": "8gb",
     "storage": "32gb"
   },
-
 
   "remoteUser": "user",
   "updateRemoteUserUID": true,
@@ -75,10 +74,7 @@
       "checkout": ["/usr/local/share/ca-certificates"]
     },
     "vscode": {
-      "extensions": [
-        "esbenp.prettier-vscode",
-        "oxc.oxc-vscode"
-      ],
+      "extensions": ["esbenp.prettier-vscode", "oxc.oxc-vscode"],
       "settings": {
         "editor.defaultFormatter": "oxc.oxc-vscode",
         "editor.formatOnSave": true,
