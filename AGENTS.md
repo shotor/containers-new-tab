@@ -17,7 +17,7 @@ npm run test:coverage  # vitest run --coverage
 npm run lint           # prettier --check + oxlint
 npm run lint:fix       # prettier --write + oxlint --fix
 npm run typecheck      # tsc --noEmit
-npm run test:firefox   # Xvfb + noVNC + Firefox 147+ with Vite HMR
+npm run test:firefox   # build + Selenium smoke test in Firefox on Xpra
 ```
 
 Git hooks via **husky**: `.husky/pre-commit` runs `npm run lint` (locally, or over `ssh ff-containers-tab.devsy` when npm is missing on the host).
@@ -29,22 +29,38 @@ Dependencies are **pinned** (`.npmrc` has `save-exact=true`); keep exact version
 - `.github/workflows/pull-request.yml` — on every PR: `test` + `lint` + `build` run in parallel; any failure fails the run.
 - `.github/workflows/release.yml` — on **push to main** (merged PR or direct push): `version` check first (`cz bump --get-next` — no bumpable commits ⇒ stop) → `lint` + `test` (parallel; both must succeed) → `build` job that bumps version files locally (commit + tag, **no push yet**), builds `dist`, **then** pushes the bump commit/tag over SSH → separate `publish` job downloads `dist`, packs a `git archive` source zip for reviewers, and runs `web-ext sign --upload-source-code` to AMO (re-runnable alone if signing fails). Needs repo secrets `AMO_API_KEY` / `AMO_API_SECRET` (AMO JWT) and `RELEASE_DEPLOY_KEY` (private half of a **write** deploy key; allow Deploy keys to bypass protected `main`). Bump commits start with `bump:` so the workflow does not recurse. First-time AMO submission must go through the Dev Hub once. Requires one initial version tag (created manually).
 
-### Testing in the browser (noVNC)
+### Testing in Firefox (Xpra + Selenium)
 
-This environment has no GUI. We use **noVNC** (lighter than Guacamole, same idea: Firefox in your browser).
+The devcontainer uses morgh's `firefox` and `xpra` features. Xpra owns display
+`:100`; Firefox and its system dependencies come from the Firefox feature.
+Selenium is an exact npm dev dependency, and Selenium Manager supplies geckodriver.
+The first session downloads geckodriver and Multi-Account Containers.
 
-1. **Rebuild the devcontainer** so the Dockerfile installs `firefox-esr`, `xvfb`, `x11vnc`, `novnc`, `fluxbox` (ESR is fallback; the script downloads Firefox **147+** for HMR).
-2. Run `npm run test:firefox`.
-3. Open the forwarded port **6080** → `http://localhost:6080/vnc.html` → Connect.
-4. Firefox starts with the extension loaded via `web-ext`; **new-tab UI hot-reloads** via Vite on `:5173`.
+- `npm run test:firefox` builds and runs a smoke test against the real temporary
+  extension: checks the new-tab page, extension API, and navigation to the editor.
+  It saves `.cache/firefox/smoke.png` and closes the isolated browser profile.
+- `HEADLESS=1 npm run test:firefox` runs without Xpra.
+- For HMR, `npm run dev:firefox` runs Vite and `npm run firefox` through
+  concurrently, waiting for the development extension build before opening Firefox.
+  Input goes to the Firefox prompt (`driver`, `By`, `until`); `.exit` stops both
+  processes, leaving Xpra alive. With Vite already running, use `npm run firefox`
+  alone. Restart after background changes.
+- If needed, start Xpra with `xpra start :100 --daemon=yes --exit-with-children=no`.
+  Attach from the host with `xpra attach ssh://containers-new-tab.devvm/100`.
+- `DISPLAY` defaults to `:100`; `FIREFOX_BIN` defaults to `/usr/bin/firefox`.
+- Set `FIREFOX_PROFILE` to use an existing profile as a template. Selenium copies
+  it; session changes do not persist to the original. The launcher reuses the
+  startup tab instead of opening another tab.
+- Concurrently's settings live in root `dev.ts`; helper scripts live in `.scripts/`.
+  Node 24 runs the TypeScript scripts directly, and they are included in typechecking.
+  Import `createFirefoxSession` from
+  `.scripts/firefox-session.ts` for reusable automation, and always quit the
+  returned driver. Sessions use fresh profiles with MAC and the extension;
+  they never attach to the user's existing Firefox profile.
+- Firefox 147+ is required for Vite HMR in temporary MV3 extensions. The installed
+  Firefox feature provides the browser; the project does not download Firefox.
 
-HMR needs Firefox **147+** (temporary MV3 add-ons may load `http://localhost` scripts). The noVNC script caches a release build under `.cache/firefox/` when system Firefox is too old.
-
-Background-script edits still rebuild into `dist/` and need a web-ext extension reload (not HMR).
-
-Optional host-Docker path: `docker compose -f docker-compose.firefox.yml up` then load `dist/` as a temporary add-on inside that Firefox.
-
-Load unpacked without noVNC: run `npm run dev`, then point Firefox temporary add-on at `dist/` (or use `npm start` on a machine with a real display).
+The optional `docker-compose.firefox.yml` remains a separate manual noVNC workflow.
 
 ## Layout
 

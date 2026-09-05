@@ -1,5 +1,5 @@
 # Optional: run Firefox+noVNC in a separate container if you have Docker
-# on the host (this repo's main path is in-devcontainer noVNC — see scripts/firefox-novnc.sh).
+# on the host (this repo's main path is Firefox via Selenium on Xpra).
 #
 # Usage (from repo root, on a machine with Docker):
 #   npm run build

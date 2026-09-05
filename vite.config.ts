@@ -96,7 +96,7 @@ export default defineConfig({
   base: './',
   build: {
     // Keep files during rebuild so `web-ext run -s dist` doesn't see an empty
-    // folder mid-write and tear down Firefox (which also kills noVNC via the script trap).
+    // folder mid-write and tear down Firefox.
     emptyOutDir: false,
     outDir: 'dist',
     sourcemap: true,
@@ -107,7 +107,7 @@ export default defineConfig({
     webExtension({
       additionalInputs: ['src/index.html'],
       browser: 'firefox',
-      // Firefox is started by npm scripts / firefox-novnc.sh, not the plugin.
+      // Firefox is started by npm scripts / .scripts/firefox.ts, not the plugin.
       disableAutoLaunch: true,
       htmlViteConfig: {
         plugins: [forceWsHmr()],
