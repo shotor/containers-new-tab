@@ -8,7 +8,6 @@ import {
 import {
   type ContainerDetailFormValues,
   DEFAULT_CONTAINER_DETAIL_FORM,
-  type ProxyFormValues,
 } from '@/features/container-detail/container-detail.schema'
 import {
   type MacSiteAssignment,
@@ -23,7 +22,6 @@ import type { ContainerIdentity } from '@/data/browser/types'
 import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'wouter'
-import { useProxyAutosave } from '@/features/container-detail/hooks/use-proxy-autosave'
 import { useSaveStatusFlash } from '@/features/container-detail/hooks/use-save-status-flash'
 
 /** Options for the container detail hook. */
@@ -53,7 +51,6 @@ export const useContainerDetail = ({
             color: warm.identity.color as ContainerDetailFormValues['color'],
             icon: warm.identity.icon as ContainerDetailFormValues['icon'],
             name: warm.identity.name,
-            ...warm.proxy,
           }
         : DEFAULT_CONTAINER_DETAIL_FORM,
     })
@@ -73,13 +70,6 @@ export const useContainerDetail = ({
     markSaved: markIdentitySaved,
     reset: resetIdentitySave,
   } = useSaveStatusFlash()
-  const {
-    status: proxySaveStatus,
-    setPending: setProxyPending,
-    markSaved: markProxySaved,
-    reset: resetProxySave,
-  } = useSaveStatusFlash()
-
   const identityRef = useRef<ContainerIdentity | null>(null)
   identityRef.current = identity
   const lastSavedRef = useRef<SavedIdentity | null>(
@@ -91,21 +81,10 @@ export const useContainerDetail = ({
         }
       : null,
   )
-  const lastProxySavedRef = useRef<ProxyFormValues | null>(warm?.proxy ?? null)
   const creatingRef = useRef(false)
 
   const values = watch()
-  const {
-    name,
-    color,
-    icon,
-    type,
-    host,
-    port,
-    username,
-    password,
-    doNotProxyLocal,
-  } = values
+  const { name, color, icon } = values
 
   /**
    * Navigate back to the home page.
@@ -119,17 +98,15 @@ export const useContainerDetail = ({
     setIdentity(null)
     reset(DEFAULT_CONTAINER_DETAIL_FORM)
     lastSavedRef.current = null
-    lastProxySavedRef.current = null
     creatingRef.current = false
     resetIdentitySave()
-    resetProxySave()
     setSites([])
     setLoading(false)
-  }, [reset, resetIdentitySave, resetProxySave])
+  }, [reset, resetIdentitySave])
 
   /**
    * Apply a loaded detail payload to form state.
-   * @param payload - Identity, sites, and proxy fields.
+   * @param payload - Identity and sites.
    */
   const applyPayload = useCallback(
     (payload: ContainerDetailPayload) => {
@@ -141,19 +118,16 @@ export const useContainerDetail = ({
       }
       creatingRef.current = false
       resetIdentitySave()
-      resetProxySave()
       setSites(payload.sites)
       // Trust boundary: Firefox returns color/icon as plain strings.
       reset({
         color: payload.identity.color as ContainerDetailFormValues['color'],
         icon: payload.identity.icon as ContainerDetailFormValues['icon'],
         name: payload.identity.name,
-        ...payload.proxy,
       })
-      lastProxySavedRef.current = payload.proxy
       setLoading(false)
     },
-    [reset, resetIdentitySave, resetProxySave],
+    [reset, resetIdentitySave],
   )
 
   useEffect(() => {
@@ -236,21 +210,6 @@ export const useContainerDetail = ({
     setPending: setIdentityPending,
   })
 
-  useProxyAutosave({
-    activeCookieStoreId: identity?.cookieStoreId,
-    doNotProxyLocal,
-    host,
-    lastProxySavedRef,
-    loading,
-    markSaved: markProxySaved,
-    password,
-    port,
-    resetSave: resetProxySave,
-    setPending: setProxyPending,
-    type,
-    username,
-  })
-
   /**
    * Open an assigned site in a new tab beside the detail page.
    * @param url - The URL to open.
@@ -310,7 +269,6 @@ export const useContainerDetail = ({
     identity,
     loading,
     openAssignedSite,
-    proxySaveStatus,
     register,
     saveStatus,
     setColor,

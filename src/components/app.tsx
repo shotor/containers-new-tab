@@ -6,6 +6,7 @@ import { Magnificence } from '@/components/magnificence/magnificence'
 import { Suspense } from 'preact/compat'
 import { ThemeProvider } from '@/theme'
 import { useHashLocation } from 'wouter/use-hash-location'
+import { useLayoutEffect } from 'preact/hooks'
 
 type DetailPageComponent = React.FC<DetailPageProps>
 
@@ -82,6 +83,10 @@ const detailCookieStoreId = (loc: string): string | undefined | null => {
 const AppRoutes: React.FC = () => {
   const [loc] = useLocation()
   const cookieStoreId = detailCookieStoreId(loc)
+
+  useLayoutEffect(() => {
+    window.scrollTo({ behavior: 'instant', left: 0, top: 0 })
+  }, [loc])
 
   if (cookieStoreId !== null) {
     return (

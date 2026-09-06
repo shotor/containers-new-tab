@@ -22,6 +22,7 @@ const waitForVite = async (): Promise<void> => {
       const manifest = manifestSchema.parse(
         JSON.parse(await readFile('dist/manifest.json', 'utf8')),
       )
+
       const html = await readFile(
         resolve('dist', manifest.chrome_url_overrides.newtab),
         'utf8',

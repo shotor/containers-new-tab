@@ -29,6 +29,9 @@ describe('useSortedContainers', () => {
       if (key === 'sortMode') {
         return 'alpha'
       }
+      if (key === 'sortDirection') {
+        return 'asc'
+      }
       if (key === 'usageCounts') {
         return {}
       }
@@ -93,7 +96,39 @@ describe('useSortedContainers', () => {
       await result.current.setSortMode('mostUsed')
     })
     rerender()
-    expect(set).toHaveBeenCalledWith({ sortMode: 'mostUsed' })
+    expect(set).toHaveBeenCalledWith({
+      sortDirection: 'asc',
+      sortMode: 'mostUsed',
+    })
+
+    // Re-selecting the active mode flips the direction (and back again).
+    await act(async () => {
+      await result.current.setSortMode('mostUsed')
+    })
+    rerender()
+    expect(result.current.sortDirection).toBe('desc')
+    expect(result.current.containers.map((c) => c.name)).toEqual([
+      'Beta',
+      'Alpha',
+    ])
+    expect(set).toHaveBeenLastCalledWith({
+      sortDirection: 'desc',
+      sortMode: 'mostUsed',
+    })
+
+    await act(async () => {
+      await result.current.setSortMode('mostUsed')
+    })
+    rerender()
+    expect(result.current.sortDirection).toBe('asc')
+
+    // Switching mode always starts ascending.
+    await act(async () => {
+      await result.current.setSortMode('mostUsed')
+      await result.current.setSortMode('alpha')
+    })
+    rerender()
+    expect(result.current.sortDirection).toBe('asc')
 
     unmount()
   })

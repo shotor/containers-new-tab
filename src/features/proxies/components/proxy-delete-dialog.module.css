@@ -1,0 +1,14 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1.35rem;
+  padding: 0;
+  list-style: none;
+}
+
+.message {
+  margin: 0 0 1.35rem;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}

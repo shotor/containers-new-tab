@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProxyContainers > matches snapshot 1`] = `
+<div>
+  <section
+    aria-labelledby="P0-0"
+    class="root"
+  >
+    <h3
+      class="title"
+      id="P0-0"
+    >
+      Used by containers
+    </h3>
+    <ul
+      class="list"
+    >
+      <li>
+        <button
+          class="root link"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="root icon"
+            style="color: #37adff; --icon-url: url("moz-extension://test/assets/icons/briefcase.svg");"
+          />
+          Work
+        </button>
+      </li>
+    </ul>
+  </section>
+</div>
+`;

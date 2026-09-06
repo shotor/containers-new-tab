@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProxyDeleteDialog > shows affected containers and explains direct connections 1`] = `
+<div>
+  <div
+    class="root"
+    role="presentation"
+  >
+    <div
+      aria-describedby="P0-0-desc"
+      aria-labelledby="P0-0-title"
+      aria-modal="true"
+      class="dialog"
+      role="alertdialog"
+    >
+      <h2
+        class="title"
+        id="P0-0-title"
+      >
+        Delete 
+        Office
+        ?
+      </h2>
+      <p
+        class="desc"
+        id="P0-0-desc"
+      >
+        This permanently deletes the saved proxy. Its assignments will be removed from the containers below, which will then connect directly. The containers will not be deleted.
+      </p>
+      <ul
+        aria-label="Affected containers"
+        class="list"
+      >
+        <li>
+          <span
+            class="root"
+            style="--badge-color: #37adff;"
+          >
+            <span
+              aria-hidden="true"
+              class="root icon"
+              style="--icon-url: url("moz-extension://test/assets/icons/briefcase.svg");"
+            />
+            Work
+          </span>
+        </li>
+        <li>
+          <span
+            class="root"
+            style="--badge-color: #ff9f00;"
+          >
+            <span
+              aria-hidden="true"
+              class="root icon"
+              style="--icon-url: url("moz-extension://test/assets/icons/fingerprint.svg");"
+            />
+            Personal
+          </span>
+        </li>
+      </ul>
+      <div
+        class="actions"
+      >
+        <button
+          class="root ghost action"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="root danger action"
+          type="button"
+        >
+          Delete permanently
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

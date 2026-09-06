@@ -5,6 +5,11 @@
   margin-bottom: 0.85rem;
 }
 
+.fieldAction {
+  align-self: flex-start;
+  margin-top: 0.35rem;
+}
+
 .error {
   margin: 0;
   font-size: 0.8rem;

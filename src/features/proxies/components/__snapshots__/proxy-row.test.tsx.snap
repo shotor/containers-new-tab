@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProxyRow > matches snapshot 1`] = `
+<div>
+  <section
+    aria-label="Office"
+    class="root"
+  >
+    <div
+      class="summary"
+    >
+      <button
+        aria-label="Edit Office"
+        class="rowButton"
+        type="button"
+      >
+        <span
+          class="identity"
+        >
+          <strong>
+            Office
+          </strong>
+          <span
+            class="address"
+          >
+            <span
+              class="root http"
+            >
+              HTTP
+            </span>
+            <span
+              class="root neutral"
+            >
+              proxy.example
+              :
+              8080
+            </span>
+          </span>
+        </span>
+        <span
+          class="usage"
+        >
+          1
+           
+          container
+        </span>
+      </button>
+      <div
+        class="actions"
+      >
+        <button
+          class="root danger"
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+`;

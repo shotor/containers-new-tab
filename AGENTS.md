@@ -48,6 +48,11 @@ The first session downloads geckodriver and Multi-Account Containers.
 - If needed, start Xpra with `xpra start :100 --daemon=yes --exit-with-children=no`.
   Attach from the host with `xpra attach ssh://containers-new-tab.devvm/100`.
 - `DISPLAY` defaults to `:100`; `FIREFOX_BIN` defaults to `/usr/bin/firefox`.
+- geckodriver listens on `GECKODRIVER_PORT` (default 4444). While a session is alive its handle is in `.cache/firefox/session.json`
+  (`url`, `sessionId`, `webSocketUrl`); `attachFirefoxSession()` from
+  `.scripts/firefox-session.ts` returns a second WebDriver client bound to that
+  same browser, so scripts can drive the window the REPL owns. Do not `quit()` the
+  attached client unless you mean to close the shared browser.
 - Set `FIREFOX_PROFILE` to use an existing profile as a template. Selenium copies
   it; session changes do not persist to the original. The launcher reuses the
   startup tab instead of opening another tab.
@@ -106,13 +111,14 @@ Enforced by oxlint (`.oxlintrc.json`) + oxfmt (`.oxfmtrc.json`):
 
 ## Storage keys (`browser.storage.local`)
 
-| Key                | Shape                                 |
-| ------------------ | ------------------------------------- |
-| `sortMode`         | `"mostUsed" \| "alpha" \| "custom"`   |
-| `themeMode`        | `"system" \| "light" \| "dark"`       |
-| `usageCounts`      | `{ [cookieStoreId]: number }`         |
-| `customOrder`      | `cookieStoreId[]`                     |
-| `containerProxies` | `{ [cookieStoreId]: ContainerProxy }` |
+| Key                | Shape                                                                          |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `sortMode`         | `"mostUsed" \| "alpha" \| "custom"`                                            |
+| `themeMode`        | `"system" \| "light" \| "dark"`                                                |
+| `usageCounts`      | `{ [cookieStoreId]: number }`                                                  |
+| `customOrder`      | `cookieStoreId[]`                                                              |
+| `containerProxies` | `{ [cookieStoreId]: ContainerProxy }` (resolved runtime cache)                 |
+| `proxyLibrary`     | `{ proxies: Record<string, SavedProxy>, assignments: Record<string, string> }` |
 
 Defaults live in `src/data/types.ts`.
 
@@ -145,3 +151,5 @@ Defaults live in `src/data/types.ts`.
 - App shell / routing → `src/components/app.tsx` + `src/main.tsx`
 - Proxy → `src/background.ts` + `src/data/proxy/proxy-cache-api.ts` / `proxy-cache.ts` / `proxy/api/` / `proxy/utils/`
 - Schema → `src/data/types.ts` + `extension/extension-storage-api.ts` + `extension/parsers/`; small pure pieces → `src/utils/` / `src/data/utils/`
+
+Shared proxy definitions are managed inline under `src/features/proxies/`. `src/data/proxy/proxy-library-api.ts` serializes library changes with a Web Lock, imports legacy per-container configurations on first use, and writes definitions/assignments and the resolved `containerProxies` cache together. Container editors select a saved definition. Deleting a proxy clears its container assignments in the same storage update; the confirmation dialog lists affected containers and explains that they will use a direct connection.

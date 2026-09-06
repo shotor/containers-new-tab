@@ -429,137 +429,32 @@ exports[`DetailPage > matches snapshot 1`] = `
       class="title"
       id="P0-2"
     >
-      <span>
-        Proxy
-      </span>
+      Proxy
     </h2>
-    <p
-      class="root warning"
-      role="note"
-    >
-      This is separate from the proxy config in Multi-Account Containers. Other extensions can’t change MAC’s proxy settings, so anything you set here will still work, but must then be managed from here exclusively.
-    </p>
     <div
       class="field"
     >
       <label
-        class="root"
-        for="detail-proxy-type"
+        for="container-proxy"
       >
-        Type
+        Saved proxy
       </label>
       <select
         class="root"
-        id="detail-proxy-type"
-        name="type"
+        id="container-proxy"
       >
         <option
-          value="direct"
+          value=""
         >
           No proxy (direct)
         </option>
-        <option
-          value="http"
-        >
-          http
-        </option>
-        <option
-          value="https"
-        >
-          https
-        </option>
-        <option
-          value="socks"
-        >
-          socks
-        </option>
-        <option
-          value="socks4"
-        >
-          socks4
-        </option>
       </select>
-    </div>
-    <div
-      class="field"
-    >
-      <label
-        class="root"
-        for="detail-proxy-host"
+      <button
+        class="root ghost fieldAction"
+        type="button"
       >
-        Host
-      </label>
-      <input
-        class="root"
-        id="detail-proxy-host"
-        name="host"
-        type="text"
-      />
-    </div>
-    <div
-      class="field"
-    >
-      <label
-        class="root"
-        for="detail-proxy-port"
-      >
-        Port
-      </label>
-      <input
-        class="root"
-        id="detail-proxy-port"
-        max="65535"
-        min="1024"
-        name="port"
-        type="number"
-      />
-    </div>
-    <div
-      class="field"
-    >
-      <label
-        class="root"
-        for="detail-proxy-user"
-      >
-        Username (optional)
-      </label>
-      <input
-        autocomplete="off"
-        class="root"
-        id="detail-proxy-user"
-        name="username"
-        type="text"
-      />
-    </div>
-    <div
-      class="field"
-    >
-      <label
-        class="root"
-        for="detail-proxy-pass"
-      >
-        Password (optional)
-      </label>
-      <input
-        autocomplete="new-password"
-        class="root"
-        id="detail-proxy-pass"
-        name="password"
-        type="password"
-      />
-    </div>
-    <div
-      class="field"
-    >
-      <label
-        class="root"
-      >
-        <input
-          name="doNotProxyLocal"
-          type="checkbox"
-        />
-         Don’t proxy localhost
-      </label>
+        Manage proxies
+      </button>
     </div>
   </section>
   <section

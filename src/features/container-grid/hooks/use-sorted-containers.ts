@@ -3,24 +3,30 @@ import {
   type ExtensionStorageObject,
   type SortMode,
 } from '@/data/types'
+import { sortContainers, toggleSortSelection } from '@/data/utils/sort'
 import { useCallback, useEffect, useState } from 'preact/hooks'
 import { extensionStorageApi } from '@/data/extension/extension-storage-api'
-import { sortContainers } from '@/data/utils/sort'
 
 /** Sort-related fields used to order the container grid. */
 type SortStore = Pick<
   ExtensionStorageObject,
-  'sortMode' | 'usageCounts' | 'customOrder'
+  'sortMode' | 'sortDirection' | 'usageCounts' | 'customOrder'
 >
 
 const DEFAULT_SORT_STORE: SortStore = {
   customOrder: DEFAULT_STORE.customOrder,
+  sortDirection: DEFAULT_STORE.sortDirection,
   sortMode: DEFAULT_STORE.sortMode,
   usageCounts: DEFAULT_STORE.usageCounts,
 }
 
 /** Storage keys that affect sorted containers. */
-const SORT_STORAGE_KEYS = ['sortMode', 'usageCounts', 'customOrder'] as const
+const SORT_STORAGE_KEYS = [
+  'sortMode',
+  'sortDirection',
+  'usageCounts',
+  'customOrder',
+] as const
 
 /**
  * Sort identities using fields from a sort snapshot.
@@ -35,6 +41,7 @@ const sortedContainers = (
   sortContainers({
     containers: identities,
     customOrder: sortStore.customOrder,
+    sortDirection: sortStore.sortDirection,
     sortMode: sortStore.sortMode,
     usageCounts: sortStore.usageCounts,
   })
@@ -44,13 +51,16 @@ const sortedContainers = (
  * @returns Validated sortMode, usageCounts, and customOrder.
  */
 const loadSortStore = async (): Promise<SortStore> => {
-  const [sortMode, usageCounts, customOrder] = await Promise.all([
-    extensionStorageApi.get('sortMode'),
-    extensionStorageApi.get('usageCounts'),
-    extensionStorageApi.get('customOrder'),
-  ])
+  const [sortMode, sortDirection, usageCounts, customOrder] = await Promise.all(
+    [
+      extensionStorageApi.get('sortMode'),
+      extensionStorageApi.get('sortDirection'),
+      extensionStorageApi.get('usageCounts'),
+      extensionStorageApi.get('customOrder'),
+    ],
+  )
 
-  return { customOrder, sortMode, usageCounts }
+  return { customOrder, sortDirection, sortMode, usageCounts }
 }
 
 /**
@@ -119,15 +129,21 @@ export const useSortedContainers = () => {
   }, [refresh])
 
   /**
-   * Update sort mode in state and persist it.
+   * Update sort mode in state and persist it. Re-selecting the active
+   * alpha/mostUsed mode flips its direction; any other change resets to asc.
    * @param mode - The sort mode to apply.
    */
   const setSortMode = useCallback(
     async (mode: SortMode): Promise<void> => {
-      const nextSort = { ...sortStore, sortMode: mode }
+      const { direction: sortDirection } = toggleSortSelection(
+        { direction: sortStore.sortDirection, mode: sortStore.sortMode },
+        mode,
+        ['custom'],
+      )
+      const nextSort = { ...sortStore, sortDirection, sortMode: mode }
       setSortStore(nextSort)
       setContainers(sortedContainers(containers, nextSort))
-      await extensionStorageApi.set({ sortMode: mode })
+      await extensionStorageApi.set({ sortDirection, sortMode: mode })
     },
     [sortStore, containers],
   )
@@ -162,6 +178,7 @@ export const useSortedContainers = () => {
     refresh,
     setCustomOrder,
     setSortMode,
+    sortDirection: sortStore.sortDirection,
     sortMode: sortStore.sortMode,
   }
 }

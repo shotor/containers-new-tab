@@ -1,12 +1,10 @@
 import { AssignedSites } from '@/features/container-detail/components/assigned-sites'
-import css from '@/features/container-detail/container-detail.module.css'
 import { DangerZone } from '@/features/container-detail/components/danger-zone'
-import { DeleteConfirmDialog } from '@/features/container-detail/components/delete-confirm-dialog'
+import { DeleteConfirmDialog } from '@/components/delete-confirm-dialog/delete-confirm-dialog'
 import { DetailHeader } from '@/features/container-detail/components/detail-header'
 import { Identity } from '@/features/container-detail/components/identity'
 import { PageSection } from '@/components/page-section/page-section'
 import { Proxy } from '@/features/container-detail/components/proxy'
-import { SaveStatusIndicator } from '@/components/save-status-indicator/save-status-indicator'
 import { useContainerDetail } from '@/features/container-detail/hooks/use-container-detail'
 
 export type DetailPageProps = {
@@ -51,18 +49,8 @@ export const DetailPage: React.FC<DetailPageProps> = ({ cookieStoreId }) => {
         />
       </PageSection>
 
-      <PageSection
-        title={
-          <>
-            <span>Proxy</span>
-            <SaveStatusIndicator
-              status={detail.proxySaveStatus}
-              class={css.saveStatusMuted}
-            />
-          </>
-        }
-      >
-        <Proxy register={detail.register} values={detail.values} />
+      <PageSection title="Proxy">
+        <Proxy cookieStoreId={detail.identity?.cookieStoreId} />
       </PageSection>
 
       {detail.identity ? (
@@ -71,6 +59,7 @@ export const DetailPage: React.FC<DetailPageProps> = ({ cookieStoreId }) => {
 
       {detail.showDeleteConfirm && detail.identity ? (
         <DeleteConfirmDialog
+          description="This permanently deletes the container and its cookie jar — logins and site data for this identity. This cannot be undone."
           name={detail.title}
           color={detail.values.color}
           icon={detail.values.icon}

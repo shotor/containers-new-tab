@@ -40,10 +40,10 @@ exports[`SiteAssignments > matches snapshot after assignments load 1`] = `
         </span>
         <span
           class="root"
+          style="--badge-color: #00f;"
         >
           <span
             class="dot"
-            style="--badge-color: #00f;"
           />
           Work
         </span>

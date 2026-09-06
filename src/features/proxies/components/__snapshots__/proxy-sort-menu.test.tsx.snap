@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProxySortMenu > matches snapshot with a reversed sort 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <button
+      aria-controls="proxy-sort-list-id"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Sort proxies: Port (reversed)"
+      class="root trigger"
+      title="Sort proxies"
+      type="button"
+    >
+      <span
+        class="icon reversed"
+      >
+        <span
+          aria-hidden="true"
+          class="root"
+          style="--icon-url: url("moz-extension://test/assets/icons/sort.svg");"
+        />
+      </span>
+      <span
+        class="label"
+      >
+        Port
+      </span>
+      <span
+        aria-hidden="true"
+        class="chevron"
+      />
+    </button>
+  </div>
+</div>
+`;

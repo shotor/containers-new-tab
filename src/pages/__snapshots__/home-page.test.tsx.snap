@@ -8,45 +8,78 @@ exports[`HomePage > matches snapshot 1`] = `
     <div
       class="brand"
     >
-      <h1
-        class="brandName"
+      <nav
+        aria-label="Pages"
+        class="navigation"
       >
-        Containers
-      </h1>
+        <button
+          aria-current="page"
+          class="root tab"
+          type="button"
+        >
+          Containers
+        </button>
+        <button
+          class="root tab"
+          type="button"
+        >
+          Proxies
+        </button>
+      </nav>
     </div>
     <div
       class="controls"
     >
+      <div>
+        <div
+          data-mock="SortMenu"
+        />
+      </div>
       <div
-        data-mock="SortMenu"
-      />
+        hidden=""
+      >
+        <div
+          data-mock="ProxySortMenu"
+        />
+      </div>
       <div
         data-mock="ThemeMenu"
       />
     </div>
   </header>
-  <main>
-    <section
-      class="root"
-    >
-      <div
-        data-mock="ContainerGrid"
-      />
-    </section>
-    <section
-      aria-labelledby="P0-1"
-      class="root"
-    >
-      <h2
-        class="title"
-        id="P0-1"
+  <main
+    aria-label="Containers"
+  >
+    <div>
+      <section
+        class="root"
       >
-        Assigned websites
-      </h2>
+        <div
+          data-mock="ContainerGrid"
+        />
+      </section>
+      <section
+        aria-labelledby="P0-1"
+        class="root"
+      >
+        <h2
+          class="title"
+          id="P0-1"
+        >
+          Assigned websites
+        </h2>
+        <div
+          data-mock="SiteAssignments"
+        />
+      </section>
+    </div>
+    <div
+      hidden=""
+    >
       <div
-        data-mock="SiteAssignments"
+        data-mock="Proxies"
       />
-    </section>
+    </div>
   </main>
 </div>
 `;

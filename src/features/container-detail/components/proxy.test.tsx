@@ -1,19 +1,39 @@
-import {
-  type ContainerDetailFormValues,
-  DEFAULT_CONTAINER_DETAIL_FORM,
-} from '@/features/container-detail/container-detail.schema'
-import { describe, expect, it } from 'vitest'
-import { renderSnapshot, stubRegister } from '@/test/render-snapshot'
+import { describe, expect, it, vi } from 'vitest'
+import { act } from 'preact/test-utils'
 import { Proxy } from '@/features/container-detail/components/proxy'
+import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+import { renderSnapshot } from '@/test/render-snapshot'
 
-const register = stubRegister<ContainerDetailFormValues>()
+vi.mock('@/features/proxies/hooks/use-proxy-library', () => ({
+  useProxyLibrary: () => ({
+    error: '',
+    library: {
+      assignments: {},
+      proxies: {
+        office: { host: 'proxy.example', name: 'Office', port: 8080 },
+      },
+    },
+    loading: false,
+  }),
+}))
+vi.mock('@/data/proxy/proxy-library-api', () => ({
+  proxyLibraryApi: {
+    assign: vi.fn<() => Promise<void>>(async () => undefined),
+  },
+}))
 
 describe('Proxy', () => {
   it('matches snapshot', () => {
-    expect(
-      renderSnapshot(
-        <Proxy register={register} values={DEFAULT_CONTAINER_DETAIL_FORM} />,
-      ),
-    ).toMatchSnapshot()
+    expect(renderSnapshot(<Proxy cookieStoreId="work" />)).toMatchSnapshot()
+  })
+
+  it('assigns the selected saved proxy', async () => {
+    const root = renderSnapshot(<Proxy cookieStoreId="work" />)
+    const select = root.querySelector('select')!
+    await act(async () => {
+      select.value = 'office'
+      select.dispatchEvent(new Event('change', { bubbles: true }))
+    })
+    expect(proxyLibraryApi.assign).toHaveBeenCalledWith('work', 'office')
   })
 })

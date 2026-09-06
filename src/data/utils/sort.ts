@@ -1,4 +1,4 @@
-import type { SortMode } from '@/data/types'
+import type { SortDirection, SortMode } from '@/data/types'
 
 /** Minimal container shape needed for sorting. */
 type SortableContainer = { cookieStoreId: string; name: string }
@@ -7,6 +7,8 @@ type SortableContainer = { cookieStoreId: string; name: string }
 export type SortContainersArgs<T extends SortableContainer> = {
   containers: T[]
   sortMode: SortMode
+  /** Reverses alpha/mostUsed when `desc`; custom order is never reversed. */
+  sortDirection?: SortDirection
   usageCounts: Record<string, number>
   customOrder: string[]
 }
@@ -19,11 +21,14 @@ export type SortContainersArgs<T extends SortableContainer> = {
 export const sortContainers = <T extends SortableContainer>(
   args: SortContainersArgs<T>,
 ): T[] => {
-  const { containers, sortMode, usageCounts, customOrder } = args
+  const { containers, sortMode, sortDirection, usageCounts, customOrder } = args
+  const direction = sortDirection === 'desc' ? -1 : 1
 
   switch (sortMode) {
     case 'alpha':
-      return [...containers].sort((a, b) => a.name.localeCompare(b.name))
+      return [...containers].sort(
+        (a, b) => direction * a.name.localeCompare(b.name),
+      )
     case 'custom': {
       const rank = new Map(customOrder.map((id, index) => [id, index]))
       return [...containers].sort(
@@ -36,8 +41,37 @@ export const sortContainers = <T extends SortableContainer>(
     case 'mostUsed':
       return [...containers].sort(
         (a, b) =>
-          (usageCounts[b.cookieStoreId] ?? 0) -
-            (usageCounts[a.cookieStoreId] ?? 0) || a.name.localeCompare(b.name),
+          direction *
+          ((usageCounts[b.cookieStoreId] ?? 0) -
+            (usageCounts[a.cookieStoreId] ?? 0) ||
+            a.name.localeCompare(b.name)),
       )
+  }
+}
+
+/** A sort mode plus its direction. */
+export type SortSelection<T extends string> = {
+  mode: T
+  direction: SortDirection
+}
+
+/**
+ * Apply a menu pick: re-selecting the active mode flips its direction,
+ * anything else starts ascending.
+ * @param current - The active mode and direction.
+ * @param mode - The picked mode.
+ * @param fixed - Modes that never reverse (e.g. custom order).
+ * @returns The next selection.
+ */
+export const toggleSortSelection = <T extends string>(
+  current: SortSelection<T>,
+  mode: T,
+  fixed: readonly T[] = [],
+): SortSelection<T> => {
+  const toggling = mode === current.mode && !fixed.includes(mode)
+
+  return {
+    direction: toggling && current.direction !== 'desc' ? 'desc' : 'asc',
+    mode,
   }
 }

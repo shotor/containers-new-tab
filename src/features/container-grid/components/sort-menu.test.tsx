@@ -7,6 +7,7 @@ const setSortMode = vi.fn<(mode: string) => void>()
 vi.mock('@/features/container-grid/hooks/use-sorted-containers', () => ({
   useSortedContainers: () => ({
     setSortMode,
+    sortDirection: 'asc',
     sortMode: 'mostUsed',
   }),
 }))

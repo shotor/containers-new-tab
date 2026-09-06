@@ -1,0 +1,59 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DeleteConfirmDialog > matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+    role="presentation"
+  >
+    <div
+      aria-describedby="P0-0-desc"
+      aria-labelledby="P0-0-title"
+      aria-modal="true"
+      class="dialog"
+      role="alertdialog"
+    >
+      <span
+        class="iconBadge"
+        style="--title-color: #37adff;"
+      >
+        <span
+          aria-hidden="true"
+          class="root icon"
+          style="--icon-url: url("moz-extension://test/assets/icons/briefcase.svg");"
+        />
+      </span>
+      <h2
+        class="title"
+        id="P0-0-title"
+      >
+        Delete 
+        Work
+        ?
+      </h2>
+      <p
+        class="desc"
+        id="P0-0-desc"
+      >
+        This permanently deletes the container and its cookie jar — logins and site data for this identity. This cannot be undone.
+      </p>
+      <div
+        class="actions"
+      >
+        <button
+          class="root ghost action"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="root danger action"
+          type="button"
+        >
+          Delete permanently
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

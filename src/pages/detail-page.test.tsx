@@ -2,6 +2,14 @@ import { describe, expect, it, vi } from 'vitest'
 import { DetailPage } from '@/pages/detail-page'
 import { renderSnapshot } from '@/test/render-snapshot'
 
+vi.mock('@/features/proxies/hooks/use-proxy-library', () => ({
+  useProxyLibrary: () => ({
+    error: '',
+    library: { assignments: {}, proxies: {} },
+    loading: false,
+  }),
+}))
+
 vi.mock('@/features/container-detail/hooks/use-container-detail', () => ({
   useContainerDetail: () => ({
     deleteContainer: async () => undefined,
@@ -15,7 +23,6 @@ vi.mock('@/features/container-detail/hooks/use-container-detail', () => ({
     },
     loading: false,
     openAssignedSite: async () => undefined,
-    proxySaveStatus: 'idle',
     register: (name: string) => ({
       name,
       onBlur: async () => undefined,

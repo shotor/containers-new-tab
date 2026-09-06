@@ -1,6 +1,20 @@
-import { access, mkdir, writeFile } from 'node:fs/promises'
+import { access, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { Executor, HttpClient } from 'selenium-webdriver/http/index.js'
+import { Session, WebDriver } from 'selenium-webdriver'
 import firefox from 'selenium-webdriver/firefox.js'
 import { resolve } from 'node:path'
+
+/** Where the live session handle is recorded for `attachFirefoxSession`. */
+export const SESSION_FILE = resolve('.cache/firefox/session.json')
+
+export type FirefoxSessionInfo = {
+  /** geckodriver HTTP endpoint (classic WebDriver). */
+  url: string
+  /** WebDriver session id; geckodriver serves exactly one session. */
+  sessionId: string
+  /** WebDriver BiDi websocket endpoint, already scoped to the session. */
+  webSocketUrl?: string
+}
 
 /**
  * Download the signed MAC extension once for local browser sessions.
@@ -32,12 +46,16 @@ const macAddon = async (): Promise<string> => {
 
 /**
  * Launch an isolated Firefox profile with MAC and the built extension installed.
- * Selenium Manager supplies geckodriver; Xpra owns the display.
+ * Selenium Manager supplies geckodriver; Xpra owns the display. geckodriver
+ * listens on `GECKODRIVER_PORT` (default 4444) and the
+ * session handle is written to `.cache/firefox/session.json` so other scripts
+ * can drive the same browser via `attachFirefoxSession`. Quitting removes it.
  * @returns {Promise<import('selenium-webdriver/firefox.js').Driver>} Ready browser.
  */
 export const createFirefoxSession = async (): Promise<firefox.Driver> => {
   await access(resolve('dist/manifest.json'))
   const addon = await macAddon()
+  const port = Number(process.env.GECKODRIVER_PORT ?? 4444)
   const options = new firefox.Options()
     .setBinary(process.env.FIREFOX_BIN ?? '/usr/bin/firefox')
     .windowSize({ height: 900, width: 1280 })
@@ -55,6 +73,7 @@ export const createFirefoxSession = async (): Promise<firefox.Driver> => {
   }
 
   const service = new firefox.ServiceBuilder()
+    .setPort(port)
     .addArguments('--allow-system-access')
     .setEnvironment({
       ...process.env,
@@ -96,9 +115,59 @@ export const createFirefoxSession = async (): Promise<firefox.Driver> => {
       20_000,
       'The extension startup page did not render',
     )
+
+    const info: FirefoxSessionInfo = {
+      sessionId: (await driver.getSession()).getId(),
+      url: `http://127.0.0.1:${port}`,
+      webSocketUrl: (await driver.getCapabilities()).get('webSocketUrl') as
+        | string
+        | undefined,
+    }
+    await mkdir(resolve('.cache/firefox'), { recursive: true })
+    await writeFile(SESSION_FILE, JSON.stringify(info, null, 2))
+
+    const quit = driver.quit.bind(driver)
+    driver.quit = async () => {
+      await rm(SESSION_FILE, { force: true })
+      await quit()
+    }
+
     return driver
   } catch (error) {
     await driver.quit()
     throw error
   }
+}
+
+/**
+ * Read the handle of the Firefox session started by `createFirefoxSession`.
+ * @returns {Promise<FirefoxSessionInfo>} Endpoint and session id.
+ * @throws {Error} When no session file exists (no live session).
+ */
+export const readFirefoxSession = async (): Promise<FirefoxSessionInfo> => {
+  try {
+    return JSON.parse(
+      await readFile(SESSION_FILE, 'utf8'),
+    ) as FirefoxSessionInfo
+  } catch {
+    throw new Error(
+      `No live Firefox session (${SESSION_FILE} missing). Start one with npm run firefox.`,
+    )
+  }
+}
+
+/**
+ * Attach a second WebDriver client to the live Firefox session. geckodriver
+ * serialises commands, so this can run alongside the owning REPL. The result
+ * is a plain WebDriver (no installAddon/setContext); do not call quit() on it
+ * unless you mean to close the shared browser.
+ * @returns {Promise<WebDriver>} Client bound to the existing session.
+ */
+export const attachFirefoxSession = async (): Promise<WebDriver> => {
+  const { sessionId, url } = await readFirefoxSession()
+
+  return new WebDriver(
+    new Session(sessionId, {}),
+    new Executor(new HttpClient(url)),
+  )
 }

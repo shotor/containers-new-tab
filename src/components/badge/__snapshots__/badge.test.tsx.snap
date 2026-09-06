@@ -4,10 +4,10 @@ exports[`Badge > matches snapshot 1`] = `
 <div>
   <span
     class="root"
+    style="--badge-color: #ff0000;"
   >
     <span
       class="dot"
-      style="--badge-color: #ff0000;"
     />
     Work
   </span>

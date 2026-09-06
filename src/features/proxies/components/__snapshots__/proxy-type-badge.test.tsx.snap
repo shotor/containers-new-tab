@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProxyTypeBadge > matches snapshot 1`] = `
+<div>
+  <span
+    class="root https"
+  >
+    HTTPS
+  </span>
+</div>
+`;

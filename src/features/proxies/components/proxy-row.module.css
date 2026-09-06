@@ -1,0 +1,105 @@
+.root {
+  position: relative;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  box-shadow: var(--neu-raised-sm);
+  transition: box-shadow var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.fields {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.usage {
+  margin-left: auto;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.formActions {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.divider {
+  width: 1px;
+  height: 1.5rem;
+  margin: 0 0.5rem;
+  background: color-mix(in srgb, var(--ink-muted) 25%, transparent);
+}
+
+.rowButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding: 0.25rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.rowButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.root:has(.rowButton)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--neu-pressed-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--neu-press-duration) var(--neu-press-ease);
+}
+
+.root:has(.rowButton):hover,
+.root:has(.rowButton:focus-visible) {
+  box-shadow: var(--neu-raised-sm-fade);
+}
+
+.root:has(.rowButton):hover::after,
+.root:has(.rowButton:focus-visible)::after {
+  opacity: 1;
+}

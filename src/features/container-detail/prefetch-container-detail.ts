@@ -2,17 +2,12 @@ import {
   listMacAssignmentsForContainer,
   type MacSiteAssignment,
 } from '@/data/browser/browser-api'
-import {
-  type ProxyFormValues,
-  proxyFormValuesFromStored,
-} from '@/features/container-detail/container-detail.schema'
 import type { ContainerIdentity } from '@/data/browser/types'
 import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 
 /** Payload needed to paint the detail form for one container. */
 export type ContainerDetailPayload = {
   identity: ContainerIdentity
-  proxy: ProxyFormValues
   sites: MacSiteAssignment[]
 }
 
@@ -23,7 +18,7 @@ type CacheEntry =
 const cache = new Map<string, CacheEntry>()
 
 /**
- * Fetch identity, MAC assignments, and proxy for a container.
+ * Fetch identity and MAC assignments for a container.
  * @param cookieStoreId - Container store id to load.
  * @returns Detail payload, or null when the container is gone.
  */
@@ -38,14 +33,10 @@ export const loadContainerDetailPayload = async (
     return null
   }
 
-  const [sites, storedProxy] = await Promise.all([
-    listMacAssignmentsForContainer(found.cookieStoreId),
-    extensionStorageApi.getProxyForContainer(found.cookieStoreId),
-  ])
+  const sites = await listMacAssignmentsForContainer(found.cookieStoreId)
 
   return {
     identity: found,
-    proxy: proxyFormValuesFromStored(storedProxy),
     sites,
   }
 }

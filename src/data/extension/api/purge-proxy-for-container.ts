@@ -1,4 +1,4 @@
-import { setProxyForContainer } from '@/data/extension/api/set-proxy-for-container'
+import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
 
 /**
  * Remove any stored proxy config for a container.
@@ -7,5 +7,5 @@ import { setProxyForContainer } from '@/data/extension/api/set-proxy-for-contain
 export const purgeProxyForContainer = async (
   cookieStoreId: string,
 ): Promise<void> => {
-  await setProxyForContainer(cookieStoreId, null)
+  await proxyLibraryApi.assign(cookieStoreId, '')
 }

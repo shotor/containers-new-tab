@@ -1,6 +1,8 @@
 import type { ExtensionStorageObject } from '@/data/types'
 import { parseContainerProxies } from '@/data/extension/parsers/parse-container-proxies'
 import { parseCustomOrder } from '@/data/extension/parsers/parse-custom-order'
+import { parseProxySortMode } from '@/data/extension/parsers/parse-proxy-sort-mode'
+import { parseSortDirection } from '@/data/extension/parsers/parse-sort-direction'
 import { parseSortMode } from '@/data/extension/parsers/parse-sort-mode'
 import { parseThemeMode } from '@/data/extension/parsers/parse-theme-mode'
 import { parseUsageCounts } from '@/data/extension/parsers/parse-usage-counts'
@@ -13,6 +15,9 @@ export const storeParseMap: {
 } = {
   containerProxies: parseContainerProxies,
   customOrder: parseCustomOrder,
+  proxySortDirection: parseSortDirection,
+  proxySortMode: parseProxySortMode,
+  sortDirection: parseSortDirection,
   sortMode: parseSortMode,
   themeMode: parseThemeMode,
   usageCounts: parseUsageCounts,

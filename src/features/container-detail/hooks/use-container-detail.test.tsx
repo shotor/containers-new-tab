@@ -6,14 +6,12 @@ import { useContainerDetail } from '@/features/container-detail/hooks/use-contai
 const {
   navigate,
   getContainers,
-  getProxyForContainer,
   listMac,
   removeContainer,
   purgeProxy,
   purgeUsage,
 } = vi.hoisted(() => ({
   getContainers: vi.fn<() => Promise<unknown[]>>(),
-  getProxyForContainer: vi.fn<() => Promise<null>>(async () => null),
   listMac: vi.fn<
     () => Promise<Array<{ cookieStoreId: string; host: string; url: string }>>
   >(async () => [
@@ -36,7 +34,6 @@ vi.mock('wouter', () => ({
 vi.mock('@/data/extension/extension-storage-api', () => ({
   extensionStorageApi: {
     getContainers,
-    getProxyForContainer,
     purgeProxyForContainer: purgeProxy,
     purgeUsageForContainer: purgeUsage,
   },
@@ -55,10 +52,6 @@ vi.mock('@/data/browser/browser-api', async () => {
 
 vi.mock('@/features/container-detail/hooks/use-identity-autosave', () => ({
   useIdentityAutosave: () => undefined,
-}))
-
-vi.mock('@/features/container-detail/hooks/use-proxy-autosave', () => ({
-  useProxyAutosave: () => undefined,
 }))
 
 describe('useContainerDetail', () => {
