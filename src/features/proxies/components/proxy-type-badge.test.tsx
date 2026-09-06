@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
 import { ProxyTypeBadge } from '@/features/proxies/components/proxy-type-badge'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('ProxyTypeBadge', () => {

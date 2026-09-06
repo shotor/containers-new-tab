@@ -1,5 +1,5 @@
-import type { ContainerProxy } from '@/data/types'
 import { proxyCache } from '@/data/proxy/proxy-cache'
+import type { ContainerProxy } from '@/data/types'
 
 /**
  * Look up the cached proxy for a cookieStoreId.

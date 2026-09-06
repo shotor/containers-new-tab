@@ -1,9 +1,12 @@
-import { Button } from '@/components/button/button'
-import css from '@/features/container-detail/container-detail.module.css'
-import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
-import { Select } from '@/components/input/input'
-import { useProxyLibrary } from '@/features/proxies/hooks/use-proxy-library'
 import { useState } from 'preact/hooks'
+
+import { Button } from '@/components/button/button'
+import { Select } from '@/components/input/input'
+
+import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+
+import css from '@/features/container-detail/container-detail.module.css'
+import { useProxyLibrary } from '@/features/proxies/hooks/use-proxy-library'
 
 export type ProxyProps = {
   cookieStoreId?: string

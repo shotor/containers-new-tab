@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
 import { FieldError } from '@/features/container-detail/components/field-error'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('FieldError', () => {

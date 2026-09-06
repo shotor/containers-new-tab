@@ -1,7 +1,9 @@
-import { describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
-import { renderHook } from '@/test/render-hook'
+import { describe, expect, it, vi } from 'vitest'
+
 import { useContainerDetail } from '@/features/container-detail/hooks/use-container-detail'
+
+import { renderHook } from '@/test/render-hook'
 
 const {
   navigate,

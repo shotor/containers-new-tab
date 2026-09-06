@@ -1,7 +1,9 @@
-import { describe, expect, it, vi } from 'vitest'
 import type { ComponentChildren } from 'preact'
-import { renderSnapshot } from '@/test/render-snapshot'
+import { describe, expect, it, vi } from 'vitest'
+
 import { SortableTileGrid } from '@/features/container-grid/components/sortable-tile-grid'
+
+import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@dnd-kit/core', () => ({
   closestCenter: () => null,

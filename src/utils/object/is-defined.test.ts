@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { isDefined } from '@/utils/object/is-defined'
 
 describe('isDefined', () => {

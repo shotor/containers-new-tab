@@ -1,5 +1,7 @@
 import { SortMenu, type SortOption } from '@/components/sort-menu/sort-menu'
+
 import type { ProxySortMode } from '@/data/types'
+
 import { useProxySort } from '@/features/proxies/hooks/use-proxy-sort'
 
 /** Sort options shown in the menu, in display order. */

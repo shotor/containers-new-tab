@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
 import { Badge } from '@/components/badge/badge'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('Badge', () => {

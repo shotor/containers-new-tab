@@ -1,6 +1,8 @@
-import css from './save-status-indicator.module.css'
 import cx from 'classnames'
+
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import css from './save-status-indicator.module.css'
 
 /** Save feedback state for debounced editor writes. */
 export type SaveStatus = 'idle' | 'pending' | 'saved'

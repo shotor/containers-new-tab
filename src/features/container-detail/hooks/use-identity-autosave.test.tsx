@@ -1,8 +1,11 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import type { ContainerIdentity } from '@/data/browser/types'
-import { renderHook } from '@/test/render-hook'
+
 import { useIdentityAutosave } from '@/features/container-detail/hooks/use-identity-autosave'
+
+import { renderHook } from '@/test/render-hook'
 
 const { createContainer, updateContainer } = vi.hoisted(() => ({
   createContainer: vi.fn<() => Promise<ContainerIdentity>>(),

@@ -1,7 +1,8 @@
-import css from './input.module.css'
 import cx from 'classnames'
-import { forwardRef } from 'preact/compat'
 import type { JSX } from 'preact'
+import { forwardRef } from 'preact/compat'
+
+import css from './input.module.css'
 
 export type InputProps = Omit<JSX.IntrinsicElements['input'], 'class'> & {
   class?: string

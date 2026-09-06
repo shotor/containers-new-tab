@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
-import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+
 import { purgeProxyForContainer } from '@/data/extension/api/purge-proxy-for-container'
+import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
 
 vi.mock('@/data/proxy/proxy-library-api', () => ({
   proxyLibraryApi: {

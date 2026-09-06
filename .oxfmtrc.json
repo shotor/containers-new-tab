@@ -7,6 +7,48 @@
   "singleQuote": true,
   "jsxSingleQuote": false,
   "sortPackageJson": false,
+  "sortImports": {
+    "customGroups": [
+      {
+        "groupName": "internal-components",
+        "elementNamePattern": ["@/components/**"]
+      },
+      {
+        "groupName": "internal-data",
+        "elementNamePattern": ["@/data/**"]
+      },
+      {
+        "groupName": "internal-features",
+        "elementNamePattern": ["@/features/**"]
+      },
+      {
+        "groupName": "internal-pages",
+        "elementNamePattern": ["@/pages/**"]
+      },
+      {
+        "groupName": "internal-utils",
+        "elementNamePattern": ["@/utils/**"]
+      },
+      {
+        "groupName": "internal-test",
+        "elementNamePattern": ["@/test/**"]
+      }
+    ],
+    "groups": [
+      "side_effect",
+      ["builtin", "external"],
+      "internal-components",
+      "internal-data",
+      "internal-features",
+      "internal-pages",
+      "internal-utils",
+      "internal-test",
+      "internal",
+      ["parent", "sibling", "index", "style"]
+    ],
+    "ignoreCase": true,
+    "newlinesBetween": true
+  },
   "ignorePatterns": [
     "dist/",
     ".web-ext-profile/",

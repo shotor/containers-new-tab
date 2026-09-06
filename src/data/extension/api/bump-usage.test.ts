@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { DEFAULT_STORE, type ExtensionStorageObject } from '@/data/types'
+
 import { bumpUsage } from '@/data/extension/api/bump-usage'
+import { DEFAULT_STORE, type ExtensionStorageObject } from '@/data/types'
 
 describe('bumpUsage', () => {
   let store: ExtensionStorageObject

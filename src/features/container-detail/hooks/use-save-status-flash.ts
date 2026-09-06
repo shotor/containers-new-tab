@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'preact/hooks'
+
 import type { SaveStatus } from '@/components/save-status-indicator/save-status-indicator'
 
 const SAVE_CHECK_FADE_MS = 1400

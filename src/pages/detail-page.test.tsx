@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { DetailPage } from '@/pages/detail-page'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@/features/proxies/hooks/use-proxy-library', () => ({

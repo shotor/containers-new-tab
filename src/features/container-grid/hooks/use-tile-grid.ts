@@ -1,4 +1,3 @@
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import {
   type DragEndEvent,
   KeyboardSensor,
@@ -6,8 +5,10 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
-import type { ContainerIdentity } from '@/data/browser/types'
+import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { useState } from 'preact/hooks'
+
+import type { ContainerIdentity } from '@/data/browser/types'
 
 export type UseTileGridOptions = {
   identities: ContainerIdentity[]

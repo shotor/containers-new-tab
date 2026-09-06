@@ -1,6 +1,8 @@
-import { applyResolvedTheme, resolveTheme, ThemeProvider } from '@/theme'
 import { describe, expect, it, vi } from 'vitest'
+
 import { renderSnapshot } from '@/test/render-snapshot'
+
+import { applyResolvedTheme, resolveTheme, ThemeProvider } from '@/theme'
 
 vi.mock('@/data/extension/extension-storage-api', () => ({
   extensionStorageApi: {

@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
 import { Magnificence } from '@/components/magnificence/magnificence'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('Magnificence', () => {

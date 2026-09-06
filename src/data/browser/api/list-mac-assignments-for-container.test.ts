@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { listMacAssignmentsForContainer } from '@/data/browser/api/list-mac-assignments-for-container'
 import type { MacSiteAssignment } from '@/data/browser/api/probe-mac-assignments'
 

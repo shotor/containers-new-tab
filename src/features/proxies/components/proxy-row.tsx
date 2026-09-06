@@ -1,14 +1,18 @@
-import { Button, ButtonRow } from '@/components/button/button'
-import { useEffect, useState } from 'preact/hooks'
-import badgeCss from './proxy-type-badge.module.css'
-import css from './proxy-row.module.css'
 import cx from 'classnames'
+import { useEffect, useState } from 'preact/hooks'
+
+import { Button, ButtonRow } from '@/components/button/button'
+
+import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+import type { SavedProxy } from '@/data/types'
+
 import { ProxyContainers } from '@/features/proxies/components/proxy-containers'
 import { ProxyDeleteDialog } from '@/features/proxies/components/proxy-delete-dialog'
 import { ProxyFields } from '@/features/proxies/components/proxy-fields'
-import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
 import { ProxyTypeBadge } from '@/features/proxies/components/proxy-type-badge'
-import type { SavedProxy } from '@/data/types'
+
+import css from './proxy-row.module.css'
+import badgeCss from './proxy-type-badge.module.css'
 
 export type ProxyRowProps = {
   id: string

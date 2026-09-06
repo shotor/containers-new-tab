@@ -1,8 +1,11 @@
-import { Button } from '@/components/button/button'
-import css from './proxy-containers.module.css'
-import { SvgIcon } from '@/components/svg-icon/svg-icon'
 import { useId } from 'preact/hooks'
+
+import { Button } from '@/components/button/button'
+import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
 import { useProxyContainers } from '@/features/proxies/hooks/use-proxy-containers'
+
+import css from './proxy-containers.module.css'
 
 export type ProxyContainersProps = {
   proxyId: string

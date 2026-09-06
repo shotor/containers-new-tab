@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { toHttpsUrl } from '@/utils/url/to-https-url'
 
 describe('toHttpsUrl', () => {

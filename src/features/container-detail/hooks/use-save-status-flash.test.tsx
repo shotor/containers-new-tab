@@ -1,7 +1,9 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
-import { renderHook } from '@/test/render-hook'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import { useSaveStatusFlash } from '@/features/container-detail/hooks/use-save-status-flash'
+
+import { renderHook } from '@/test/render-hook'
 
 describe('useSaveStatusFlash', () => {
   afterEach(() => {

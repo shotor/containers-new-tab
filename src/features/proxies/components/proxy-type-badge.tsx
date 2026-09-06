@@ -1,6 +1,8 @@
-import css from './proxy-type-badge.module.css'
 import cx from 'classnames'
+
 import type { ProxyType } from '@/data/types'
+
+import css from './proxy-type-badge.module.css'
 
 /** Display label per proxy type (Firefox's `socks` means SOCKS5). */
 const LABELS: Record<ProxyType, string> = {

@@ -1,12 +1,15 @@
 import { Button } from '@/components/button/button'
-import { colorCodeFor } from '@/data/browser/browser-api'
-import { CONTAINER_ICON_NAMES } from '@/data/browser/types'
-import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
-import css from './identity.module.css'
-import detailCss from '@/features/container-detail/container-detail.module.css'
-import { FieldError } from '@/features/container-detail/components/field-error'
 import { Label } from '@/components/label/label'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import { colorCodeFor } from '@/data/browser/browser-api'
+import { CONTAINER_ICON_NAMES } from '@/data/browser/types'
+
+import { FieldError } from '@/features/container-detail/components/field-error'
+import detailCss from '@/features/container-detail/container-detail.module.css'
+import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
+
+import css from './identity.module.css'
 
 export type IconFieldProps = {
   color: ContainerDetailFormValues['color']

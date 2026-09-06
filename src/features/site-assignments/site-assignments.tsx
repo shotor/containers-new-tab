@@ -1,19 +1,24 @@
+import { useEffect, useMemo, useState } from 'preact/hooks'
+
+import { Badge } from '@/components/badge/badge'
+import { Notice } from '@/components/notice/notice'
+import { Search } from '@/components/search/search'
+import { SiteRow } from '@/components/site-row/site-row'
+
 import {
   colorCodeFor,
   gatherAssignmentProbeUrls,
   type MacSiteAssignment,
   probeMacAssignments,
 } from '@/data/browser/browser-api'
-import { useEffect, useMemo, useState } from 'preact/hooks'
-import { Badge } from '@/components/badge/badge'
-import css from './site-assignments.module.css'
-import { fuzzyFilterSorted } from '@/utils/search/fuzzy-filter-sorted'
-import { Notice } from '@/components/notice/notice'
-import { openContainerTab } from '@/utils/browser/open-container-tab'
-import { Search } from '@/components/search/search'
-import { siteLabelFromUrl } from '@/utils/url/site-label-from-url'
-import { SiteRow } from '@/components/site-row/site-row'
+
 import { useSortedContainers } from '@/features/container-grid/hooks/use-sorted-containers'
+
+import { openContainerTab } from '@/utils/browser/open-container-tab'
+import { fuzzyFilterSorted } from '@/utils/search/fuzzy-filter-sorted'
+import { siteLabelFromUrl } from '@/utils/url/site-label-from-url'
+
+import css from './site-assignments.module.css'
 
 /**
  * Searchable MAC site-assignment list for the home page.

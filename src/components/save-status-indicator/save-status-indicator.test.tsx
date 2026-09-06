@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { renderSnapshot } from '@/test/render-snapshot'
+
 import { SaveStatusIndicator } from '@/components/save-status-indicator/save-status-indicator'
+
+import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('SaveStatusIndicator', () => {
   it('matches snapshot when saved', () => {

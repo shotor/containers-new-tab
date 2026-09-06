@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { fuzzyScore } from '@/utils/search/fuzzy-score'
 
 describe('fuzzyScore', () => {

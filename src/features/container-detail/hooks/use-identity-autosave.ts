@@ -1,8 +1,11 @@
+import { useEffect } from 'preact/hooks'
+
 import { createContainer, updateContainer } from '@/data/browser/browser-api'
 import type { ContainerIdentity } from '@/data/browser/types'
-import { debounce } from '@/utils/function/debounce'
+
 import { identityPersistSchema } from '@/features/container-detail/container-detail.schema'
-import { useEffect } from 'preact/hooks'
+
+import { debounce } from '@/utils/function/debounce'
 
 const IDENTITY_SAVE_MS = 400
 

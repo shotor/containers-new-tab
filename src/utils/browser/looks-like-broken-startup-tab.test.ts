@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { looksLikeBrokenStartupTab } from '@/utils/browser/looks-like-broken-startup-tab'
 
 const EXT_ID = 'ext-uuid'

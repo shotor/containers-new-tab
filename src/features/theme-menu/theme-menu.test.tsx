@@ -1,6 +1,8 @@
-import { click, renderSnapshot, renderTo } from '@/test/render-snapshot'
 import { describe, expect, it, vi } from 'vitest'
+
 import { ThemeMenu } from '@/features/theme-menu/theme-menu'
+
+import { click, renderSnapshot, renderTo } from '@/test/render-snapshot'
 
 const setMode = vi.fn<(mode: string) => void>()
 

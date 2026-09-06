@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { parseThemeMode } from '@/data/extension/parsers/parse-theme-mode'
 
 describe('parseThemeMode', () => {

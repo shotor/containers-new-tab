@@ -1,4 +1,5 @@
 import type { ComponentChildren } from 'preact'
+
 import css from './top-bar.module.css'
 
 export type TopBarProps = {

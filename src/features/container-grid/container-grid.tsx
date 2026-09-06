@@ -1,11 +1,14 @@
-import { lazy, Suspense } from 'preact/compat'
-import css from './container-grid.module.css'
 import cx from 'classnames'
-import { openContainerTab } from '@/utils/browser/open-container-tab'
+import { lazy, Suspense } from 'preact/compat'
+import { useLocation } from 'wouter'
+
 import { TileGrid } from '@/features/container-grid/components/tile-grid'
 import { useCurrentStoreId } from '@/features/container-grid/hooks/use-current-store-id'
-import { useLocation } from 'wouter'
 import { useSortedContainers } from '@/features/container-grid/hooks/use-sorted-containers'
+
+import { openContainerTab } from '@/utils/browser/open-container-tab'
+
+import css from './container-grid.module.css'
 
 const SortableTileGrid = lazy(() =>
   import('@/features/container-grid/components/sortable-tile-grid').then(

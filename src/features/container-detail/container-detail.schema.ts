@@ -1,5 +1,6 @@
-import '@/data/zod-config'
 import * as z from 'zod/mini'
+
+import '@/data/zod-config'
 import {
   CONTAINER_COLOR_NAMES,
   CONTAINER_ICON_NAMES,

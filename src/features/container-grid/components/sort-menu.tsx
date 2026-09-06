@@ -2,7 +2,9 @@ import {
   SortMenu as SortDropdown,
   type SortOption,
 } from '@/components/sort-menu/sort-menu'
+
 import type { SortMode } from '@/data/types'
+
 import { useSortedContainers } from '@/features/container-grid/hooks/use-sorted-containers'
 
 /** Sort options shown in the menu, in display order. */

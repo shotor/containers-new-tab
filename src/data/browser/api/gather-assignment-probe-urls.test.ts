@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { gatherAssignmentProbeUrls } from '@/data/browser/api/gather-assignment-probe-urls'
 
 describe('gatherAssignmentProbeUrls', () => {

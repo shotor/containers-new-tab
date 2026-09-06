@@ -1,6 +1,7 @@
-import type { ComponentChildren, JSX } from 'preact'
-import css from './button.module.css'
 import cx from 'classnames'
+import type { ComponentChildren, JSX } from 'preact'
+
+import css from './button.module.css'
 
 /** Visual variants for {@link Button}. */
 export type ButtonVariant = 'default' | 'ghost' | 'danger' | 'plain'

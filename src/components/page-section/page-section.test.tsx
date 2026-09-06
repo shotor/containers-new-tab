@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { PageSection } from '@/components/page-section/page-section'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('preact/hooks', async () => {

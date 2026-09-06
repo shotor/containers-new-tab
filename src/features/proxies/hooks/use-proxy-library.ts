@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
-import type { ProxyLibrary } from '@/data/types'
+
 import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+import type { ProxyLibrary } from '@/data/types'
 
 /**
  * Load the proxy library and follow changes made in other extension tabs.

@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
-import { renderSnapshot } from '@/test/render-snapshot'
+
 import { SortableTile } from '@/components/sortable-tile/sortable-tile'
+
+import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@dnd-kit/sortable', () => ({
   useSortable: () => ({

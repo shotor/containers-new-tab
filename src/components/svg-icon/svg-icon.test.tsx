@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { iconUrlFor, SvgIcon } from '@/components/svg-icon/svg-icon'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 beforeEach(() => {

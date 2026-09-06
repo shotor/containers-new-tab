@@ -1,16 +1,18 @@
+import { useState } from 'preact/hooks'
+import type { UseFormRegister } from 'react-hook-form'
 import * as z from 'zod/mini'
+
+import { Input } from '@/components/input/input'
+import { Label } from '@/components/label/label'
+
+import { ColorField } from '@/features/container-detail/components/color-field'
+import { FieldError } from '@/features/container-detail/components/field-error'
+import { IconField } from '@/features/container-detail/components/icon-field'
+import css from '@/features/container-detail/container-detail.module.css'
 import {
   type ContainerDetailFormValues,
   identityPersistSchema,
 } from '@/features/container-detail/container-detail.schema'
-import { ColorField } from '@/features/container-detail/components/color-field'
-import css from '@/features/container-detail/container-detail.module.css'
-import { FieldError } from '@/features/container-detail/components/field-error'
-import { IconField } from '@/features/container-detail/components/icon-field'
-import { Input } from '@/components/input/input'
-import { Label } from '@/components/label/label'
-import type { UseFormRegister } from 'react-hook-form'
-import { useState } from 'preact/hooks'
 
 export type IdentityProps = {
   register: UseFormRegister<ContainerDetailFormValues>

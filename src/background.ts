@@ -4,13 +4,14 @@
  * Site “always open in” is owned by Multi-Account Containers.
  */
 
-import type { ContainerProxy } from '@/data/types'
-import { ensureNewTabPage } from '@/utils/browser/ensure-new-tab-page'
-import { looksLikeBrokenStartupTab } from '@/utils/browser/looks-like-broken-startup-tab'
-import { proxyApi } from '@/data/proxy/proxy-cache-api'
 import { proxyCache } from '@/data/proxy/proxy-cache'
+import { proxyApi } from '@/data/proxy/proxy-cache-api'
 import { shouldSkipLocal } from '@/data/proxy/utils/should-skip-local'
 import { toProxyInfo } from '@/data/proxy/utils/to-proxy-info'
+import type { ContainerProxy } from '@/data/types'
+
+import { ensureNewTabPage } from '@/utils/browser/ensure-new-tab-page'
+import { looksLikeBrokenStartupTab } from '@/utils/browser/looks-like-broken-startup-tab'
 
 void proxyApi.refreshProxyCache()
 

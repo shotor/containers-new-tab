@@ -1,8 +1,11 @@
-import { describe, expect, it, vi } from 'vitest'
-import { act } from 'preact/test-utils'
-import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
-import { ProxyRow } from '@/features/proxies/components/proxy-row'
 import { render } from 'preact'
+import { act } from 'preact/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
+import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+
+import { ProxyRow } from '@/features/proxies/components/proxy-row'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@/features/proxies/hooks/use-proxy-containers', () => ({

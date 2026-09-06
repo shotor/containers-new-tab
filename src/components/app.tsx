@@ -1,12 +1,16 @@
+import { Suspense } from 'preact/compat'
+import { useLayoutEffect } from 'preact/hooks'
 import { Router, useLocation } from 'wouter'
-import css from './app.module.css'
+import { useHashLocation } from 'wouter/use-hash-location'
+
+import { Magnificence } from '@/components/magnificence/magnificence'
+
 import type { DetailPageProps } from '@/pages/detail-page'
 import { HomePage } from '@/pages/home-page'
-import { Magnificence } from '@/components/magnificence/magnificence'
-import { Suspense } from 'preact/compat'
+
 import { ThemeProvider } from '@/theme'
-import { useHashLocation } from 'wouter/use-hash-location'
-import { useLayoutEffect } from 'preact/hooks'
+
+import css from './app.module.css'
 
 type DetailPageComponent = React.FC<DetailPageProps>
 

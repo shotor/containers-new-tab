@@ -1,11 +1,16 @@
-import { SvgIcon, type SvgIconName } from '@/components/svg-icon/svg-icon'
-import { useId, useRef, useState } from 'preact/hooks'
-import { Button } from '@/components/button/button'
-import css from './theme-menu.module.css'
 import cx from 'classnames'
+import { useId, useRef, useState } from 'preact/hooks'
+
+import { Button } from '@/components/button/button'
+import { SvgIcon, type SvgIconName } from '@/components/svg-icon/svg-icon'
+
 import type { ThemeMode } from '@/data/types'
+
 import { useDismissOnOutsideOrEscape } from '@/utils/dom/use-dismiss-on-outside-or-escape'
+
 import { useTheme } from '@/theme'
+
+import css from './theme-menu.module.css'
 
 /** Theme options shown in the menu, in display order. */
 const OPTIONS: { value: ThemeMode; label: string }[] = [

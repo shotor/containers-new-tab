@@ -1,14 +1,18 @@
+import { useLocation } from 'wouter'
+
 import { Button } from '@/components/button/button'
-import { ContainerGrid } from '@/features/container-grid/container-grid'
-import css from './home-page.module.css'
 import { PageSection } from '@/components/page-section/page-section'
-import { ProxyPage } from '@/pages/proxy-page'
+import { TopBar } from '@/components/top-bar/top-bar'
+
+import { SortMenu } from '@/features/container-grid/components/sort-menu'
+import { ContainerGrid } from '@/features/container-grid/container-grid'
 import { ProxySortMenu } from '@/features/proxies/components/proxy-sort-menu'
 import { SiteAssignments } from '@/features/site-assignments/site-assignments'
-import { SortMenu } from '@/features/container-grid/components/sort-menu'
 import { ThemeMenu } from '@/features/theme-menu/theme-menu'
-import { TopBar } from '@/components/top-bar/top-bar'
-import { useLocation } from 'wouter'
+
+import { ProxyPage } from '@/pages/proxy-page'
+
+import css from './home-page.module.css'
 
 /**
  * Home page with container and proxy navigation above the active content.

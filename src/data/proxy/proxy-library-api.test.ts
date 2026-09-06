@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
 import type { SavedProxy } from '@/data/types'
 

@@ -1,6 +1,7 @@
 import type { ComponentChildren } from 'preact'
-import css from './page-section.module.css'
 import { useId } from 'preact/hooks'
+
+import css from './page-section.module.css'
 
 export type PageSectionProps = {
   title?: ComponentChildren

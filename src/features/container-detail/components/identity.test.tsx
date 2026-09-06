@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { renderSnapshot, stubRegister } from '@/test/render-snapshot'
-import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
+
 import { Identity } from '@/features/container-detail/components/identity'
+import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
+
+import { renderSnapshot, stubRegister } from '@/test/render-snapshot'
 
 const register = stubRegister<ContainerDetailFormValues>()
 

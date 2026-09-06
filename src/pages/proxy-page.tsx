@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'preact/hooks'
+
 import { Button } from '@/components/button/button'
-import css from './proxy-page.module.css'
-import { ProxyRow } from '@/features/proxies/components/proxy-row'
+
 import { sortProxies } from '@/data/utils/sort-proxies'
+
+import { ProxyRow } from '@/features/proxies/components/proxy-row'
 import { useProxyLibrary } from '@/features/proxies/hooks/use-proxy-library'
 import { useProxySort } from '@/features/proxies/hooks/use-proxy-sort'
+
+import css from './proxy-page.module.css'
 
 export type ProxyPageProps = {
   /** False while another page is shown; discards open editors. */

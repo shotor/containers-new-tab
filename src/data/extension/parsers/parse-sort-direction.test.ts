@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { parseSortDirection } from '@/data/extension/parsers/parse-sort-direction'
 
 describe('parseSortDirection', () => {

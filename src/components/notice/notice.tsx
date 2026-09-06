@@ -1,6 +1,7 @@
-import type { ComponentChildren } from 'preact'
-import css from './notice.module.css'
 import cx from 'classnames'
+import type { ComponentChildren } from 'preact'
+
+import css from './notice.module.css'
 
 /** Visual variants for {@link Notice}. */
 export type NoticeVariant = 'default' | 'warning'

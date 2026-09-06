@@ -1,6 +1,6 @@
-import type { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 import { type JSX, render } from 'preact'
 import { act } from 'preact/test-utils'
+import type { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 
 /**
  * Render UI into a fresh container under `document.body`.

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { pathScore } from '@/utils/url/path-score'
 
 describe('pathScore', () => {

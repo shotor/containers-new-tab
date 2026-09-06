@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'preact/hooks'
-import type { ContainerIdentity } from '@/data/browser/types'
+
 import { getContainers } from '@/data/browser/browser-api'
+import type { ContainerIdentity } from '@/data/browser/types'
+
 import { useProxyLibrary } from '@/features/proxies/hooks/use-proxy-library'
 
 /**

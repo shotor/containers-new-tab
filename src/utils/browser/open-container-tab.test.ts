@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { openContainerTab } from '@/utils/browser/open-container-tab'
 
 const { bumpUsage, getCurrent, create, remove } = vi.hoisted(() => ({

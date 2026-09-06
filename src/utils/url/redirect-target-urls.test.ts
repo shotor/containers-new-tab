@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { redirectTargetUrls } from '@/utils/url/redirect-target-urls'
 
 describe('redirectTargetUrls', () => {

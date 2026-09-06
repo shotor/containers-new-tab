@@ -1,7 +1,9 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
-import { renderHook } from '@/test/render-hook'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import { useProxySort } from '@/features/proxies/hooks/use-proxy-sort'
+
+import { renderHook } from '@/test/render-hook'
 
 const { get, set } = vi.hoisted(() => ({
   get: vi.fn<(key: string) => Promise<unknown>>(),

@@ -1,6 +1,7 @@
-import '@/data/zod-config'
-import { afterEach, vi } from 'vitest'
 import { render } from 'preact'
+import { afterEach, vi } from 'vitest'
+
+import '@/data/zod-config'
 
 vi.stubGlobal('browser', {
   runtime: {

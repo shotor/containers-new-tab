@@ -1,9 +1,10 @@
+import { DeleteConfirmDialog } from '@/components/delete-confirm-dialog/delete-confirm-dialog'
+import { PageSection } from '@/components/page-section/page-section'
+
 import { AssignedSites } from '@/features/container-detail/components/assigned-sites'
 import { DangerZone } from '@/features/container-detail/components/danger-zone'
-import { DeleteConfirmDialog } from '@/components/delete-confirm-dialog/delete-confirm-dialog'
 import { DetailHeader } from '@/features/container-detail/components/detail-header'
 import { Identity } from '@/features/container-detail/components/identity'
-import { PageSection } from '@/components/page-section/page-section'
 import { Proxy } from '@/features/container-detail/components/proxy'
 import { useContainerDetail } from '@/features/container-detail/hooks/use-container-detail'
 

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { preferSiteUrl } from '@/utils/url/prefer-site-url'
 
 describe('preferSiteUrl', () => {

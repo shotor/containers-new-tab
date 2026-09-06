@@ -1,5 +1,7 @@
-import { Button, ButtonRow } from '@/components/button/button'
 import { describe, expect, it } from 'vitest'
+
+import { Button, ButtonRow } from '@/components/button/button'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('Button', () => {

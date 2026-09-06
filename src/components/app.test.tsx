@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest'
 import type { ComponentChildren } from 'preact'
+import { describe, expect, it, vi } from 'vitest'
 
 import { App } from '@/components/app'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@/theme', () => ({

@@ -1,5 +1,6 @@
-import css from './badge.module.css'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import css from './badge.module.css'
 
 export type BadgeProps = {
   label: string

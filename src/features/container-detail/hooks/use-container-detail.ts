@@ -1,3 +1,23 @@
+import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
+import { useForm } from 'react-hook-form'
+import { useLocation } from 'wouter'
+
+import {
+  type MacSiteAssignment,
+  removeContainer,
+} from '@/data/browser/browser-api'
+import type { ContainerIdentity } from '@/data/browser/types'
+import { extensionStorageApi } from '@/data/extension/extension-storage-api'
+
+import {
+  type ContainerDetailFormValues,
+  DEFAULT_CONTAINER_DETAIL_FORM,
+} from '@/features/container-detail/container-detail.schema'
+import {
+  type SavedIdentity,
+  useIdentityAutosave,
+} from '@/features/container-detail/hooks/use-identity-autosave'
+import { useSaveStatusFlash } from '@/features/container-detail/hooks/use-save-status-flash'
 import {
   clearPrefetchedContainerDetail,
   type ContainerDetailPayload,
@@ -5,24 +25,6 @@ import {
   peekReadyContainerDetail,
   takePrefetchedContainerDetail,
 } from '@/features/container-detail/prefetch-container-detail'
-import {
-  type ContainerDetailFormValues,
-  DEFAULT_CONTAINER_DETAIL_FORM,
-} from '@/features/container-detail/container-detail.schema'
-import {
-  type MacSiteAssignment,
-  removeContainer,
-} from '@/data/browser/browser-api'
-import {
-  type SavedIdentity,
-  useIdentityAutosave,
-} from '@/features/container-detail/hooks/use-identity-autosave'
-import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
-import type { ContainerIdentity } from '@/data/browser/types'
-import { extensionStorageApi } from '@/data/extension/extension-storage-api'
-import { useForm } from 'react-hook-form'
-import { useLocation } from 'wouter'
-import { useSaveStatusFlash } from '@/features/container-detail/hooks/use-save-status-flash'
 
 /** Options for the container detail hook. */
 export type UseContainerDetailOptions = {

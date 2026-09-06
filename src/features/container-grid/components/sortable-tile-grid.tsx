@@ -1,13 +1,16 @@
 import { closestCenter, DndContext } from '@dnd-kit/core'
 import { rectSortingStrategy, SortableContext } from '@dnd-kit/sortable'
+
+import { SortableTile } from '@/components/sortable-tile/sortable-tile'
+
+import { colorCodeFor } from '@/data/browser/browser-api'
+
+import { prefetchContainerDetail } from '@/features/container-detail/prefetch-container-detail'
+import { ContainerTile } from '@/features/container-grid/components/container-tile'
 import {
   TileGridLayout,
   type TileGridProps,
 } from '@/features/container-grid/components/tile-grid'
-import { colorCodeFor } from '@/data/browser/browser-api'
-import { ContainerTile } from '@/features/container-grid/components/container-tile'
-import { prefetchContainerDetail } from '@/features/container-detail/prefetch-container-detail'
-import { SortableTile } from '@/components/sortable-tile/sortable-tile'
 import { useTileGrid } from '@/features/container-grid/hooks/use-tile-grid'
 
 /**

@@ -1,7 +1,7 @@
-import { createRequire } from 'node:module'
-import { defineConfig } from 'vitest/config'
-import { fileURLToPath } from 'node:url'
 import preact from '@preact/preset-vite'
+import { createRequire } from 'node:module'
+import { fileURLToPath } from 'node:url'
+import { defineConfig } from 'vitest/config'
 
 const require = createRequire(import.meta.url)
 

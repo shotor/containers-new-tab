@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { setStore } from '@/data/extension/api/set-store'
 
 describe('setStore', () => {

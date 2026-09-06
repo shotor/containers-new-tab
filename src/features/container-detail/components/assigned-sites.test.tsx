@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { renderSnapshot, renderTo, typeInput } from '@/test/render-snapshot'
+
 import { AssignedSites } from '@/features/container-detail/components/assigned-sites'
+
+import { renderSnapshot, renderTo, typeInput } from '@/test/render-snapshot'
 
 const sites = [
   {

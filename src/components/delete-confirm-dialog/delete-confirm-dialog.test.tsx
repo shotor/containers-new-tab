@@ -1,6 +1,8 @@
-import { describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
 import { DeleteConfirmDialog } from '@/components/delete-confirm-dialog/delete-confirm-dialog'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('DeleteConfirmDialog', () => {

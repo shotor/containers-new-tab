@@ -1,11 +1,15 @@
-import css from './assigned-sites.module.css'
-import { fuzzyFilterSorted } from '@/utils/search/fuzzy-filter-sorted'
-import type { MacSiteAssignment } from '@/data/browser/browser-api'
+import { useState } from 'preact/hooks'
+
 import { Notice } from '@/components/notice/notice'
 import { Search } from '@/components/search/search'
-import { siteLabelFromUrl } from '@/utils/url/site-label-from-url'
 import { SiteRow } from '@/components/site-row/site-row'
-import { useState } from 'preact/hooks'
+
+import type { MacSiteAssignment } from '@/data/browser/browser-api'
+
+import { fuzzyFilterSorted } from '@/utils/search/fuzzy-filter-sorted'
+import { siteLabelFromUrl } from '@/utils/url/site-label-from-url'
+
+import css from './assigned-sites.module.css'
 
 export type AssignedSitesProps = {
   sites: MacSiteAssignment[]

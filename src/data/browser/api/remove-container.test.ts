@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { removeContainer } from '@/data/browser/api/remove-container'
 
 describe('removeContainer', () => {

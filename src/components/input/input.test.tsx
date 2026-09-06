@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
 import { Input, Select } from '@/components/input/input'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('Input', () => {

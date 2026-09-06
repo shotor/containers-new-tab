@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { parseUsageCounts } from '@/data/extension/parsers/parse-usage-counts'
 
 describe('parseUsageCounts', () => {

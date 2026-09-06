@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { renderSnapshot } from '@/test/render-snapshot'
+
 import { TileGrid } from '@/features/container-grid/components/tile-grid'
+
+import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('TileGrid', () => {
   it('matches snapshot', () => {

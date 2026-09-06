@@ -1,8 +1,11 @@
-import { describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
 import type { ContainerIdentity } from '@/data/browser/types'
-import { renderHook } from '@/test/render-hook'
+
 import { useTileGrid } from '@/features/container-grid/hooks/use-tile-grid'
+
+import { renderHook } from '@/test/render-hook'
 
 vi.mock('@dnd-kit/core', () => ({
   KeyboardSensor: class KeyboardSensor {},

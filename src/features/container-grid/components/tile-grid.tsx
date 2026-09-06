@@ -1,13 +1,15 @@
 import type { ComponentChildren } from 'preact'
 
+import { colorCodeFor } from '@/data/browser/browser-api'
 import {
   type ContainerIdentity,
   DEFAULT_COOKIE_STORE,
 } from '@/data/browser/types'
-import { colorCodeFor } from '@/data/browser/browser-api'
-import { ContainerTile } from '@/features/container-grid/components/container-tile'
-import css from './tile-grid.module.css'
+
 import { prefetchContainerDetail } from '@/features/container-detail/prefetch-container-detail'
+import { ContainerTile } from '@/features/container-grid/components/container-tile'
+
+import css from './tile-grid.module.css'
 
 export type TileGridProps = {
   identities: ContainerIdentity[]

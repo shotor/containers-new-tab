@@ -1,6 +1,6 @@
 import { access, readFile } from 'node:fs/promises'
-import { setTimeout as delay } from 'node:timers/promises'
 import { resolve } from 'node:path'
+import { setTimeout as delay } from 'node:timers/promises'
 import { z } from 'zod'
 
 const manifestSchema = z.object({

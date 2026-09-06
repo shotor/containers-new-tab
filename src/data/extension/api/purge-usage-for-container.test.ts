@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { DEFAULT_STORE, type ExtensionStorageObject } from '@/data/types'
+
 import { purgeUsageForContainer } from '@/data/extension/api/purge-usage-for-container'
+import { DEFAULT_STORE, type ExtensionStorageObject } from '@/data/types'
 
 describe('purgeUsageForContainer', () => {
   let store: ExtensionStorageObject

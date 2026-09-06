@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'preact/hooks'
+
 import { DEFAULT_COOKIE_STORE } from '@/data/browser/types'
 
 /**

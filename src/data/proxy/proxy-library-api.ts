@@ -1,7 +1,8 @@
 import * as z from 'zod/mini'
-import type { ContainerProxy, ProxyLibrary, SavedProxy } from '@/data/types'
+
 import { getItem } from '@/data/extension/api/get-item'
 import { parseContainerProxy } from '@/data/extension/parsers/parse-container-proxy'
+import type { ContainerProxy, ProxyLibrary, SavedProxy } from '@/data/types'
 
 const librarySchema = z.object({
   assignments: z.record(z.string(), z.string()),

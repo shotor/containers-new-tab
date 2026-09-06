@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { renderSnapshot } from '@/test/render-snapshot'
+
 import { SiteRow } from '@/components/site-row/site-row'
+
+import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('SiteRow', () => {
   it('matches snapshot', () => {

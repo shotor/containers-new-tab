@@ -1,11 +1,12 @@
+import { useCallback, useEffect, useState } from 'preact/hooks'
+
+import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 import {
   DEFAULT_STORE,
   type ExtensionStorageObject,
   type SortMode,
 } from '@/data/types'
 import { sortContainers, toggleSortSelection } from '@/data/utils/sort'
-import { useCallback, useEffect, useState } from 'preact/hooks'
-import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 
 /** Sort-related fields used to order the container grid. */
 type SortStore = Pick<

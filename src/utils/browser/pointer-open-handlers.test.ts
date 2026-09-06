@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { pointerOpenHandlers } from '@/utils/browser/pointer-open-handlers'
 
 const event = (partial: {

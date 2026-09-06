@@ -1,6 +1,7 @@
-import css from './label.module.css'
 import cx from 'classnames'
 import type { JSX } from 'preact'
+
+import css from './label.module.css'
 
 export type LabelProps = Omit<JSX.IntrinsicElements['label'], 'class'> & {
   class?: string

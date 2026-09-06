@@ -1,8 +1,8 @@
 import { access, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
-import { Executor, HttpClient } from 'selenium-webdriver/http/index.js'
+import { resolve } from 'node:path'
 import { Session, WebDriver } from 'selenium-webdriver'
 import firefox from 'selenium-webdriver/firefox.js'
-import { resolve } from 'node:path'
+import { Executor, HttpClient } from 'selenium-webdriver/http/index.js'
 
 /** Where the live session handle is recorded for `attachFirefoxSession`. */
 export const SESSION_FILE = resolve('.cache/firefox/session.json')

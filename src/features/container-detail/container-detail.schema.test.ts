@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { identityPersistSchema } from '@/features/container-detail/container-detail.schema'
 
 describe('identityPersistSchema', () => {

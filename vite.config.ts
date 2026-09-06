@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import { fileURLToPath } from 'node:url'
 import preact from '@preact/preset-vite'
+import { fileURLToPath } from 'node:url'
+import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import webExtension from 'vite-plugin-web-extension'
 

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { parseHostname } from '@/utils/url/parse-hostname'
 
 describe('parseHostname', () => {

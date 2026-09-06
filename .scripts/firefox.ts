@@ -1,9 +1,10 @@
-import { By, until } from 'selenium-webdriver'
-import { createFirefoxSession, readFirefoxSession } from './firefox-session.ts'
-import { mkdir, writeFile } from 'node:fs/promises'
 import assert from 'node:assert/strict'
 import { once } from 'node:events'
+import { mkdir, writeFile } from 'node:fs/promises'
 import repl from 'node:repl'
+import { By, until } from 'selenium-webdriver'
+
+import { createFirefoxSession, readFirefoxSession } from './firefox-session.ts'
 
 const driver = await createFirefoxSession()
 

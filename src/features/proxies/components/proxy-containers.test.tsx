@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { ProxyContainers } from '@/features/proxies/components/proxy-containers'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@/features/proxies/hooks/use-proxy-containers', () => ({

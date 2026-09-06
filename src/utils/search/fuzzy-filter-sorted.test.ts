@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { fuzzyFilterSorted } from '@/utils/search/fuzzy-filter-sorted'
 import { fuzzyScore } from '@/utils/search/fuzzy-score'
 

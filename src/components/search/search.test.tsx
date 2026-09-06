@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
-import { renderSnapshot, renderTo, typeInput } from '@/test/render-snapshot'
+
 import { Search } from '@/components/search/search'
+
+import { renderSnapshot, renderTo, typeInput } from '@/test/render-snapshot'
 
 describe('Search', () => {
   it('matches snapshot', () => {

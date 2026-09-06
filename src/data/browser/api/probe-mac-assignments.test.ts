@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { getMacAssignment } from '@/data/browser/api/get-mac-assignment'
 import { probeMacAssignments } from '@/data/browser/api/probe-mac-assignments'
 

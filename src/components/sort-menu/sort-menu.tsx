@@ -1,10 +1,14 @@
-import { useId, useRef, useState } from 'preact/hooks'
-import { Button } from '@/components/button/button'
-import css from './sort-menu.module.css'
 import cx from 'classnames'
-import type { SortDirection } from '@/data/types'
+import { useId, useRef, useState } from 'preact/hooks'
+
+import { Button } from '@/components/button/button'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import type { SortDirection } from '@/data/types'
+
 import { useDismissOnOutsideOrEscape } from '@/utils/dom/use-dismiss-on-outside-or-escape'
+
+import css from './sort-menu.module.css'
 
 /** One selectable sort mode. */
 export type SortOption<T extends string> = { value: T; label: string }

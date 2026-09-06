@@ -1,9 +1,12 @@
-import { useEffect, useId, useLayoutEffect, useRef } from 'preact/hooks'
-import { Button } from '@/components/button/button'
-import { colorCodeFor } from '@/data/browser/browser-api'
 import type { ComponentChildren } from 'preact'
-import css from './delete-confirm-dialog.module.css'
+import { useEffect, useId, useLayoutEffect, useRef } from 'preact/hooks'
+
+import { Button } from '@/components/button/button'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import { colorCodeFor } from '@/data/browser/browser-api'
+
+import css from './delete-confirm-dialog.module.css'
 
 export type DeleteConfirmDialogProps = {
   name: string

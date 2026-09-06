@@ -2,12 +2,15 @@ import type {
   DraggableAttributes,
   DraggableSyntheticListeners,
 } from '@dnd-kit/core'
-import { Button } from '@/components/button/button'
-import css from './container-tile.module.css'
-import type { CSSProperties } from 'preact'
 import cx from 'classnames'
-import { pointerOpenHandlers } from '@/utils/browser/pointer-open-handlers'
+import type { CSSProperties } from 'preact'
+
+import { Button } from '@/components/button/button'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import { pointerOpenHandlers } from '@/utils/browser/pointer-open-handlers'
+
+import css from './container-tile.module.css'
 
 /** Visual role of a container tile. */
 export type ContainerTileVariant = 'container' | 'default' | 'new'

@@ -1,8 +1,8 @@
+import { gatherAssignmentProbeUrls } from './gather-assignment-probe-urls'
 import {
   type MacSiteAssignment,
   probeMacAssignments,
 } from './probe-mac-assignments'
-import { gatherAssignmentProbeUrls } from './gather-assignment-probe-urls'
 
 /**
  * MAC assignments for one container (probe top sites, then filter).

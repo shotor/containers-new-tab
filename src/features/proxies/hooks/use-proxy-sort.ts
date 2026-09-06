@@ -1,7 +1,8 @@
+import { useCallback, useEffect, useState } from 'preact/hooks'
+
+import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 import { DEFAULT_STORE, type ProxySortMode } from '@/data/types'
 import { type SortSelection, toggleSortSelection } from '@/data/utils/sort'
-import { useCallback, useEffect, useState } from 'preact/hooks'
-import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 
 /** Storage keys that hold the proxy list sort. */
 const PROXY_SORT_KEYS = ['proxySortMode', 'proxySortDirection'] as const

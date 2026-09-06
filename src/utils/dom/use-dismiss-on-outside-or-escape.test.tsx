@@ -1,8 +1,10 @@
-import { describe, expect, it, vi } from 'vitest'
-import { act } from 'preact/test-utils'
-import { renderHook } from '@/test/render-hook'
-import { useDismissOnOutsideOrEscape } from '@/utils/dom/use-dismiss-on-outside-or-escape'
 import { useRef } from 'preact/hooks'
+import { act } from 'preact/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
+import { useDismissOnOutsideOrEscape } from '@/utils/dom/use-dismiss-on-outside-or-escape'
+
+import { renderHook } from '@/test/render-hook'
 
 describe('useDismissOnOutsideOrEscape', () => {
   it('closes on outside pointerdown and Escape while open', () => {

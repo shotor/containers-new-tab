@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { toProxyInfo } from '@/data/proxy/utils/to-proxy-info'
 
 describe('toProxyInfo', () => {

@@ -1,9 +1,11 @@
-import { describe, expect, it, vi } from 'vitest'
-import { act } from 'preact/test-utils'
-import { HomePage } from '@/pages/home-page'
 import { render } from 'preact'
-import { renderSnapshot } from '@/test/render-snapshot'
 import { useState } from 'preact/hooks'
+import { act } from 'preact/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
+import { HomePage } from '@/pages/home-page'
+
+import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('wouter', () => ({
   useLocation: () => useState('/'),

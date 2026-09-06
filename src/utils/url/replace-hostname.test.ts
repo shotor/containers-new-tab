@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { replaceHostname } from '@/utils/url/replace-hostname'
 
 describe('replaceHostname', () => {

@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { getItem } from '@/data/extension/api/get-item'
-import { proxyCache } from '@/data/proxy/proxy-cache'
 import { refreshProxyCache } from '@/data/proxy/api/refresh-proxy-cache'
+import { proxyCache } from '@/data/proxy/proxy-cache'
 
 vi.mock('@/data/extension/api/get-item', () => ({
   getItem: vi.fn<() => Promise<Record<string, unknown>>>(),

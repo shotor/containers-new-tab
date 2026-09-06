@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
+
 import { getCachedProxy } from '@/data/proxy/api/get-cached-proxy'
 import { proxyCache } from '@/data/proxy/proxy-cache'
 

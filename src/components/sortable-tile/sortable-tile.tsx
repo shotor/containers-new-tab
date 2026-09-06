@@ -1,10 +1,10 @@
-import type { ComponentChildren, CSSProperties } from 'preact'
 import type {
   DraggableAttributes,
   DraggableSyntheticListeners,
 } from '@dnd-kit/core'
-import { CSS } from '@dnd-kit/utilities'
 import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
+import type { ComponentChildren, CSSProperties } from 'preact'
 
 /** Drag wiring passed to {@link SortableTile} children. */
 export type SortableTileRenderProps = {

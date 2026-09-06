@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { wwwHostVariants } from '@/utils/url/www-host-variants'
 
 describe('wwwHostVariants', () => {

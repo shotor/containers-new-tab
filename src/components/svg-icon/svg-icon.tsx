@@ -1,6 +1,7 @@
-import css from './svg-icon.module.css'
-import type { CSSProperties } from 'preact'
 import cx from 'classnames'
+import type { CSSProperties } from 'preact'
+
+import css from './svg-icon.module.css'
 
 /** Known bundled SVG glyph names (UI chrome + Firefox container icons). */
 export type SvgIconName =

@@ -1,11 +1,13 @@
+import { Button } from '@/components/button/button'
 import {
   type SaveStatus,
   SaveStatusIndicator,
 } from '@/components/save-status-indicator/save-status-indicator'
-import { Button } from '@/components/button/button'
-import { colorCodeFor } from '@/data/browser/browser-api'
-import css from './detail-header.module.css'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import { colorCodeFor } from '@/data/browser/browser-api'
+
+import css from './detail-header.module.css'
 
 export type DetailHeaderProps = {
   title: string

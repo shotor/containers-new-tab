@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { parseContainerProxies } from '@/data/extension/parsers/parse-container-proxies'
 
 describe('parseContainerProxies', () => {

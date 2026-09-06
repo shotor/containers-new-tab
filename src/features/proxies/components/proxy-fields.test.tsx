@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
 import { ProxyFields } from '@/features/proxies/components/proxy-fields'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 describe('ProxyFields', () => {

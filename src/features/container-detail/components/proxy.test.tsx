@@ -1,7 +1,10 @@
-import { describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
-import { Proxy } from '@/features/container-detail/components/proxy'
+import { describe, expect, it, vi } from 'vitest'
+
 import { proxyLibraryApi } from '@/data/proxy/proxy-library-api'
+
+import { Proxy } from '@/features/container-detail/components/proxy'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('@/features/proxies/hooks/use-proxy-library', () => ({

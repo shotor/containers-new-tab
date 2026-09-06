@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { siteLabelFromUrl } from '@/utils/url/site-label-from-url'
 
 describe('siteLabelFromUrl', () => {

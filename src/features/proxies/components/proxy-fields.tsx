@@ -1,7 +1,10 @@
-import { Input, Select } from '@/components/input/input'
-import css from './proxy-fields.module.css'
-import type { SavedProxy } from '@/data/types'
 import { useId } from 'preact/hooks'
+
+import { Input, Select } from '@/components/input/input'
+
+import type { SavedProxy } from '@/data/types'
+
+import css from './proxy-fields.module.css'
 
 export type ProxyFieldsProps = {
   value: SavedProxy

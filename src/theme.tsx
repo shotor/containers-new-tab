@@ -6,6 +6,7 @@ import {
   useMemo,
   useState,
 } from 'preact/hooks'
+
 import { extensionStorageApi } from '@/data/extension/extension-storage-api'
 import type { ThemeMode } from '@/data/types'
 

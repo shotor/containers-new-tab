@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { ContainerGrid } from '@/features/container-grid/container-grid'
+
 import { renderSnapshot } from '@/test/render-snapshot'
 
 vi.mock('wouter', () => ({

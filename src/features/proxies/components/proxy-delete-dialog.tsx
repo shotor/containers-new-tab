@@ -1,7 +1,9 @@
 import { Badge } from '@/components/badge/badge'
-import css from './proxy-delete-dialog.module.css'
 import { DeleteConfirmDialog } from '@/components/delete-confirm-dialog/delete-confirm-dialog'
+
 import { useProxyContainers } from '@/features/proxies/hooks/use-proxy-containers'
+
+import css from './proxy-delete-dialog.module.css'
 
 export type ProxyDeleteDialogProps = {
   proxyId: string

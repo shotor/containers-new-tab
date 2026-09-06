@@ -1,9 +1,12 @@
-import { Button } from '@/components/button/button'
 import type { ComponentChildren } from 'preact'
-import css from './site-row.module.css'
-import { parseHostname } from '@/utils/url/parse-hostname'
+
+import { Button } from '@/components/button/button'
+
 import { pointerOpenHandlers } from '@/utils/browser/pointer-open-handlers'
+import { parseHostname } from '@/utils/url/parse-hostname'
 import { siteLabelFromUrl } from '@/utils/url/site-label-from-url'
+
+import css from './site-row.module.css'
 
 /**
  * Build the favicon image URL for a hostname (Google favicon service).

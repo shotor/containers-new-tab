@@ -1,5 +1,6 @@
-import css from './search.module.css'
 import { Input } from '@/components/input/input'
+
+import css from './search.module.css'
 
 export type SearchProps = {
   id: string

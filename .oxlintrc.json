@@ -18,10 +18,6 @@
     "react/jsx-pascal-case": "error",
     "react/rules-of-hooks": "error",
     "unicorn/filename-case": ["error", { "case": "kebabCase" }],
-    "sort-imports": [
-      "error",
-      { "ignoreCase": true, "allowSeparatedGroups": true }
-    ],
     "no-duplicate-imports": "error",
     "no-debugger": "warn",
     "no-bitwise": "error",

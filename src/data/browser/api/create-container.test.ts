@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+
 import { createContainer } from '@/data/browser/api/create-container'
 
 describe('createContainer', () => {

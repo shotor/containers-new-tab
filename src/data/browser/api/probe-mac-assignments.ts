@@ -1,10 +1,11 @@
-import { getMacAssignment } from './get-mac-assignment'
 import { isDefined } from '@/utils/object/is-defined'
 import { parseHostname } from '@/utils/url/parse-hostname'
 import { preferSiteUrl } from '@/utils/url/prefer-site-url'
 import { replaceHostname } from '@/utils/url/replace-hostname'
 import { toHttpsUrl } from '@/utils/url/to-https-url'
 import { wwwHostVariants } from '@/utils/url/www-host-variants'
+
+import { getMacAssignment } from './get-mac-assignment'
 
 /** One MAC site assignment discovered by probing. */
 export type MacSiteAssignment = {

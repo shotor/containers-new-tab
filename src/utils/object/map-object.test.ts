@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { mapObject } from '@/utils/object/map-object'
 
 describe('mapObject', () => {

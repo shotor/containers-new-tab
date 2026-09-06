@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { shouldSkipLocal } from '@/data/proxy/utils/should-skip-local'
 
 const proxy = {

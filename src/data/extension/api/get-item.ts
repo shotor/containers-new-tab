@@ -1,5 +1,5 @@
-import type { ExtensionStorageObject } from '@/data/types'
 import { storeParseMap } from '@/data/extension/api/store-parse-map'
+import type { ExtensionStorageObject } from '@/data/types'
 
 /**
  * Read and validate a single extension store field.

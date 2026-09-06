@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { renderSnapshot, renderTo, typeInput } from '@/test/render-snapshot'
+
 import { SiteAssignments } from '@/features/site-assignments/site-assignments'
+
+import { renderSnapshot, renderTo, typeInput } from '@/test/render-snapshot'
 
 vi.mock('@/features/container-grid/hooks/use-sorted-containers', () => ({
   useSortedContainers: () => ({

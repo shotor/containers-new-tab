@@ -1,6 +1,8 @@
-import { click, renderSnapshot, renderTo } from '@/test/render-snapshot'
 import { describe, expect, it, vi } from 'vitest'
+
 import { ProxySortMenu } from '@/features/proxies/components/proxy-sort-menu'
+
+import { click, renderSnapshot, renderTo } from '@/test/render-snapshot'
 
 const setSortMode = vi.fn<(mode: string) => void>()
 

@@ -1,7 +1,9 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
-import { renderHook } from '@/test/render-hook'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import { useSortedContainers } from '@/features/container-grid/hooks/use-sorted-containers'
+
+import { renderHook } from '@/test/render-hook'
 
 const { get, set, getContainers } = vi.hoisted(() => ({
   get: vi.fn<(key: string) => Promise<unknown>>(),

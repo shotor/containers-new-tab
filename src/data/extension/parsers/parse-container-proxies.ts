@@ -1,5 +1,5 @@
-import { type ContainerProxy, DEFAULT_STORE } from '@/data/types'
 import { parseContainerProxy } from '@/data/extension/parsers/parse-container-proxy'
+import { type ContainerProxy, DEFAULT_STORE } from '@/data/types'
 
 /**
  * Parse the container proxy map, dropping invalid entries.

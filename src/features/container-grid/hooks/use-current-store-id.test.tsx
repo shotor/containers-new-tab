@@ -1,8 +1,11 @@
-import { describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+
 import { DEFAULT_COOKIE_STORE } from '@/data/browser/types'
-import { renderHook } from '@/test/render-hook'
+
 import { useCurrentStoreId } from '@/features/container-grid/hooks/use-current-store-id'
+
+import { renderHook } from '@/test/render-hook'
 
 describe('useCurrentStoreId', () => {
   it('loads the current tab cookieStoreId', async () => {

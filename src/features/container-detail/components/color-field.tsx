@@ -1,11 +1,14 @@
 import { Button } from '@/components/button/button'
+import { Label } from '@/components/label/label'
+
 import { colorCodeFor } from '@/data/browser/browser-api'
 import { CONTAINER_COLOR_NAMES } from '@/data/browser/types'
-import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
-import css from './identity.module.css'
-import detailCss from '@/features/container-detail/container-detail.module.css'
+
 import { FieldError } from '@/features/container-detail/components/field-error'
-import { Label } from '@/components/label/label'
+import detailCss from '@/features/container-detail/container-detail.module.css'
+import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
+
+import css from './identity.module.css'
 
 export type ColorFieldProps = {
   color: ContainerDetailFormValues['color']
