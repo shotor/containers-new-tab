@@ -402,22 +402,26 @@ exports[`DetailPage > matches snapshot 1`] = `
       class="list"
     >
       <li>
-        <button
-          class="root plain root"
-          title="https://example.com"
-          type="button"
+        <div
+          class="root"
         >
-          <img
-            alt=""
-            class="favicon"
-            src="https://www.google.com/s2/favicons?domain=example.com&sz=32"
-          />
-          <span
-            class="title"
+          <button
+            class="root plain open"
+            title="https://example.com"
+            type="button"
           >
-            example.com
-          </span>
-        </button>
+            <img
+              alt=""
+              class="favicon"
+              src="https://www.google.com/s2/favicons?domain=example.com&sz=32"
+            />
+            <span
+              class="title"
+            >
+              example.com
+            </span>
+          </button>
+        </div>
       </li>
     </ul>
   </section>

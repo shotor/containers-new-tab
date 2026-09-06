@@ -31,8 +31,8 @@ vi.mock('@/features/container-grid/container-grid', () => ({
   ContainerGrid: () => <div data-mock="ContainerGrid" />,
 }))
 
-vi.mock('@/features/site-assignments/site-assignments', () => ({
-  SiteAssignments: () => <div data-mock="SiteAssignments" />,
+vi.mock('@/features/site-assignments/sites-panel', () => ({
+  SitesPanel: () => <div data-mock="SitesPanel" />,
 }))
 
 describe('HomePage', () => {

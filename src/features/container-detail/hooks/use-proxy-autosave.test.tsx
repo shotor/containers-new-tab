@@ -1,8 +1,10 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act } from 'preact/test-utils'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import type { ProxyFormValues } from '@/features/container-detail/container-detail.schema'
-import { renderHook } from '@/test/render-hook'
 import { useProxyAutosave } from '@/features/container-detail/hooks/use-proxy-autosave'
+
+import { renderHook } from '@/test/render-hook'
 
 const { setProxyForContainer } = vi.hoisted(() => ({
   setProxyForContainer: vi.fn<() => Promise<void>>(async () => undefined),

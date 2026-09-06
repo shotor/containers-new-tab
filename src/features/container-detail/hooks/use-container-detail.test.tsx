@@ -37,6 +37,7 @@ vi.mock('@/data/extension/extension-storage-api', () => ({
   extensionStorageApi: {
     getContainers,
     purgeProxyForContainer: purgeProxy,
+    purgeShortcutsForContainer: vi.fn(async () => undefined),
     purgeUsageForContainer: purgeUsage,
   },
 }))

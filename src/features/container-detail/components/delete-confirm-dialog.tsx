@@ -1,7 +1,9 @@
 import { Button } from '@/components/button/button'
-import { colorCodeFor } from '@/data/browser/browser-api'
-import css from './delete-confirm-dialog.module.css'
 import { SvgIcon } from '@/components/svg-icon/svg-icon'
+
+import { colorCodeFor } from '@/data/browser/browser-api'
+
+import css from './delete-confirm-dialog.module.css'
 
 export type DeleteConfirmDialogProps = {
   name: string

@@ -1,21 +1,12 @@
 .root {
   position: relative;
-  display: grid;
-  grid-template-columns: 1.5rem 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 0;
   border-radius: 18px;
   background: var(--bg0);
-  color: inherit;
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  cursor: pointer;
   box-shadow: var(--neu-raised-sm);
   transition: box-shadow var(--neu-press-duration) var(--neu-press-ease);
 }
@@ -36,15 +27,45 @@
   z-index: 1;
 }
 
-.root:hover,
-.root:focus-visible {
-  outline: none;
+/* The whole card presses when the open control is hovered/focused. */
+.root:has(.open:hover),
+.root:has(.open:focus-visible) {
   box-shadow: var(--neu-raised-sm-fade);
 }
 
-.root:hover::after,
-.root:focus-visible::after {
+.root:has(.open:hover)::after,
+.root:has(.open:focus-visible)::after {
   opacity: 1;
+}
+
+.open {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+}
+
+.open:focus-visible {
+  outline: none;
+}
+
+.action {
+  display: inline-flex;
+  flex: none;
+  gap: 0.6rem;
 }
 
 .favicon {

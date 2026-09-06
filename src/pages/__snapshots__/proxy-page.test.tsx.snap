@@ -7,41 +7,44 @@ exports[`ProxyPage > matches snapshot 1`] = `
   >
     
     <div
-      class="empty"
+      class="root"
     >
-      <svg
+      <span
         aria-hidden="true"
-        class="emptyIcon"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 64 64"
+        class="icon"
       >
-        <rect
-          height="22"
-          rx="5"
-          width="16"
-          x="5"
-          y="21"
-        />
-        <rect
-          height="22"
-          rx="5"
-          width="16"
-          x="43"
-          y="21"
-        />
-        <path
-          d="M21 28h22m-22 8h22m-6-14 6 6-6 6M27 30l-6 6 6 6"
-        />
-      </svg>
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 64 64"
+        >
+          <rect
+            height="22"
+            rx="5"
+            width="16"
+            x="5"
+            y="21"
+          />
+          <rect
+            height="22"
+            rx="5"
+            width="16"
+            x="43"
+            y="21"
+          />
+          <path
+            d="M21 28h22m-22 8h22m-6-14 6 6-6 6M27 30l-6 6 6 6"
+          />
+        </svg>
+      </span>
       <h2
-        class="emptyTitle"
+        class="title"
       >
         No proxies yet
       </h2>
       <p
-        class="emptyDescription"
+        class="description"
       >
         Add your first proxy to use it with your containers.
       </p>

@@ -1,0 +1,177 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SitesPanel > matches snapshot on the shortcuts tab 1`] = `
+<div>
+  <div
+    aria-label="Websites"
+    class="root tabs"
+    role="tablist"
+  >
+    <button
+      aria-selected="true"
+      class="root tab"
+      role="tab"
+      type="button"
+    >
+      Shortcuts
+    </button>
+    <button
+      aria-selected="false"
+      class="root tab"
+      role="tab"
+      type="button"
+    >
+      Assigned websites
+    </button>
+  </div>
+  <div
+    class="root"
+  >
+    <label
+      class="visually-hidden"
+      for="sites-search"
+    >
+      Search websites
+    </label>
+    <input
+      autocomplete="off"
+      class="root"
+      id="sites-search"
+      placeholder="Search websites…"
+      type="search"
+    />
+  </div>
+  <ul
+    class="list"
+    role="tabpanel"
+  >
+    <li>
+      <div
+        class="root"
+      >
+        <button
+          class="root plain open"
+          title="https://github.com/notifications"
+          type="button"
+        >
+          <img
+            alt=""
+            class="favicon"
+            src="https://www.google.com/s2/favicons?domain=github.com&sz=32"
+          />
+          <span
+            class="title"
+          >
+            github.com
+          </span>
+          <span
+            class="root"
+            style="--badge-color: #00f;"
+          >
+            <span
+              aria-hidden="true"
+              class="root icon"
+              style="--icon-url: url("moz-extension://test/assets/icons/briefcase.svg");"
+            />
+            Work
+          </span>
+        </button>
+        <span
+          class="action"
+        >
+          <button
+            aria-label="Edit github.com"
+            class="root ghost rowAction"
+            title="Edit shortcut"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="root"
+              style="--icon-url: url("moz-extension://test/assets/icons/edit.svg");"
+            />
+          </button>
+          <button
+            aria-label="Remove github.com"
+            class="root ghost rowAction"
+            title="Remove shortcut"
+            type="button"
+          >
+            ×
+          </button>
+        </span>
+      </div>
+    </li>
+    <li>
+      <div
+        class="root"
+      >
+        <button
+          class="root plain open"
+          title="https://news.ycombinator.com"
+          type="button"
+        >
+          <img
+            alt=""
+            class="favicon"
+            src="https://www.google.com/s2/favicons?domain=news.ycombinator.com&sz=32"
+          />
+          <span
+            class="title"
+          >
+            news.ycombinator.com
+          </span>
+          <span
+            class="root"
+          >
+            <span
+              class="dot"
+            />
+            No container
+          </span>
+        </button>
+        <span
+          class="action"
+        >
+          <button
+            aria-label="Edit news.ycombinator.com"
+            class="root ghost rowAction"
+            title="Edit shortcut"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="root"
+              style="--icon-url: url("moz-extension://test/assets/icons/edit.svg");"
+            />
+          </button>
+          <button
+            aria-label="Remove news.ycombinator.com"
+            class="root ghost rowAction"
+            title="Remove shortcut"
+            type="button"
+          >
+            ×
+          </button>
+        </span>
+      </div>
+    </li>
+  </ul>
+  <div
+    class="actions"
+  >
+    <button
+      class="root add"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="plus"
+      >
+        +
+      </span>
+      Add shortcut
+    </button>
+  </div>
+</div>
+`;

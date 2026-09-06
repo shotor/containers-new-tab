@@ -1,6 +1,6 @@
-import type { ContainerProxy } from '@/data/types'
 import { getItem } from '@/data/extension/api/get-item'
 import { setStore } from '@/data/extension/api/set-store'
+import type { ContainerProxy } from '@/data/types'
 
 /**
  * Store (or clear, for null/direct) the proxy config of a container.

@@ -23,31 +23,35 @@ exports[`SiteAssignments > matches snapshot after assignments load 1`] = `
     class="list"
   >
     <li>
-      <button
-        class="root plain root"
-        title="https://github.com"
-        type="button"
+      <div
+        class="root"
       >
-        <img
-          alt=""
-          class="favicon"
-          src="https://www.google.com/s2/favicons?domain=github.com&sz=32"
-        />
-        <span
-          class="title"
+        <button
+          class="root plain open"
+          title="https://github.com"
+          type="button"
         >
-          github.com
-        </span>
-        <span
-          class="root"
-          style="--badge-color: #00f;"
-        >
-          <span
-            class="dot"
+          <img
+            alt=""
+            class="favicon"
+            src="https://www.google.com/s2/favicons?domain=github.com&sz=32"
           />
-          Work
-        </span>
-      </button>
+          <span
+            class="title"
+          >
+            github.com
+          </span>
+          <span
+            class="root"
+            style="--badge-color: #00f;"
+          >
+            <span
+              class="dot"
+            />
+            Work
+          </span>
+        </button>
+      </div>
     </li>
   </ul>
 </div>

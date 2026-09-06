@@ -1,10 +1,13 @@
+import { useEffect } from 'preact/hooks'
+
+import { extensionStorageApi } from '@/data/extension/extension-storage-api'
+
 import {
   type ProxyFormValues,
   proxyPersistSchema,
 } from '@/features/container-detail/container-detail.schema'
+
 import { debounce } from '@/utils/function/debounce'
-import { extensionStorageApi } from '@/data/extension/extension-storage-api'
-import { useEffect } from 'preact/hooks'
 
 const PROXY_SAVE_MS = 400
 

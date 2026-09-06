@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { DEFAULT_STORE, type ExtensionStorageObject } from '@/data/types'
+
 import { setProxyForContainer } from '@/data/extension/api/set-proxy-for-container'
+import { DEFAULT_STORE, type ExtensionStorageObject } from '@/data/types'
 
 describe('setProxyForContainer', () => {
   let store: ExtensionStorageObject

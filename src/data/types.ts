@@ -53,6 +53,14 @@ export type ProxyLibrary = {
   assignments: Record<string, string>
 }
 
+/** A user-defined website shortcut that opens in a chosen container. */
+export type Shortcut = {
+  id: string
+  url: string
+  /** Container to open in; `firefox-default` for no container. */
+  cookieStoreId: string
+}
+
 export interface ExtensionStorageObject {
   sortMode: SortMode
   sortDirection: SortDirection
@@ -62,6 +70,7 @@ export interface ExtensionStorageObject {
   usageCounts: Record<string, number>
   customOrder: string[]
   containerProxies: Record<string, ContainerProxy>
+  shortcuts: Shortcut[]
 }
 
 /** Defaults used when a stored value is missing or invalid. */
@@ -70,6 +79,7 @@ export const DEFAULT_STORE: ExtensionStorageObject = {
   customOrder: [],
   proxySortDirection: 'asc',
   proxySortMode: 'name',
+  shortcuts: [],
   sortDirection: 'asc',
   sortMode: 'mostUsed',
   themeMode: 'system',

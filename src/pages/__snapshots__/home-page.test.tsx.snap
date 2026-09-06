@@ -10,7 +10,7 @@ exports[`HomePage > matches snapshot 1`] = `
     >
       <nav
         aria-label="Pages"
-        class="navigation"
+        class="root"
       >
         <button
           aria-current="page"
@@ -59,17 +59,10 @@ exports[`HomePage > matches snapshot 1`] = `
         />
       </section>
       <section
-        aria-labelledby="P0-1"
         class="root"
       >
-        <h2
-          class="title"
-          id="P0-1"
-        >
-          Assigned websites
-        </h2>
         <div
-          data-mock="SiteAssignments"
+          data-mock="SitesPanel"
         />
       </section>
     </div>

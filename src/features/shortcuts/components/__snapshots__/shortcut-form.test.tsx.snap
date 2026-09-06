@@ -1,0 +1,68 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ShortcutForm > matches snapshot 1`] = `
+<div>
+  <form
+    aria-label="New shortcut"
+    class="root"
+  >
+    <fieldset
+      class="fields"
+    >
+      <label
+        class="site"
+        for="P0-0-url"
+      >
+        Website
+        <input
+          autocomplete="off"
+          autofocus=""
+          class="root"
+          id="P0-0-url"
+          inputmode="url"
+          placeholder="example.com"
+          required=""
+          type="text"
+        />
+      </label>
+      <label
+        class="container"
+        for="P0-0-container"
+      >
+        Open in
+        <select
+          class="root"
+          id="P0-0-container"
+        >
+          <option
+            value="firefox-default"
+          >
+            No container
+          </option>
+          <option
+            value="firefox-container-1"
+          >
+            Work
+          </option>
+        </select>
+      </label>
+      <div
+        class="row actions"
+      >
+        <button
+          class="root"
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          class="root"
+          type="submit"
+        >
+          Add shortcut
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+`;

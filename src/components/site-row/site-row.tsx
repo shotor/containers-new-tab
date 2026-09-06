@@ -19,35 +19,46 @@ const faviconUrl = (host: string): string =>
 export type SiteRowProps = {
   url: string
   badge?: ComponentChildren
+  /** Trailing control rendered inside the card (e.g. a remove button). */
+  action?: ComponentChildren
   onOpen: (url: string, beside: boolean) => void
 }
 
 /**
- * A site-assignment row: favicon, site label, optional trailing badge.
- * @param props - URL to open/display, optional badge, and open callback.
- * @returns The rendered row button.
+ * A site card: favicon, hostname label, optional badge, optional trailing action.
+ * @param props - URL to open/display, optional badge/action, and open callback.
+ * @returns The rendered card.
  */
-export const SiteRow: React.FC<SiteRowProps> = ({ url, badge, onOpen }) => {
+export const SiteRow: React.FC<SiteRowProps> = ({
+  url,
+  badge,
+  action,
+  onOpen,
+}) => {
   const label = siteLabelFromUrl(url)
   const host = parseHostname(url) ?? label
 
   return (
-    <Button
-      variant="plain"
-      class={css.root}
-      title={url}
-      {...pointerOpenHandlers((beside) => onOpen(url, beside))}
-    >
-      <img
-        class={css.favicon}
-        alt=""
-        src={faviconUrl(host)}
-        onError={(e) => {
-          e.currentTarget.style.visibility = 'hidden'
-        }}
-      />
-      <span class={css.title}>{label}</span>
-      {badge}
-    </Button>
+    <div class={css.root}>
+      <Button
+        variant="plain"
+        class={css.open}
+        title={url}
+        {...pointerOpenHandlers((beside) => onOpen(url, beside))}
+      >
+        <img
+          class={css.favicon}
+          alt=""
+          src={faviconUrl(host)}
+          onError={(e) => {
+            e.currentTarget.style.visibility = 'hidden'
+          }}
+        />
+        <span class={css.title}>{label}</span>
+        {badge}
+      </Button>
+
+      {action && <span class={css.action}>{action}</span>}
+    </div>
   )
 }

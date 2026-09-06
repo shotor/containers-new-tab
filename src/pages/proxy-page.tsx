@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 
 import { Button } from '@/components/button/button'
+import { EmptyState } from '@/components/empty-state/empty-state'
 
 import { sortProxies } from '@/data/utils/sort-proxies'
 
@@ -50,24 +51,22 @@ export const ProxyPage: React.FC<ProxyPageProps> = ({ active = true }) => {
       ) : (
         <>
           {!error && !newId && Object.keys(library.proxies).length === 0 && (
-            <div class={css.empty}>
-              <svg
-                class={css.emptyIcon}
-                viewBox="0 0 64 64"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <rect x="5" y="21" width="16" height="22" rx="5" />
-                <rect x="43" y="21" width="16" height="22" rx="5" />
-                <path d="M21 28h22m-22 8h22m-6-14 6 6-6 6M27 30l-6 6 6 6" />
-              </svg>
-              <h2 class={css.emptyTitle}>No proxies yet</h2>
-              <p class={css.emptyDescription}>
-                Add your first proxy to use it with your containers.
-              </p>
-            </div>
+            <EmptyState
+              title="No proxies yet"
+              description="Add your first proxy to use it with your containers."
+              icon={
+                <svg
+                  viewBox="0 0 64 64"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="5" y="21" width="16" height="22" rx="5" />
+                  <rect x="43" y="21" width="16" height="22" rx="5" />
+                  <path d="M21 28h22m-22 8h22m-6-14 6 6-6 6M27 30l-6 6 6 6" />
+                </svg>
+              }
+            />
           )}
 
           {entries.map(({ id, proxy, usage }) => (

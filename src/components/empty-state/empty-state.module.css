@@ -1,0 +1,32 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.5rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--neu-pressed-sm);
+  text-align: center;
+}
+
+.icon {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.icon > svg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0.5rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}

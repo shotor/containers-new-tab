@@ -246,6 +246,7 @@ export const useContainerDetail = ({
     await removeContainer(id)
     await extensionStorageApi.purgeProxyForContainer(id)
     await extensionStorageApi.purgeUsageForContainer(id)
+    await extensionStorageApi.purgeShortcutsForContainer(id)
     goHome()
   }
 

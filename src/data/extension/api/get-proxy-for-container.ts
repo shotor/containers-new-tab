@@ -1,5 +1,5 @@
-import type { ContainerProxy } from '@/data/types'
 import { getItem } from '@/data/extension/api/get-item'
+import type { ContainerProxy } from '@/data/types'
 
 /**
  * Read the stored proxy config for a container.

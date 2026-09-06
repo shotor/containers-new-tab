@@ -1,8 +1,10 @@
-import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
-import css from '@/features/container-detail/container-detail.module.css'
+import type { UseFormRegister } from 'react-hook-form'
+
 import { Input } from '@/components/input/input'
 import { Label } from '@/components/label/label'
-import type { UseFormRegister } from 'react-hook-form'
+
+import css from '@/features/container-detail/container-detail.module.css'
+import type { ContainerDetailFormValues } from '@/features/container-detail/container-detail.schema'
 
 export type ProxyOptionalFieldsProps = {
   register: UseFormRegister<ContainerDetailFormValues>
