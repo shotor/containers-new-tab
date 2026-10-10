@@ -34,7 +34,7 @@
   "devDependencies": {
     "@preact/preset-vite": "2.10.6",
     "@stylistic/eslint-plugin": "5.10.0",
-    "@types/firefox-webext-browser": "143.0.0",
+    "@types/firefox-webext-browser": "143.0.1",
     "@types/node": "26.4.1",
     "@types/selenium-webdriver": "4.35.6",
     "@vitest/coverage-v8": "5.0.0",
